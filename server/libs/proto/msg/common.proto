@@ -1,0 +1,56 @@
+//-------------------------------------------------------------------
+// @doc
+// common.proto
+// @end
+//-------------------------------------------------------------------
+syntax = "proto3";
+
+package easy_moba;
+
+//-------------------------------------------------------------------
+enum t_platform{
+	default 							=	0;
+}
+
+enum t_setting {
+  sound       					= 0;
+  music       					= 1;
+}
+
+enum t_lang {
+  cn  									= 0;
+  en  									= 1;
+}
+
+enum t_os{
+  ios                   = 0;
+  android               = 1;
+  web                   = 2;
+}
+
+enum t_gender {
+  none   								= 0;
+  male   								= 1;
+  female 								= 2;
+}
+
+enum t_red_dot {
+	none 									=	0;
+}
+
+enum t_region{
+  default               = 0;
+}
+
+//-------------------------------------------------------------------
+message red_dot {
+	t_red_dot 						type          	= 1;
+  uint32    						id            	= 2;
+  uint32    						start_ts      	= 3;
+  uint32    						expire_ts     	= 4;
+}
+
+message setting {
+  t_setting      				key    					= 1;
+  uint32         				value  					= 2;
+}

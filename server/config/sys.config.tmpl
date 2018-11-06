@@ -1,0 +1,75 @@
+#---------------------------- config tmpl-------------------------------
+LagerCfg="
+  {lager, [
+    {log_root, \"log\"},
+    {handlers, [
+      {lager_console_backend, [{level, debug}]},
+      {lager_file_backend, [{file, \"error.log\"}, {level, error}, {count, 10}, {size, 10240000}]},
+      {lager_file_backend, [{file, \"info.log\"}, {level, info}, {count, 10}, {size, 10240000}]}
+    ]},
+    {extra_sinks,
+      [{oss_file_lager_event,
+        [
+          {handlers, 
+            [{lager_file_backend, 
+              [
+                {file, \"$LAGER_OSS_DIR\"},
+                {level, info},
+                {count, 10},
+                {size, 10240000},
+                {formatter_config, [message, \"\\\n\"]},
+                {date, \"\$S300\"}
+              ]
+            }]
+          },
+          {async_threshold, 500},
+          {async_threshold_window, 50}
+        ]
+      }]
+    },
+    {crash_log, \"crash.log\"},
+    {crash_log_size, 10240000},
+    {crash_log_count, 10},
+    {error_logger_hwm, 100},
+    {colored, $LAGER_COLORED}
+  ]}"
+GameCfg="
+  {game_svr, [
+    {svr_id,  ${SERVER_ID}},
+    {gs_port, ${SERVER_PORT}},
+    {game_mode, ${GAME_MODE}},
+    {sdk_mode, ${SDK_MODE}},
+    {bt_mode, ${BT_MODE}},
+    {im_ws_host, \"${IM_WS_HOST}\"},
+    {im_biz_addr, \"${IM_BIZ_ADDR}\"},
+    {im_access_type, ${IM_ACCESS_TYPE}},
+    {battle_check_pools, [
+      {battle_check_pool, 
+        [{size, 10}, {max_overflow, 20}],
+        [{ip, \"$BATTLE_CHECK_URL\"}, {port, $BATTLE_CHECK_PORT}]
+      }
+    ]},
+    {push_kvs, $PUSH_KVS},
+    {lilith_login_sdk_url, \"$LILITH_LOGIN_SDK_URL\"},
+    {wechat_login_sdk_url, \"$WECHAT_LOGIN_SDK_URL\"},
+    {wechat_sdk_access_token_url, \"$WECHAT_SDK_ACCESS_TOKEN_URL\"},
+    {wechat_app_id, \"$WECHAT_APP_ID\"},
+    {wechat_app_secret, \"$WECHAT_APP_SECRET\"},
+    {cdkey_app_id,$CDKEY_APP_ID},
+    {cdkey_sign_token,\"$CDKEY_SIGN_TOKEN\"},
+    {cdkey_request_url,\"$CDKEY_REQUEST_URL\"},
+    {cli_version, \"$CLI_VERSION\"},
+    {check_client_version,$CHECK_CLIENT_VERSION},
+    {battle_report, $BATTLE_REPORT},
+    {ssl_ca,  \"$SSL_CA\"},
+    {ssl_crt, \"$SSL_CRT\"},
+    {ssl_key, \"$SSL_KEY\"},
+    {cli_version, \"$CLI_VERSION\"},
+    {project_branch_no, \"$PROJECT_BRANCH_NO\"},
+    {region, $REGION},
+    {push, $PUSH}
+  ]}"
+
+#---------------------------- game_svr config  -------------------------------
+game_svr_cfgs=[$LagerCfg,$GameCfg].
+game_svr_reg_type=by_id

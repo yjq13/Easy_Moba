@@ -1,0 +1,107 @@
+//-------------------------------------------------------------------
+// @doc
+// down.proto
+// @end
+//-------------------------------------------------------------------
+syntax = "proto3";
+
+import "common.proto";
+
+package easy_moba;
+
+//-------------------------------------------------------------------
+enum t_result {
+	success 							=	0;
+	fail 									= 1;
+}
+
+message down_msg {
+  uint32 								svr_ts 					= 1;	//	服务器时间戳
+  uint32 								seq 						= 2;	//	消息标志位
+  reply_err_code   			err_code				= 3;	//	错误码
+	reply_notify 					notify 					= 4;	//	通知消息
+  reply_extra_info 			extra_info 			= 5;	//	额外信息
+  //	以下是功能
+	reply_heartbeat 			heartbeat 			= 6;	//	心跳
+  reply_user        		gm        			= 7;
+  reply_sdk_login   		sdk_login 			= 8; 	//	登陆
+  reply_login       		login     			= 9; 	// 	登录
+  reply_reconnect   		reconnect 			= 10; // 	重连
+  reply_tutorial    		tutorial  			= 11; // 	新手引导
+  reply_settings    		settings  			= 12;	//	个人设置
+	reply_data_op 				data_op 				= 99;	//	<测试用>数字运算
+}
+
+message reply_user {
+	uint64 								uid 						=	1;	//	玩家唯一id
+	string 								name 						=	2;
+	uint32 								level 					=	3;
+	uint32 								exp 						=	4;
+  repeated red_dot      red_dots        = 5;
+  repeated setting      settings        = 6;	//	个人设置
+  repeated uint32       tutorials       = 7;	//	新手引导
+	t_lang            		lang            = 8;	//	语种
+	int32             		time_zone       = 9;	//	时区
+	string            		avatar          = 10; // 	头像
+	uint32            		frame           = 11; // 	头像框
+  t_gender          		gender          = 12;
+  uint32            		country         = 13;
+  uint32            		city         		= 14;
+  string            		desc            = 15; //	个性签名
+}
+
+message reply_msg {
+}
+
+message reply_err_code {
+  string 								err_code   			= 1;
+}
+
+message reply_notify {
+	red_dot            		red_dot       	= 1;
+}
+
+message reply_extra_info {
+
+}
+
+message reply_heartbeat {
+	uint32 								delay 					= 1;	//	两次心跳的延时
+}
+
+message reply_sdk_login {
+  string 								token      			= 1;
+  uint32 								svr_id     			= 2;
+  string 								host       			= 3;	//	新服务器的IP地址:端口，如果没有表示就是当前连接
+  string 								open_id    			= 4;
+  string 								union_id   			= 5;
+}
+
+message reply_login {
+	reply_user  					user       			= 1;	//	玩家信息
+	uint32       					svr_time_zone   = 2; 	// 	服务器时区
+	t_region    					region          = 3; 	// 	服务器大区、性质
+}
+
+message reply_reconnect {
+	repeated reply_notify notifies   			= 1;
+}
+
+message reply_tutorial {
+	reply_new_tutorial   new_tutorial 		= 1;
+}
+
+message reply_new_tutorial {
+	t_result   					result       			= 1;
+	uint32   						tutorials   			= 2;
+}
+
+message reply_settings {
+  t_result 						result  					= 1;
+}
+
+//	---------------------------------------------------------------------
+message reply_data_op {
+	t_result 							result 					=	1;
+	uint32 								data 						= 2;
+}

@@ -1,0 +1,27 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+SERVER	.\apps\game_svr\src\game_svr_sup.erl	/^-define(SERVER, ?MODULE).$/;"	d
+SERVER	.\libs\proto\src\proto_sup.erl	/^-define(SERVER, ?MODULE).$/;"	d
+SERVER	.\src\server_sup.erl	/^-define(SERVER, ?MODULE).$/;"	d
+game_svr_app	.\apps\game_svr\src\game_svr_app.erl	/^-module(game_svr_app).$/;"	m
+game_svr_sup	.\apps\game_svr\src\game_svr_sup.erl	/^-module(game_svr_sup).$/;"	m
+init	.\apps\game_svr\src\game_svr_sup.erl	/^init([]) ->$/;"	f	module:game_svr_sup
+init	.\libs\proto\src\proto_sup.erl	/^init([]) ->$/;"	f	module:proto_sup
+init	.\src\server_sup.erl	/^init([]) ->$/;"	f	module:server_sup
+proto_app	.\libs\proto\src\proto_app.erl	/^-module(proto_app).$/;"	m
+proto_sup	.\libs\proto\src\proto_sup.erl	/^-module(proto_sup).$/;"	m
+server_app	.\src\server_app.erl	/^-module(server_app).$/;"	m
+server_sup	.\src\server_sup.erl	/^-module(server_sup).$/;"	m
+start	.\apps\game_svr\src\game_svr_app.erl	/^start(_StartType, _StartArgs) ->$/;"	f	module:game_svr_app
+start	.\libs\proto\src\proto_app.erl	/^start(_StartType, _StartArgs) ->$/;"	f	module:proto_app
+start	.\src\server_app.erl	/^start(_StartType, _StartArgs) ->$/;"	f	module:server_app
+start_link	.\apps\game_svr\src\game_svr_sup.erl	/^start_link() ->$/;"	f	module:game_svr_sup
+start_link	.\libs\proto\src\proto_sup.erl	/^start_link() ->$/;"	f	module:proto_sup
+start_link	.\src\server_sup.erl	/^start_link() ->$/;"	f	module:server_sup
+stop	.\apps\game_svr\src\game_svr_app.erl	/^stop(_State) ->$/;"	f	module:game_svr_app
+stop	.\libs\proto\src\proto_app.erl	/^stop(_State) ->$/;"	f	module:proto_app
+stop	.\src\server_app.erl	/^stop(_State) ->$/;"	f	module:server_app
