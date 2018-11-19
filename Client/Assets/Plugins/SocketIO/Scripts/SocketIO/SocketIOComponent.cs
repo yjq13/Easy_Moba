@@ -40,9 +40,9 @@ namespace SocketIO
 {
 	public class SocketIOComponent : MonoBehaviour
 	{
-		#region Public Properties
+        #region Public Properties
 
-		public string url = "ws://114.116.91.235:30000";
+        public string url = "ws://114.116.91.235:30000";//"ws://114.116.91.235:30000";
 		public bool autoConnect = true;
 		public int reconnectDelay = 5;
 		public float ackExpirationTime = 1800f;
@@ -223,11 +223,12 @@ namespace SocketIO
 
         public void Emit(byte[] massage)
         {
-            ws.Send(massage);
+            EmitMessage(++packetId, string.Format("[\"{0}\"]", massage));
         }
 
         public void EmitProtoMessage(byte[] message)
         {
+            ws.Send(message);
             //EmitMessage(++packetId, string.Format("[\"{0}\"]", ev));
         }
 		public void Emit(string ev, Action<JSONObject> action)

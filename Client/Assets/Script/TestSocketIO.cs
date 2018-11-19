@@ -33,6 +33,7 @@ using SocketIO;
 using ProtoBuf;
 using easy_moba;
 using System.Collections.Generic;
+using System;
 
 public class TestSocketIO : MonoBehaviour
 {
@@ -57,11 +58,20 @@ public class TestSocketIO : MonoBehaviour
         byte[] result = new byte[ms.Length];
         ms.Position = 0;
         ms.Read(result, 0, result.Length);
+        //string byteStr = Convert.ToBase64String(result);
+        //byte[] byteArray = Convert.FromBase64String(byteStr);
 
-        Debug.Log(result.Length);
-        Debug.Log(result[0]);
-        Debug.Log(result[1]);
-        socket.Emit(result);
+        //Debug.Log(byteStr);
+        //MemoryStream ms2 = new MemoryStream();
+        //Debug.Log(byteArray.Length);
+        //ms2.Write(byteArray, 0, byteArray.Length);
+        ////将流的位置归0  
+        //ms2.Position = 0;
+        ////使用工具反序列化对象  
+        //up_msg mm = Serializer.Deserialize<up_msg>(ms2);
+        //Debug.Log(mm.data_op.data);
+
+        socket.EmitProtoMessage(result);
     }
 
 	private IEnumerator BeepBoop()

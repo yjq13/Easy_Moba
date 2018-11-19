@@ -23,7 +23,7 @@ message user {
 	string 								login_ip 				=	10;
 	uint32 								logout_ts 			=	11;
 	update_ts 						update_ts 			=	12;
-	bool              		is_online       = 13[default = false];
+	bool              		is_online       = 13;
   repeated red_dot      red_dots        = 14;
   repeated setting      settings        = 15;	//	个人设置
   repeated uint32       tutorials       = 16;	//	新手引导
