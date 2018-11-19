@@ -95,6 +95,7 @@
   <ItemGroup>
     <Compile Include="Assets\Script\NetWork\ProtoMessage\common.cs" />
     <Compile Include="Assets\Script\NetWork\ProtoMessage\down.cs" />
+    <Compile Include="Assets\Script\NetWork\ProtoMessage\game.cs" />
     <Compile Include="Assets\Script\NetWork\ProtoMessage\up.cs" />
     <Compile Include="Assets\Script\TestSocketIO.cs" />
   </ItemGroup>
