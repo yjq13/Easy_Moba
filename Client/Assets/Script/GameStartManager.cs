@@ -4,9 +4,9 @@ using NetWork;
 
 public class GameStartManager : MonoBehaviour
 {
-    void Start()
+    IEnumerator Start()
     {
-        NetworkManager.Instance.InitComponent(gameObject);
+        yield return StartCoroutine(NetworkManager.Instance.GetWebSocket().Connect());
         NetworkManager.Instance.Connect();
 
     }

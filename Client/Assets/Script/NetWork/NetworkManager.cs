@@ -1,71 +1,68 @@
 ﻿using System.IO;
-using System.Collections.Generic;
 using UnityEngine;
-using SocketIO;
 using System;
-using System.Text;
 using ProtoBuf;
 using Common;
 using easy_moba;
+using System.Collections;
 
 namespace NetWork
 {
     public class NetworkManager : SingleMode<NetworkManager>
     {
-        private SocketIOComponent socketIO;
+        private WebSocket web_socket;
         private bool login;
 
         private Guid guid = Guid.NewGuid();
 
         protected override void OnInit()
         {
-
+            web_socket = new WebSocket(new Uri("ws://114.116.91.235:30000"));
         }
 
-        public void InitComponent(GameObject go)
+        public WebSocket GetWebSocket()
         {
-            socketIO = go.AddComponent<SocketIOComponent>();
+            return web_socket;
         }
+
 
         public void Connect()
         {
-            socketIO.Connect();
-            up_msg msg = new up_msg()
+            down_msg msg = new down_msg()
+            {
+                svr_ts = 1543483207,
+                seq = 0,
+                err_code = new reply_err_code()
+                {
+                    err_code = "Yingjiaqi is your daddy"
+                }
+            };
+            up_msg msg2 = new up_msg()
             {
                 data_op = new req_data_op()
                 {
-                    op = t_op.add,
-                    data = 30,
-                    data_list = new uint[3] { 1, 2, 3 }
+                    op = t_op.add
                 }
             };
-            byte[] databytes = Encoding.Default.GetBytes(msg.ToString());
+            MemoryStream ms = new MemoryStream();
+            Serializer.Serialize(ms, msg2);
 
-            socketIO.Emit(databytes);
-            /*socketIO.On(SocketIOProtocol.ProtocolLogin, (date) =>
+            byte[] result = new byte[ms.Length];
+            ms.Position = 0;
+            ms.Read(result, 0, result.Length);
+            for(int i = 0; i < result.Length; i++)
             {
-                JsonData jsonData = JsonMapper.ToObject(date.data.ToString());
-                string message = string.Format("{0} : {1}", jsonData["nickName"], jsonData["chatMessage"]);
-                chatContent += message + "\r\n";
-                login = true;
-            });
+                Debug.Log(result[i]);
+            }
 
-            socketIO.On(SocketIOProtocol.ProtocolChat, (date) =>
-            {
-                JsonData jsonData = JsonMapper.ToObject(date.data.ToString());
-                string message = string.Format("{0} : {1}", jsonData["nickName"], jsonData["chatMessage"]);
-                chatContent += message + "\r\n";
-            });
+            byte[] test_result = new byte[] { 8, 199, 222, 254, 223, 5, 26, 19, 10, 17, 119, 104, 111, 32, 105, 115, 32, 121, 111, 117, 114, 32, 100, 97, 100, 100, 121 };
 
-            socketIO.On(SocketIOProtocol.ProtocolInfo, (date) =>
-            {
-                Debug.Log(date.data);
-            });*/
-        }
+            MemoryStream ms2 = new MemoryStream(result);
 
-        public void TestOpen(SocketIOEvent e)
-        {
-            Debug.Log("[SocketIO] Open received: " + e.name + " " + e.data);
+            up_msg result2 = Serializer.Deserialize<up_msg>(ms2);
+
+            web_socket.Send(result);
+
         }
 
 
