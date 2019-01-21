@@ -36,12 +36,17 @@ public class GameStartManager : MonoBehaviour
 
     private void Update()
     {
+        UpdateGetWebInfomation();
+    }
+
+    private void UpdateGetWebInfomation()
+    {
         if (is_web_connected)
         {
             var data = NetworkManager.Instance.ReceiveMessage();
-            if(data != null)
+            if (data != null)
             {
-                Debug.Log(data.err_code);
+                Debug.Log(data.data_op.result);
             }
         }
     }
