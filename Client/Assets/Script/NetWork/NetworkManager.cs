@@ -1,80 +1,55 @@
 ﻿using System.IO;
-using System.Collections.Generic;
 using UnityEngine;
-using SocketIO;
 using System;
-using System.Text;
 using ProtoBuf;
 using Common;
 using easy_moba;
+using System.Collections;
 
 namespace NetWork
 {
     public class NetworkManager : SingleMode<NetworkManager>
     {
-        private SocketIOComponent socketIO;
+        private WebSocket web_socket;
         private bool login;
 
         private Guid guid = Guid.NewGuid();
 
         protected override void OnInit()
         {
-
+            web_socket = new WebSocket(new Uri("ws://114.116.91.235:26666"));
         }
 
-        public void InitComponent(GameObject go)
+
+        public IEnumerator StartConnect()
         {
-            socketIO = go.AddComponent<SocketIOComponent>();
+            return web_socket.Connect();
         }
 
-        public void Connect()
+        public void SendMessage<T>(T msg)
         {
-            socketIO.Connect();
-            up_msg msg = new up_msg()
-            {
-                data_op = new req_data_op()
-                {
-                    op = t_op.add,
-                    data = 30,
-                    data_list = new uint[3] { 1, 2, 3 }
-                }
-            };
-            byte[] databytes = Encoding.Default.GetBytes(msg.ToString());
+            MemoryStream memory_stream = new MemoryStream();
+            Serializer.Serialize(memory_stream, msg);
+            byte[] binary_msg = new byte[memory_stream.Length];
+            memory_stream.Position = 0;
+            memory_stream.Read(binary_msg, 0, binary_msg.Length);
 
-            socketIO.Emit(databytes);
-            /*socketIO.On(SocketIOProtocol.ProtocolLogin, (date) =>
-            {
-                JsonData jsonData = JsonMapper.ToObject(date.data.ToString());
-                string message = string.Format("{0} : {1}", jsonData["nickName"], jsonData["chatMessage"]);
-                chatContent += message + "\r\n";
-                login = true;
-            });
-
-            socketIO.On(SocketIOProtocol.ProtocolChat, (date) =>
-            {
-                JsonData jsonData = JsonMapper.ToObject(date.data.ToString());
-                string message = string.Format("{0} : {1}", jsonData["nickName"], jsonData["chatMessage"]);
-                chatContent += message + "\r\n";
-            });
-
-            socketIO.On(SocketIOProtocol.ProtocolInfo, (date) =>
-            {
-                Debug.Log(date.data);
-            });*/
+            web_socket.Send(binary_msg);
         }
 
-        public void TestOpen(SocketIOEvent e)
+        public down_msg ReceiveMessage()
         {
-            Debug.Log("[SocketIO] Open received: " + e.name + " " + e.data);
+            byte[] recv_msg = web_socket.Recv();
+            if(recv_msg != null)
+            {
+                MemoryStream memory_stream = new MemoryStream(recv_msg);
+                down_msg rec_message = Serializer.Deserialize<down_msg>(memory_stream);
+                return rec_message;
+            }
+            return null;
         }
 
 
-        void OnRemoveEvent()
-        {
-            //socketIO.Off(SocketIOProtocol.ProtocolLogin);
-            //socketIO.Off(SocketIOProtocol.ProtocolChat);
-            //socketIO.Off(SocketIOProtocol.ProtocolInfo);
-        }
 
     }
 }
