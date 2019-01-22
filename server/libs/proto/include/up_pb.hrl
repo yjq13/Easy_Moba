@@ -47,7 +47,7 @@
 -ifndef('REQ_SDK_LOGIN_PB_H').
 -define('REQ_SDK_LOGIN_PB_H', true).
 -record(req_sdk_login,
-        {platform = default     :: 'default' | integer() | undefined, % = 1, enum t_platform
+        {platform = dev         :: 'dev' | integer() | undefined, % = 1, enum t_platform
          open_id = []           :: iolist() | undefined, % = 2
          token = []             :: iolist() | undefined, % = 3
          svr_id = 0             :: non_neg_integer() | undefined % = 4, 32 bits
@@ -57,15 +57,15 @@
 -ifndef('REQ_LOGIN_PB_H').
 -define('REQ_LOGIN_PB_H', true).
 -record(req_login,
-        {platform = default     :: 'default' | integer() | undefined, % = 1, enum t_platform
-         os = ios               :: 'ios' | 'android' | 'web' | integer() | undefined, % = 2, enum t_os
-         open_id = []           :: iolist() | undefined, % = 3
-         svr_id = 0             :: non_neg_integer() | undefined, % = 4, 32 bits
-         token = []             :: iolist() | undefined, % = 5
+        {platform = dev         :: 'dev' | integer() | undefined, % = 1, enum t_platform
+         open_id = []           :: iolist() | undefined, % = 2
+         svr_id = 0             :: non_neg_integer() | undefined, % = 3, 32 bits
+         token = []             :: iolist() | undefined, % = 4
+         os = ios               :: 'ios' | 'android' | 'web' | integer() | undefined, % = 5, enum t_os
          lang = cn              :: 'cn' | 'en' | integer() | undefined, % = 6, enum t_lang
          cli_version = []       :: iolist() | undefined, % = 7
          time_zone = 0          :: integer() | undefined, % = 8, 32 bits
-         jpush_id = []          :: iolist() | undefined, % = 9
+         push_id = []           :: iolist() | undefined, % = 9
          idfa = []              :: iolist() | undefined, % = 10
          google_aid = []        :: iolist() | undefined, % = 11
          android_id = []        :: iolist() | undefined, % = 12
@@ -117,8 +117,8 @@
 -record(red_dot,
         {type = none            :: 'none' | integer() | undefined, % = 1, enum t_red_dot
          id = 0                 :: non_neg_integer() | undefined, % = 2, 32 bits
-         start_ts = 0           :: non_neg_integer() | undefined, % = 3, 32 bits
-         expire_ts = 0          :: non_neg_integer() | undefined % = 4, 32 bits
+         start_time = 0         :: non_neg_integer() | undefined, % = 3, 32 bits
+         expire_time = 0        :: non_neg_integer() | undefined % = 4, 32 bits
         }).
 -endif.
 

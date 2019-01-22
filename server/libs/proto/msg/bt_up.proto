@@ -1,0 +1,35 @@
+//-------------------------------------------------------------------
+// @doc
+// bt_up.proto
+// @end
+//-------------------------------------------------------------------
+syntax = "proto3";
+
+import "bt_common.proto";
+
+package easy_moba;
+
+//-------------------------------------------------------------------
+message bt_up_msg {
+  uint32                room_id         = 1;
+  uint32                uid             = 2;
+  string                token           = 3;  //  每次消息必带token，相当于房间密码
+  //  以下是功能
+  req_bt_init           init            = 4;  //  战斗初始化
+  req_bt_cmd            cmd             = 5;  //  战斗指令
+  req_bt_query_cmd      query_cmd       = 6;  //  查询指令
+}
+
+message req_bt_init {
+  uint32                progress        = 1;  //  进度，[0, 10000]
+}
+
+message req_bt_cmd {
+  uint32                client_seq      = 1;  //  当前客户端的动作序列号
+  repeated bt_action    actions         = 2;  //  行动
+}
+
+message req_bt_query_cmd {
+  uint32                seq_from        = 1;
+  uint32                seq_to          = 2;
+}

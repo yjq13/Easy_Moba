@@ -10,7 +10,7 @@
 
 -export([start_handler/0, init/2, websocket_init/1, websocket_handle/2, websocket_info/2, terminate/3]).
 
--record(state, {uid, uin, verified = false, ip}).
+-record(state, {uid, uin, svr_id, session, verified = false, ip, last_op_ts}).
 
 start_handler() ->
   {ok, WsPort} = config:get(game_svr, gs_port),
@@ -30,15 +30,16 @@ init(Req, _State) ->
   {cowboy_websocket, Req, #state{ip = inet:ntoa(IP)}, Opts}.
 
 websocket_init(State) ->
+  usocket:set_socket(State#state.uid, self()),
   ?DEBUG("[~p], websockt_init pid ~p", [?MODULE, self()]),
   {ok, State}.
 
 websocket_handle({binary, UpData}, State) ->
-  ?INFO("~w", [UpData]),
+  % ?INFO("binary up_data received:~w", [UpData]),
   UpMsg    = up_pb:decode_msg(UpData, up_msg),
   {ok, Mod, _Act, Cmd} = up_util:fetch_cmd(UpMsg),
   _        = do_log_msg(up, UpMsg, State),
-  {DownMsg, NewState} = websocket_handle_(UpMsg, Mod, Cmd, State),
+  {DownMsg, NewState} = websocket_handle__(UpMsg, Mod, Cmd, State),
   _        = do_log_msg(down, DownMsg, NewState),
   DownData = encode_data(UpMsg, DownMsg, NewState, tools:is_err_code(DownMsg)),
   {reply, DownData, NewState};
@@ -50,8 +51,8 @@ websocket_handle(Data, State) ->
 
 encode_data(_UpMsg, Err, #state{verified = false}, true) ->
   {close, atom_to_list(Err)};
-encode_data(_UpMsg, Msg, _, _) ->
-  DownMsg  = pack_down_msg(Msg),
+encode_data(UpMsg, Msg, _, _) ->
+  DownMsg  = pack_down_msg(UpMsg#up_msg.seq, Msg),
   DownData = down_pb:encode_msg(DownMsg),
   {binary, DownData}.
 
@@ -64,7 +65,7 @@ do_log_msg(down, DownMsg, State) ->
 do_log_msg(_, _, _) ->
   ok.
 
-websocket_info({pb_msg, PbMsg}, State) ->
+websocket_info({push, PbMsg}, State) ->
   ?DEBUG("[~p] send pb msg: ~p ~p", [?MODULE, self(), PbMsg]),
   {reply, {binary, PbMsg}, State};
 
@@ -88,7 +89,7 @@ logout(UID, Uin) when UID =/= undefined andalso Uin =/= undefined->
 logout(_, _) ->
   ok.
 
-websocket_handle_(UpMsg, Mod, Cmd, State) ->
+websocket_handle__(UpMsg, Mod, Cmd, State) ->
   case config:get(game_svr, maintenance, nowarn) of
     {ok, true} ->
       {?ERR_SERVER_MAINTENANCE, State};
@@ -108,17 +109,22 @@ websocket_handle_2(UpMsg, Mod, Cmd, State) ->
 do_websocket_handle(_UpMsg, heartbeat, Cmd, #state{uid = UID} = State) ->
   Msg = heartbeat:req(UID, Cmd),
   {ok, Msg, State};
+%% sdk login
+do_websocket_handle(_UpMsg, sdk_login, Cmd, State) ->
+  Msg       = sdk_login:req(Cmd),
+  {ok, Msg, State};
 %% login
 do_websocket_handle(_UpMsg, login, Cmd, #state{ip = IP} = State) ->
-  {#user{uid = UID, uin = Uin, svr_id = SvrID}, Msg} = login:req(Cmd, IP),
-  online:update_counter(SvrID),
-  intl_mail:check(UID),
-  NewState = State#state{uid = UID, uin = Uin, verified = true},
+  {{UID, Uin, SvrID}, Msg} = login:req(Cmd, IP),
+  NewState  = State#state{uid = UID, uin = Uin, svr_id = SvrID, verified = true},
   {ok, Msg, NewState};
-
+do_websocket_handle(#up_msg{repeat = Repeat} = UpMsg, _Mod, _Cmd, #state{uid = UID, verified = true} = State) when Repeat > 0 ->
+  Msg       = cache_msg:get_msg(UID, UpMsg),
+  {ok, Msg, State};
 %% cmd
-do_websocket_handle(_UpMsg, Mod, Cmd, #state{uid = UID, verified = true} = State) ->
-  Msg      = exec_cmd(UID, Mod, Cmd),
+do_websocket_handle(UpMsg, Mod, Cmd, #state{uid = UID, verified = true} = State) ->
+  Msg       = exec_cmd(UID, Mod, Cmd),
+  ok        = cache_msg:insert(UID, UpMsg, Msg),
   {ok, Msg, State};
 %% unexpect when unverified
 do_websocket_handle(_UpMsg, _Mod, _Req, #state{verified = false} = State)->
@@ -149,11 +155,16 @@ exec_cmd__(User, Mod, Msg) ->
   end.
 
 %% 封装下发协议
-pack_down_msg(Msg) ->
+pack_down_msg(Seq, Msg) ->
   DownMsg = pack_down_msg_(Msg),
-  DownMsg.
+  DownMsg#down_msg{seq = Seq, svr_time = ?NOW}.
 
 pack_down_msg_(Error) when is_atom(Error) ->
   #down_msg{err_code = #reply_err_code{err_code = atom_to_list(Error)}};
 pack_down_msg_(Msg) when is_record(Msg, down_msg) ->
-  Msg.
+  Msg;
+pack_down_msg_(Msg) ->
+  MsgType = tools:cut_atom_head(element(1, Msg), reply_),
+  Fields  = record_info(fields, down_msg),
+  Index   = tools:index_of(MsgType, Fields),
+  erlang:setelement(Index + 1, #down_msg{extra_info = #reply_extra_info{}}, Msg).

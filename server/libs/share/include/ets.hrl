@@ -1,0 +1,8 @@
+-define(SYS_PARAM_ETS,   			sys_param_ets).	%%	系统参数
+-define(USER_ETS,   					user_ets).
+-define(USOCKET_ETS, 					usocket_ets).
+-define(USCOKET_NOTIFIES_ETS, usocket_notifies_ets).
+-define(CACHE_MSG_ETS, 				cache_msg_ets).
+-define(SDK_FREE_LOGIN_ETS, 	sdk_free_login_ets).	%%	免sdk登录
+-define(TOKEN_ETS, 						token_ets).
+-define(ACC_ETS, 							acc_ets).	%%	账号

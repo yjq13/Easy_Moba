@@ -1,0 +1,5 @@
+-ifndef(USER_HRL).
+-define(USER_HRL, user_hrl).
+-define(USER_VERSION, 1).
+-define(USER_DEFAULT_NAME, "NewPlayer").
+-endif.

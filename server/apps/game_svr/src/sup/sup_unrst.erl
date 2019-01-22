@@ -28,4 +28,11 @@ init([]) ->
 %% Internal functions
 %%====================================================================
 init_mods() ->
+  sys_param:init_ets(),
+  users:init_ets(),
+  account_cli:init_ets(),
+	usocket:init_ets(),
+  cache_msg:init_ets(),
+  toolkit:init_ets(),
+  token:init_ets(),
   ok.

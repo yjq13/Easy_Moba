@@ -16,7 +16,7 @@ enum t_result {
 }
 
 message down_msg {
-  uint32 								svr_ts 					= 1;	//	服务器时间戳
+  uint32 								svr_time				= 1;	//	服务器时间戳
   uint32 								seq 						= 2;	//	消息标志位
   reply_err_code   			err_code				= 3;	//	错误码
 	reply_notify 					notify 					= 4;	//	通知消息
@@ -48,6 +48,7 @@ message reply_user {
   uint32            		country         = 13;
   uint32            		city         		= 14;
   string            		desc            = 15; //	个性签名
+  uint32 								create_time 		=	16;	//	创角时间
 }
 
 message reply_msg {
@@ -70,11 +71,7 @@ message reply_heartbeat {
 }
 
 message reply_sdk_login {
-  string 								token      			= 1;
-  uint32 								svr_id     			= 2;
-  string 								host       			= 3;	//	新服务器的IP地址:端口，如果没有表示就是当前连接
-  string 								open_id    			= 4;
-  string 								union_id   			= 5;
+  string 								token      			= 1; //  用于断线重连，由客户端上传的token连接一个100000000内的随机数字
 }
 
 message reply_login {

@@ -52,7 +52,7 @@ do_cmd_proc(_, _GameID, _UID, _Spot) ->
 
 
 %% --------------------------------------------------------------------
-check_param_valid([GameID, UID, PassWord, Spot] = List) ->
+check_param_valid([GameID, UID, PassWord, _Spot] = List) ->
   case check_param_not_undefined(List) of
     ok  ->
       check_game_user_valid(GameID, UID, PassWord);

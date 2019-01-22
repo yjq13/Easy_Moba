@@ -9,7 +9,7 @@ package easy_moba;
 
 //-------------------------------------------------------------------
 enum t_platform{
-	default 							=	0;
+	dev 							    =	0;
 }
 
 enum t_setting {
@@ -39,15 +39,15 @@ enum t_red_dot {
 }
 
 enum t_region{
-  default               = 0;
+  dev                   = 0;
 }
 
 //-------------------------------------------------------------------
 message red_dot {
 	t_red_dot 						type          	= 1;
   uint32    						id            	= 2;
-  uint32    						start_ts      	= 3;
-  uint32    						expire_ts     	= 4;
+  uint32    						start_time      = 3;
+  uint32    						expire_time   	= 4;
 }
 
 message setting {

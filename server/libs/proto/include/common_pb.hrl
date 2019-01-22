@@ -12,8 +12,8 @@
 -record(red_dot,
         {type = none            :: 'none' | integer() | undefined, % = 1, enum t_red_dot
          id = 0                 :: non_neg_integer() | undefined, % = 2, 32 bits
-         start_ts = 0           :: non_neg_integer() | undefined, % = 3, 32 bits
-         expire_ts = 0          :: non_neg_integer() | undefined % = 4, 32 bits
+         start_time = 0         :: non_neg_integer() | undefined, % = 3, 32 bits
+         expire_time = 0        :: non_neg_integer() | undefined % = 4, 32 bits
         }).
 -endif.
 

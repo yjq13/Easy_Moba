@@ -34,9 +34,12 @@
 -define(ONE_DAY_SEC,    (24 * 60 * 60)).
 
 %% hot key
--define(NOW,                 time_util:now()).
+-define(NOW,	time_util:now()).
 
 %% settings
--define(HEARTBEAT_DELAY_TIME, 5).
+-define(HEARTBEAT_DELAY_TIME, 5).					%%	心跳（最大）间隔
+-define(GAME_TOKEN_RANGE, 		100000000).	%%	token取值上限
+-define(LOGIN_MAX_SECONDS, 		86400 * 7).	%% 	最大登录在线时长
+
 
 -endif.

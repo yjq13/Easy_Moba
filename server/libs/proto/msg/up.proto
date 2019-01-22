@@ -43,23 +43,23 @@ message req_gm {
 }
 
 message req_sdk_login {
-	t_platform 						platform   			= 1;
-	string     						open_id    			= 2;
-	string     						token      			= 3;
-	uint32     						svr_id     			= 4;	//	如果不传的话，取最近登陆一次svr_id， 或者最新服svr_id
+	t_platform 						platform   			= 1;  //  开发：dev
+	string     						open_id    			= 2;  //  设备id
+	string     						token      			= 3;  //  客户端随机一个字符串
+	uint32     						svr_id     			= 4;	//	开发：1
 }
 
 message req_login {
   t_platform 						platform    		= 1;
-  t_os       						os          		= 2;
-  string     						open_id     		= 3;
-  uint32     						svr_id      		= 4;
-  string     						token      			= 5;
+  string     						open_id     		= 2;
+  uint32     						svr_id      		= 3;
+  string     						token      			= 4;
+  //  以上参数是必要的，下面的参数暂时无效
+  t_os                  os              = 5;
   t_lang     						lang        		= 6;
-  //	以上参数是必要的，下面的参数暂时无效
-  string     						cli_version 		= 7;	//	客户端版本号
+  string     						cli_version 		= 7;	//	客户端版本号，默认“1.1.0”
   int32      						time_zone   		= 8;
-  string     						jpush_id    		= 9;
+  string     						push_id    		  = 9;
   string     						idfa        		= 10;
   string     						google_aid  		= 11;
   string     						android_id  		= 12;
