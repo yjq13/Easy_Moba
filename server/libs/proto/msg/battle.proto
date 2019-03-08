@@ -1,0 +1,48 @@
+//-------------------------------------------------------------------
+// @doc
+// batt.proto
+// @end
+//-------------------------------------------------------------------
+syntax = "proto3";
+
+import "common.proto";
+
+package easy_moba;
+
+//-------------------------------------------------------------------
+
+message req_battle_action {
+  uint32 								svr_ts 					= 1;	//	服务器时间戳
+  uint32 								client_seq 			= 2;	//	当前客户端的动作序列号
+  t_lang                user_id         = 3;  //  当前客户端用户ID
+
+  uint32                action_flag     = 4;              
+}
+
+message reply_battle_action {
+  uint32                svr_ts          = 1;  //  服务器时间戳
+  uint32                client_seq      = 2;  //  当前客户端的动作序列号
+  t_lang                user_id         = 3;  //  当前客户端用户ID
+  string                err_code        = 4;  //  错误码
+  uint32                svr_seq         = 5;  //  服务器动作序列号
+  uint32                action_id       = 6;  
+}
+
+message req_battle_move {
+  uint32                svr_ts          = 1;  //  服务器时间戳
+  uint32                client_seq      = 2;  //  当前客户端的动作序列号
+  t_lang                user_id         = 3;  //  当前客户端用户ID
+
+  float                move_rotation_X     = 4;  
+  float                move_rotation_y     = 5;             
+}
+
+message reply_battle_move {
+  uint32                svr_ts          = 1;  //  服务器时间戳
+  uint32                client_seq      = 2;  //  当前客户端的动作序列号
+  t_lang                user_id         = 3;  //  当前客户端用户ID
+  string                err_code        = 4;  //  错误码
+  uint32                svr_seq         = 5;  //  服务器动作序列号
+  float                move_rotation_X     = 6;  
+  float                move_rotation_y     = 7;                
+}
