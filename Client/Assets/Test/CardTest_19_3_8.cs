@@ -16,7 +16,9 @@ namespace Test
             List<uint> card_id_list_one = new List<uint> { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 };
             List<uint> card_id_list_tow = new List<uint> { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 };
             cardSet_playerOne.InitCardSet(card_id_list_one);
-            cardSet_playerOne.InitCardSet(card_id_list_tow);
+            cardSet_playerTwo.InitCardSet(card_id_list_tow);
+            Player player_one = new Player(cardSet_playerOne);
+            Player player_tow = new Player(cardSet_playerTwo);
         }
 
 
