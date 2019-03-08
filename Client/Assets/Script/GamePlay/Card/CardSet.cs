@@ -10,7 +10,10 @@ namespace GamePlay
     class CardSet
     {
         private List<CardBase> CardSet_Rec;
-        private List<CardBase> CarSet_Play;
+
+        public List<CardBase> CarSet_Play;
+
+        public List<CardBase> CardSet_Used;
 
         public Dictionary<uint, uint> card_record;
         public const uint CardSetCountMax = 30;
@@ -40,7 +43,7 @@ namespace GamePlay
         {
             if(CardSet_Rec != null)
             {
-                CarSet_Play = new List<CardBase>(CardSet_Rec);
+                CarSet_Play = new List<CardBase>(CardSet_Used);
             }
         }
 
@@ -69,7 +72,7 @@ namespace GamePlay
 
         public void UseCard(CardBase card)
         {
-
+            CardSet_Used.Add(card);
         }
 
         public void InitCardSet(List<uint> cardIDList)

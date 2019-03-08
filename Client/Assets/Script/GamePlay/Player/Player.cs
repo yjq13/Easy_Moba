@@ -51,9 +51,14 @@ namespace GamePlay
             if(card != null)
             {
                 CurrentCanUseCardList.Remove(card);
+
                 if (card.CardType == CARD_TYPE.WEAPON)
                 {
                     CurrentUsingCardList.Add(card);
+                }
+                else
+                {
+                    m_GameCardSet.UseCard(card);
                 }
             }
         }
