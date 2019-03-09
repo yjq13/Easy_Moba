@@ -2,27 +2,32 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using UnityEngine;
 
 namespace GamePlay
 {
-    class Player
+    class PlayerBase
     {
         private CardSet m_GameCardSet;
         public List<CardBase> CurrentCanUseCardList;
         public List<CardBase> CurrentUsingCardList;
 
-        public int CurrentHP { get; set; }
+        public int CurrentHP { get; private set; }
+        public int ActionPoint  { get; private set;  }
         public int HP_Limit_Max = 100;
 
-        public Player(CardSet game_card_list)
+        public PlayerBase(CardSet game_card_list)
         {
             m_GameCardSet = game_card_list;
+            CurrentUsingCardList = new List<CardBase>();
+            CurrentCanUseCardList = new List<CardBase>();
             CurrentHP = 100;
+            ActionPoint = 0;
         }
 
         public void GetCard(uint cardCount)
         {
+            OnGetCard(cardCount);
             if(m_GameCardSet != null)
             {
                 for(int i = 0; i < cardCount; i++)
@@ -33,8 +38,14 @@ namespace GamePlay
             }
         }
 
+        public virtual void OnGetCard(uint cardCount)
+        {
+            
+        }
+
         public void ChangeHP(int change_hp)
         {
+            OnChangeHP(change_hp);
             int new_hp = CurrentHP + change_hp;
             if(new_hp > HP_Limit_Max)
             {
@@ -46,12 +57,18 @@ namespace GamePlay
             }
         }
 
+        public virtual void OnChangeHP(int change_hp)
+        {
+
+        }
+
         public void UseCard(CardBase card)
         {
+            OnUseCard(card);
             if(card != null)
             {
                 CurrentCanUseCardList.Remove(card);
-
+                Debug.LogError("UseCard:"+card.CardID);
                 if (card.CardType == CARD_TYPE.WEAPON)
                 {
                     CurrentUsingCardList.Add(card);
@@ -61,6 +78,21 @@ namespace GamePlay
                     m_GameCardSet.UseCard(card);
                 }
             }
+        }
+
+        public virtual void OnUseCard(CardBase card)
+        {
+            
+        }
+
+        public int GetRemainingCardCount()
+        {
+            return m_GameCardSet.RemainingCount;
+        }
+
+        public void ChangeActionPoint(int change_point)
+        {
+            ActionPoint += change_point;
         }
     }
 }

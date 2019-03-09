@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace GamePlay
@@ -11,20 +10,20 @@ namespace GamePlay
     {
         private List<CardBase> CardSet_Rec;
 
-        public List<CardBase> CarSet_Play;
+        public List<CardBase> CardSet_Play;
 
         public List<CardBase> CardSet_Used;
 
-        public Dictionary<uint, uint> card_record;
+        public Dictionary<uint, uint> card_record = new Dictionary<uint, uint>();
         public const uint CardSetCountMax = 30;
 
         public int RemainingCount
         {
             get
             {
-                if(CarSet_Play != null)
+                if(CardSet_Play != null)
                 {
-                    return CarSet_Play.Count;
+                    return CardSet_Play.Count;
                 }
                 else
                 {
@@ -36,32 +35,48 @@ namespace GamePlay
         public CardSet()
         {
             CardSet_Rec = new List<CardBase>();
+            CardSet_Play = new List<CardBase>();
+            CardSet_Used = new List<CardBase>();
         }
 
+        public void StartCard()
+        {
+            if (CardSet_Rec != null)
+            {
+                foreach (var card in CardSet_Rec)
+                {
+                    CardSet_Play.Add(card);
+                }
+            }
+        }
 
         public void Reset()
         {
-            if(CardSet_Rec != null)
+            if(CardSet_Used != null)
             {
-                CarSet_Play = new List<CardBase>(CardSet_Used);
+                foreach(var card in CardSet_Used)
+                {
+                    CardSet_Play.Add(card);
+                }
+                CardSet_Used.Clear();
             }
         }
 
         public CardBase DrawCardRandom()
         {
-            if(CarSet_Play == null)
+            if(CardSet_Play == null)
             {
                 return null;
             }
-            if(CarSet_Play.Count == 0)
+            if(CardSet_Play.Count == 0)
             {
                 Reset();
             }
-            int index = UnityEngine.Random.Range(0, CarSet_Play.Count);
-            CardBase card = CarSet_Play[index];
+            int index = UnityEngine.Random.Range(0, CardSet_Play.Count);
+            CardBase card = CardSet_Play[index];
             if(card != null)
             {
-                CarSet_Play.RemoveAt(index);
+                CardSet_Play.RemoveAt(index);
                 return card;
             }
             else
@@ -81,6 +96,7 @@ namespace GamePlay
             {
                 AddPrepareCard(card_id);
             }
+            StartCard();
         }
 
         public void AddPrepareCard(uint card_id, uint count = 1)

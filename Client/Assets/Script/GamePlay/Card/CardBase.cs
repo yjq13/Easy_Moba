@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using UnityEngine;
 
 namespace GamePlay
 {
@@ -18,12 +18,17 @@ namespace GamePlay
     {
         public uint CardID;
         public uint CardKeyID;
-        public CARD_TYPE CardType;
+        public CARD_TYPE CardType = CARD_TYPE.NORMAL;
 
         public CardBase(uint card_id, uint only_id)
         {
             CardID = card_id;
-            CardKeyID = CardKeyID;
+            CardKeyID = only_id;
+
+            if(card_id == 30 || (card_id >=21 && card_id <=26))
+            {
+                CardType = CARD_TYPE.WEAPON;
+            }
         }
     }
 }
