@@ -14,7 +14,7 @@ namespace GamePlay
         ACTION = 2
     }
 
-    class CardBase
+    public class CardBase
     {
         public uint CardID;
         public uint CardKeyID;

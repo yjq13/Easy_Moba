@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace GamePlay
 {
-    class CardSet
+    public class CardSet
     {
         private List<CardBase> CardSet_Rec;
 

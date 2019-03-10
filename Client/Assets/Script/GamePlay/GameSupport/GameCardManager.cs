@@ -11,5 +11,21 @@ namespace GamePlay
         {
 
         }
+
+        private void SetAuthorization(PlayerBase player)
+        {
+            
+        }
+
+        private void GetBackAuthorization()
+        {
+            
+        }
+
+        public bool CheckIsHappened(int probability)
+        {
+            int number = Random.Range(0,100);
+            return number < probability;
+        }
     }
 }

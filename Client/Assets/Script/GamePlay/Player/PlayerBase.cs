@@ -6,12 +6,13 @@ using UnityEngine;
 
 namespace GamePlay
 {
-    class PlayerBase
+    public class PlayerBase
     {
         private CardSet m_GameCardSet;
         public List<CardBase> CurrentCanUseCardList;
         public List<CardBase> CurrentUsingCardList;
 
+        public ulong PlayerID { get; private set; }
         public int CurrentHP { get; private set; }
         public int ActionPoint  { get; private set;  }
         public int HP_Limit_Max = 100;
