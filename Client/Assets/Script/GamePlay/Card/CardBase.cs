@@ -7,7 +7,7 @@ using UnityEngine;
 namespace GamePlay
 {
 
-    enum CARD_TYPE
+    public enum CARD_TYPE
     {
         NORMAL = 0,
         WEAPON = 1,

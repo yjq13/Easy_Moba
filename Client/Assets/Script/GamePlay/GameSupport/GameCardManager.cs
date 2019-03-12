@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace GamePlay
 {
-    public class GameCardManager : SingleMode<GameCardManager>
+    public class GameCardManager : SingletonModule<GameCardManager>
     {
 
         protected override void OnInit()
@@ -26,6 +26,11 @@ namespace GamePlay
         {
             int number = Random.Range(0,100);
             return number < probability;
+        }
+
+        protected override void OnCleanup()
+        {
+            
         }
     }
 }

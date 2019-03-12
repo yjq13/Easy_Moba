@@ -8,7 +8,7 @@ using System.Collections;
 
 namespace NetWork
 {
-    public class NetworkManager : SingleMode<NetworkManager>
+    public class NetworkManager : SingletonModule<NetworkManager>
     {
         private WebSocket web_socket;
         private bool login;
@@ -49,8 +49,10 @@ namespace NetWork
             return null;
         }
 
-
-
+        protected override void OnCleanup()
+        {
+            
+        }
     }
 }
 

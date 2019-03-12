@@ -96,11 +96,32 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Plugins\LumenWorks.Framework.IO\Csv\CsvReader.DataReaderValidations.cs" />
+    <Compile Include="Assets\Plugins\LumenWorks.Framework.IO\Csv\CsvReader.RecordEnumerator.cs" />
+    <Compile Include="Assets\Plugins\LumenWorks.Framework.IO\Csv\CsvReader.cs" />
+    <Compile Include="Assets\Plugins\LumenWorks.Framework.IO\Csv\Events\ParseErrorEventArgs.cs" />
+    <Compile Include="Assets\Plugins\LumenWorks.Framework.IO\Csv\Exceptions\MalformedCsvException.cs" />
+    <Compile Include="Assets\Plugins\LumenWorks.Framework.IO\Csv\Exceptions\MissingFieldCsvException.cs" />
+    <Compile Include="Assets\Plugins\LumenWorks.Framework.IO\Csv\MissingFieldAction.cs" />
+    <Compile Include="Assets\Plugins\LumenWorks.Framework.IO\Csv\ParseErrorAction.cs" />
+    <Compile Include="Assets\Plugins\LumenWorks.Framework.IO\Csv\Resources\ExceptionMessage.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ExceptionMessage.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Assets\Plugins\LumenWorks.Framework.IO\Csv\ValueTrimmingOptions.cs" />
     <Compile Include="Assets\Plugins\WebSocket\WebSocket.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\Plugins\LumenWorks.Framework.IO\ReadMe.txt" />
     <None Include="Assets\Plugins\protobuf-net\protobuf-net.xml" />
     <None Include="Assets\README.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Assets\Plugins\LumenWorks.Framework.IO\Csv\Resources\ExceptionMessage.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ExceptionMessage.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
