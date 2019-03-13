@@ -13,11 +13,14 @@ namespace Test
         public static void TestLancherStart()
         {
             driverList.Clear();
+
             AddDirvers();
+
             foreach (var test in driverList)
             {
                 test.Test();
             }
+            Debug.Log("Auto test is finished! please check the error and fix it");
         }
 
 

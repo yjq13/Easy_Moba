@@ -125,8 +125,8 @@
     <Compile Include="Assets\Script\NetWork\ProtoMessage\down.cs" />
     <Compile Include="Assets\Script\NetWork\ProtoMessage\game.cs" />
     <Compile Include="Assets\Script\NetWork\ProtoMessage\up.cs" />
-    <Compile Include="Assets\Test\CardPlayTestLancher.cs" />
     <Compile Include="Assets\Test\AutoTestLancher.cs" />
+    <Compile Include="Assets\Test\CardPlayTestLancher.cs" />
     <Compile Include="Assets\Test\Driver\InterfaceTestDriver.cs" />
     <Compile Include="Assets\Test\Driver\Test_ConfigDataManager_Driver.cs" />
   </ItemGroup>
