@@ -18,7 +18,7 @@ namespace Test
         static int action_2 = 0;
         static int Random = 0;
         static bool result = false;
-        [MenuItem("Tools/Test fo play")]
+        [MenuItem("Tools/Test for play")]
         public static void TestForPlay()
         {
             CardSet cardSet_playerOne = new CardSet();

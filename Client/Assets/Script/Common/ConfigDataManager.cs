@@ -95,6 +95,7 @@ namespace Common
             {
                 return result.As<T>();
             }
+            Debug.LogError(typeKey+ "  " + key);
             return null;
         }
         private string GetDataListsKey<T>() where T : CSVBaseData
@@ -111,7 +112,7 @@ namespace Common
             CsvReader csv = new CsvReader(reader, true);
             int fieldCount = csv.FieldCount;
             string[] headers = csv.GetFieldHeaders();
-            csv.ReadNextRecord();//skip desc
+            //csv.ReadNextRecord();//skip desc
             List<T> result = new List<T>();
             while (csv.ReadNextRecord())
             {

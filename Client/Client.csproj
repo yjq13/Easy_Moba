@@ -112,6 +112,8 @@
     <Compile Include="Assets\Script\Common\StringConverter.cs" />
     <Compile Include="Assets\Script\GamePlay\Card\CardBase.cs" />
     <Compile Include="Assets\Script\GamePlay\Card\CardSet.cs" />
+    <Compile Include="Assets\Script\GamePlay\ConfigData\Resource_Config.cs" />
+    <Compile Include="Assets\Script\GamePlay\ConfigData\RoleData.cs" />
     <Compile Include="Assets\Script\GamePlay\GameSupport\GameCardManager.cs" />
     <Compile Include="Assets\Script\GamePlay\GameSupport\RuleStrategy\CommonSpeedRule.cs" />
     <Compile Include="Assets\Script\GamePlay\GameSupport\RuleStrategy\SpeedRuleBaseStrategy.cs" />
@@ -124,6 +126,9 @@
     <Compile Include="Assets\Script\NetWork\ProtoMessage\game.cs" />
     <Compile Include="Assets\Script\NetWork\ProtoMessage\up.cs" />
     <Compile Include="Assets\Test\CardPlayTestLancher.cs" />
+    <Compile Include="Assets\Test\AutoTestLancher.cs" />
+    <Compile Include="Assets\Test\Driver\InterfaceTestDriver.cs" />
+    <Compile Include="Assets\Test\Driver\Test_ConfigDataManager_Driver.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Plugins\LumenWorks.Framework.IO\ReadMe.txt" />

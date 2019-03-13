@@ -1559,7 +1559,6 @@ namespace LumenWorks.Framework.IO.Csv
 							headerName = this.DefaultHeaderName + i.ToString();
 
 						_fieldHeaders[i] = headerName;
-						_fieldHeaderIndexes.Add(headerName, i);
 					}
 
 					// Proceed to first record

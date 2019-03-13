@@ -1,7 +1,9 @@
-﻿using System;
+﻿
+//Author：Jiaqi.Ying
+
+//摘要：卡组类，用来管理一个玩家的当前卡组的卡
+
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using UnityEngine;
 
 namespace GamePlay
@@ -39,29 +41,7 @@ namespace GamePlay
             CardSet_Used = new List<CardBase>();
         }
 
-        public void StartCard()
-        {
-            if (CardSet_Rec != null)
-            {
-                foreach (var card in CardSet_Rec)
-                {
-                    CardSet_Play.Add(card);
-                }
-            }
-        }
-
-        public void Reset()
-        {
-            if(CardSet_Used != null)
-            {
-                foreach(var card in CardSet_Used)
-                {
-                    CardSet_Play.Add(card);
-                }
-                CardSet_Used.Clear();
-            }
-        }
-
+        //随机抽卡
         public CardBase DrawCardRandom()
         {
             if(CardSet_Play == null)
@@ -153,6 +133,32 @@ namespace GamePlay
         public CardBase FindCardByID(uint id)
         {
             return null;
+        }
+
+
+        private void StartCard()
+        {
+            if (CardSet_Rec != null)
+            {
+                foreach (var card in CardSet_Rec)
+                {
+                    CardSet_Play.Add(card);
+                }
+            }
+        }
+
+ //--------------------------------private method--------------------------//
+
+        private void Reset()
+        {
+            if (CardSet_Used != null)
+            {
+                foreach (var card in CardSet_Used)
+                {
+                    CardSet_Play.Add(card);
+                }
+                CardSet_Used.Clear();
+            }
         }
     }
 }

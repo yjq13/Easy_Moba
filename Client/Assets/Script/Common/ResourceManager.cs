@@ -6,12 +6,12 @@ namespace Common
     {
         protected override void OnCleanup()
         {
-            throw new System.NotImplementedException();
+            //throw new System.NotImplementedException();
         }
 
         protected override void OnInit()
         {
-            throw new System.NotImplementedException();
+            //throw new System.NotImplementedException();
         }
 
         public Object GetResource(ResourceID id)
