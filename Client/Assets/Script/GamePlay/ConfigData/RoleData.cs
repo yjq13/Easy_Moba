@@ -1,7 +1,7 @@
 ﻿using Common;
 namespace GamePlay
 {
-    class RoleData : CSVBaseData
+    public class RoleData : CSVBaseData
     {
         public uint ID;
         public uint HP;

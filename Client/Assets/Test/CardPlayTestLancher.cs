@@ -1,5 +1,6 @@
 ﻿
 using System.Collections.Generic;
+using Common;
 using GamePlay;
 using UnityEditor;
 using UnityEngine;
@@ -27,8 +28,9 @@ namespace Test
             List<uint> card_id_list_tow = new List<uint> { 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 2, 2, 2, 2, 2, 2, 6, 18, 18, 18, 8, 8, 8, 20, 7, 7, 7, 24, 26, 12 };
             cardSet_playerOne.InitCardSet(card_id_list_one);
             cardSet_playerTwo.InitCardSet(card_id_list_tow);
-            player_one = new PlayerBase(cardSet_playerOne);
-            player_two = new PlayerBase(cardSet_playerTwo);
+            RoleData data = ConfigDataManager.Instance.GetData<RoleData>("1");
+            player_one = new PlayerBase(cardSet_playerOne, data);
+            player_two = new PlayerBase(cardSet_playerTwo, data);
 
 
             TestWindow myWindow = (TestWindow)EditorWindow.GetWindow(typeof(TestWindow), false, "MyWindow", false);

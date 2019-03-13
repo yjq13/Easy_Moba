@@ -8,7 +8,7 @@ namespace GamePlay
     {
         public PlayerBase GetNextGamePlayer()
         {
-            return new PlayerBase(null);
+            return new PlayerBase(null,null);
         }
     }
 }
