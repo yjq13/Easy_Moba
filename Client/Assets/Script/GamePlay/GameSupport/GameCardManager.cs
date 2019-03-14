@@ -12,7 +12,7 @@ namespace GamePlay
 
         }
 
-        private void SetAuthorization(PlayerBase player)
+        private void SetAuthorization(RoleBase player)
         {
             
         }

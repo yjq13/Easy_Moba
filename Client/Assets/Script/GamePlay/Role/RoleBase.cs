@@ -6,7 +6,13 @@ using UnityEngine;
 
 namespace GamePlay
 {
-    public class PlayerBase
+    public enum RoleType
+    {
+        ARCHER = 1,
+        MEGE = 2,
+    }
+
+    public class RoleBase
     {
         private CardSet m_GameCardSet;
         public List<CardBase> CurrentCanUseCardList;
@@ -17,7 +23,7 @@ namespace GamePlay
         public int ActionPoint  { get; private set;  }
         public int HP_Limit_Max = 100;
 
-        public PlayerBase(CardSet game_card_list,RoleData role_config_data)
+        public RoleBase(CardSet game_card_list, RoleType type)
         {
             m_GameCardSet = game_card_list;
             CurrentUsingCardList = new List<CardBase>();

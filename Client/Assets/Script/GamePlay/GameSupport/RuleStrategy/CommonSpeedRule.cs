@@ -6,9 +6,9 @@ namespace GamePlay
 {
     public class CommonSpeedRule:SpeedRuleStrategy
     {
-        public PlayerBase GetNextGamePlayer()
+        public RoleBase GetNextGamePlayer()
         {
-            return new PlayerBase(null,null);
+            return new RoleBase(null,null);
         }
     }
 }

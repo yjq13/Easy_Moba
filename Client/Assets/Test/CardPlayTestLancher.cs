@@ -9,8 +9,8 @@ namespace Test
 {
     class CardPlayTestLancher
     {
-        static PlayerBase player_one;
-        static PlayerBase player_two;
+        static RoleBase player_one;
+        static RoleBase player_two;
         static bool show_card_one;
         static bool show_card_two;
         static int hp_1 = 0;
@@ -28,9 +28,8 @@ namespace Test
             List<uint> card_id_list_tow = new List<uint> { 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 2, 2, 2, 2, 2, 2, 6, 18, 18, 18, 8, 8, 8, 20, 7, 7, 7, 24, 26, 12 };
             cardSet_playerOne.InitCardSet(card_id_list_one);
             cardSet_playerTwo.InitCardSet(card_id_list_tow);
-            RoleData data = ConfigDataManager.Instance.GetData<RoleData>("1");
-            player_one = new PlayerBase(cardSet_playerOne, data);
-            player_two = new PlayerBase(cardSet_playerTwo, data);
+            player_one = new RoleBase(cardSet_playerOne, RoleType.ARCHER);
+            player_two = new RoleBase(cardSet_playerTwo, RoleType.ARCHER);
 
 
             TestWindow myWindow = (TestWindow)EditorWindow.GetWindow(typeof(TestWindow), false, "MyWindow", false);

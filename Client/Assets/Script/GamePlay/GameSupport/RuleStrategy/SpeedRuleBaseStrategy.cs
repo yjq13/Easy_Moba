@@ -5,7 +5,7 @@ namespace GamePlay
 {
     public interface SpeedRuleStrategy
     {
-        PlayerBase GetNextGamePlayer();
+        RoleBase GetNextGamePlayer();
     } 
 }
 

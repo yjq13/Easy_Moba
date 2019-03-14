@@ -117,7 +117,7 @@
     <Compile Include="Assets\Script\GamePlay\GameSupport\GameCardManager.cs" />
     <Compile Include="Assets\Script\GamePlay\GameSupport\RuleStrategy\CommonSpeedRule.cs" />
     <Compile Include="Assets\Script\GamePlay\GameSupport\RuleStrategy\SpeedRuleBaseStrategy.cs" />
-    <Compile Include="Assets\Script\GamePlay\Player\PlayerBase.cs" />
+    <Compile Include="Assets\Script\GamePlay\Role\RoleBase.cs" />
     <Compile Include="Assets\Script\GameStartManager.cs" />
     <Compile Include="Assets\Script\NetWork\NetworkManager.cs" />
     <Compile Include="Assets\Script\NetWork\ProtoMessage\battle.cs" />
