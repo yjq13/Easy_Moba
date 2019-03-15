@@ -21,13 +21,17 @@ namespace GamePlay
         public ulong PlayerID { get; private set; }
         public int CurrentHP { get; private set; }
         public int ActionPoint  { get; private set;  }
+        public float Speed { get; private set; }
         public int HP_Limit_Max = 100;
+
 
         public RoleBase(CardSet game_card_list, RoleType type)
         {
             m_GameCardSet = game_card_list;
             CurrentUsingCardList = new List<CardBase>();
             CurrentCanUseCardList = new List<CardBase>();
+            CurrentHP = 100;
+            Speed = 25;
         }
 
 

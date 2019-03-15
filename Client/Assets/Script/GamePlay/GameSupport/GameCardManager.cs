@@ -6,20 +6,25 @@ namespace GamePlay
 {
     public class GameCardManager : SingletonModule<GameCardManager>
     {
+        private Player m_authorizationPlayer = null;
+        public Player GetCurrentAuthorizationPlayer()
+        {
+            return m_authorizationPlayer;
+        }
 
         protected override void OnInit()
         {
 
         }
 
-        private void SetAuthorization(RoleBase player)
+        public void SetAuthorization(Player player)
         {
-            
+            m_authorizationPlayer = player;
         }
 
-        private void GetBackAuthorization()
+        public void GetBackAuthorization()
         {
-            
+            m_authorizationPlayer = null;
         }
 
         public bool CheckIsHappened(int probability)

@@ -104,6 +104,7 @@
   <ItemGroup>
     <Compile Include="Assets\Script\Common\CSVBaseData.cs" />
     <Compile Include="Assets\Script\Common\ConfigDataManager.cs" />
+    <Compile Include="Assets\Script\Common\PlayerID.cs" />
     <Compile Include="Assets\Script\Common\ResourceID.cs" />
     <Compile Include="Assets\Script\Common\ResourceManager.cs" />
     <Compile Include="Assets\Script\Common\SingletonModule.cs" />
@@ -115,8 +116,9 @@
     <Compile Include="Assets\Script\GamePlay\ConfigData\Resource_Config.cs" />
     <Compile Include="Assets\Script\GamePlay\ConfigData\RoleData.cs" />
     <Compile Include="Assets\Script\GamePlay\GameSupport\GameCardManager.cs" />
-    <Compile Include="Assets\Script\GamePlay\GameSupport\RuleStrategy\CommonSpeedRule.cs" />
-    <Compile Include="Assets\Script\GamePlay\GameSupport\RuleStrategy\SpeedRuleBaseStrategy.cs" />
+    <Compile Include="Assets\Script\GamePlay\GameSupport\GameProgress\CalculateSpeedProgress.cs" />
+    <Compile Include="Assets\Script\GamePlay\GameSupport\GameProgress\InterfaceGameProgress.cs" />
+    <Compile Include="Assets\Script\GamePlay\Player.cs" />
     <Compile Include="Assets\Script\GamePlay\Role\RoleBase.cs" />
     <Compile Include="Assets\Script\GameStartManager.cs" />
     <Compile Include="Assets\Script\NetWork\NetworkManager.cs" />
