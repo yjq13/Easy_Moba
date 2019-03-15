@@ -10,6 +10,7 @@ namespace GamePlay
         private List<Player> m_playerList;
         private const float RACE_LOAD_LENGTH = 100;
         private Dictionary<PlayerID, float> m_players_race_flag = new Dictionary<PlayerID, float>();
+        private Dictionary<PlayerID, float> m_need_time_list = new Dictionary<PlayerID, float>();
 
         public void DuringProgress()
         {
@@ -20,7 +21,6 @@ namespace GamePlay
 
         private void CalculateSpeedEffect()
         {
-            Dictionary<PlayerID, float> m_need_time_list = new Dictionary<PlayerID, float>();
             float temp_load = 0;
             float temp_min_time = 0;
             PlayerID get_round_id = 0;
