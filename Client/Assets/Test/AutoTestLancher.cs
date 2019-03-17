@@ -18,7 +18,9 @@ namespace Test
 
             foreach (var test in driverList)
             {
+                test.InitContext();
                 test.Test();
+                test.ClearContext();
             }
             Debug.Log("Auto test is finished! please check the error and fix it");
         }
@@ -27,6 +29,7 @@ namespace Test
         public static void AddDirvers()
         {
             driverList.Add(new Test_ConfigDataManager_Driver());
+            driverList.Add(new Test_CalculateSpeedProgress_Driver());
         }
     }
 }

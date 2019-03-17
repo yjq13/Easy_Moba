@@ -13,6 +13,11 @@ public class GameStartManager : MonoBehaviour
         SendTestMessage();
     }
 
+    public void CurrentGameStartCoroutine(IEnumerator erator)
+    {
+        StartCoroutine(erator);
+    }
+
     private void SendTestMessage()
     {
         down_msg msg = new down_msg()

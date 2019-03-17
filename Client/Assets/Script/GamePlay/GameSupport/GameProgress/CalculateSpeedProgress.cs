@@ -5,47 +5,52 @@ using Common;
 
 namespace GamePlay
 {
-    public class CalculateSpeedProgress : InterfaceGameProgress
+    public class CalculateSpeedProgress : GameProgressBase
     {
-        private List<Player> m_playerList;
         private const float RACE_LOAD_LENGTH = 100;
         private Dictionary<PlayerID, float> m_players_race_flag = new Dictionary<PlayerID, float>();
         private Dictionary<PlayerID, float> m_need_time_list = new Dictionary<PlayerID, float>();
-
-        public void DuringProgress()
-        {
-
-
-
-        }
+        private GamePlayer m_getRoundPlayer = null;
 
         private void CalculateSpeedEffect()
         {
             float temp_load = 0;
-            float temp_min_time = 0;
+            float temp_min_time = float.MaxValue;
+
             PlayerID get_round_id = 0;
-            Player getRoundPlayer = null;
-            foreach (var player in m_playerList)
+            GamePlayer getRoundPlayer = null;
+
+            List<GamePlayer> PlayerList = GameManager.Instance.GetAllGamePlayers();
+            m_need_time_list.Clear();
+
+            foreach (var player in PlayerList)
             {
+                
+                if (m_players_race_flag[player.PlayerID] >= 100)
+                {
+                    m_players_race_flag[player.PlayerID] = 0;
+                    getRoundPlayer = player;
+
+                    m_getRoundPlayer = getRoundPlayer;
+                    SetProgressEnd();
+                    return;
+                }
+
                 temp_load = RACE_LOAD_LENGTH - m_players_race_flag[player.PlayerID];
-                m_need_time_list[player.PlayerID] = temp_load / player.Role.Speed;
+                m_need_time_list.Add(player.PlayerID,temp_load / player.Role.Speed);
             }
 
 
             foreach (var number in m_need_time_list)
-            { 
-                if (number.Value == temp_min_time)
-                {
-                    get_round_id = number.Key;
-                }
-                else if(number.Value < temp_min_time)
+            {
+                if(number.Value <= temp_min_time)
                 {
                     temp_min_time = number.Value;
                     get_round_id = number.Key;
                 }
             }
 
-            foreach(var player in m_playerList)
+            foreach(var player in PlayerList)
             {
                 if(get_round_id == player.PlayerID)
                 {
@@ -54,27 +59,26 @@ namespace GamePlay
                 }
                 else
                 {
-                    m_need_time_list[player.PlayerID] += temp_min_time * player.Role.Speed;
+                    m_players_race_flag[player.PlayerID] += temp_min_time * player.Role.Speed;
                 }
             }
 
-            GameCardManager.Instance.SetAuthorization(getRoundPlayer);
+            m_getRoundPlayer = getRoundPlayer;
+            SetProgressEnd();
         }
 
-        public void EndProgress()
+        public override void OnEndProgress()
         {
-            //暂时不知道要做啥
+            GameManager.Instance.SetAuthorization(m_getRoundPlayer);
         }
 
-        public void InitProgress(List<Player> playerList)
+        public override void OnInitProgress()
         {
-            if(playerList != null)
+            if(GameManager.Instance.GetAllGamePlayers() != null)
             {
-                m_playerList = playerList;
-                foreach(var player in m_playerList)
+                foreach(var player in GameManager.Instance.GetAllGamePlayers())
                 {
                     m_players_race_flag.Add(player.PlayerID, 0);
-                    m_need_time_list.Add(player.PlayerID, 0);
                 }
             }
             else
@@ -83,9 +87,19 @@ namespace GamePlay
             }
         }
 
-        public void StartProgress()
+        public override void OnStartProgress()
         {
-           //暂时不知道要做啥
+            if (GameManager.Instance.GetCurrentAuthorizationPlayer() == GamePlayer.GAME_MANAGER)
+            {
+                CalculateSpeedEffect();
+            }
+        }
+
+        public override void OnClearGameProgress()
+        {
+            m_players_race_flag.Clear();
+            m_need_time_list.Clear();
+            m_getRoundPlayer = null;
         }
     }
 }

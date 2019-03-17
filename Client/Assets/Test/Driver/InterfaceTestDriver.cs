@@ -8,5 +8,7 @@ namespace Test
     interface Interface_TestDriver
     {
         void Test();
+        void ClearContext();
+        void InitContext();
     }
 }

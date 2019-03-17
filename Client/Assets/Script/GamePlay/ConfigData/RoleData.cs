@@ -5,7 +5,7 @@ namespace GamePlay
     {
         public uint ID;
         public uint HP;
-        public uint Speed;
+        public float Speed;
 
         public override string GetPrimaryKey()
         {
@@ -16,7 +16,7 @@ namespace GamePlay
         {
             ID = ReadUInt("ID", headers, values, 0);
             HP = ReadUInt("HP", headers, values, 0);
-            Speed = ReadUInt("Speed", headers, values, 0);
+            Speed = ReadFloat("Speed", headers, values, 0);
         }
     }
 }

@@ -20,8 +20,13 @@ namespace NetWork
             web_socket = new WebSocket(new Uri("ws://114.116.91.235:26666"));
         }
 
+		protected override void OnCleanup()
+		{
+			
+		}
 
-        public IEnumerator StartConnect()
+
+		public IEnumerator StartConnect()
         {
             return web_socket.Connect();
         }
@@ -49,10 +54,8 @@ namespace NetWork
             return null;
         }
 
-        protected override void OnCleanup()
-        {
-            
-        }
+
+
     }
 }
 

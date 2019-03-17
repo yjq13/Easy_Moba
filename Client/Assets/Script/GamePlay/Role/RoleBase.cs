@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using Common;
 
 namespace GamePlay
 {
@@ -15,25 +16,34 @@ namespace GamePlay
     public class RoleBase
     {
         private CardSet m_GameCardSet;
+        private RoleData m_roleData;
         public List<CardBase> CurrentCanUseCardList;
         public List<CardBase> CurrentUsingCardList;
 
         public ulong PlayerID { get; private set; }
-        public int CurrentHP { get; private set; }
+        public RoleType Role_Type;
+        public uint CurrentHP { get; private set; }
         public int ActionPoint  { get; private set;  }
         public float Speed { get; private set; }
-        public int HP_Limit_Max = 100;
+        public uint HP_Limit_Max = 100;
 
 
-        public RoleBase(CardSet game_card_list, RoleType type)
+        protected RoleBase(CardSet game_card_list, RoleType type)
         {
             m_GameCardSet = game_card_list;
             CurrentUsingCardList = new List<CardBase>();
             CurrentCanUseCardList = new List<CardBase>();
-            CurrentHP = 100;
-            Speed = 25;
+            Role_Type = type;
+            int role_type = (int)type;
+            m_roleData = ConfigDataManager.Instance.GetData<RoleData>(role_type.ToString());
+            CurrentHP = m_roleData.HP;
+            Speed = m_roleData.Speed;
         }
 
+        public RoleType GetRoleType()
+        {
+            return Role_Type;
+        }
 
         public void GetCard(uint cardCount)
         {
@@ -53,10 +63,10 @@ namespace GamePlay
             
         }
 
-        public void ChangeHP(int change_hp)
+        public void ChangeHP(uint change_hp)
         {
             OnChangeHP(change_hp);
-            int new_hp = CurrentHP + change_hp;
+            uint new_hp = CurrentHP + change_hp;
             if(new_hp > HP_Limit_Max)
             {
                 CurrentHP = HP_Limit_Max;
@@ -67,7 +77,7 @@ namespace GamePlay
             }
         }
 
-        public virtual void OnChangeHP(int change_hp)
+        public virtual void OnChangeHP(uint change_hp)
         {
 
         }

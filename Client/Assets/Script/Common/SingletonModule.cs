@@ -31,7 +31,7 @@ namespace Common
             }
         }
 
-        public SingletonModule()
+        protected SingletonModule()
         {
             SingletonModuleContext.RegisterModule(this);
         }

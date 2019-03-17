@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace Common
 {
-    public class SingletonModuleMono<T> : MonoBehaviour where T : SingletonModule<T>, new()
+    public abstract class SingletonModuleMono<T> : MonoBehaviour,InterfaceSingletonModule where T : SingletonModuleMono<T>, new()
     {
 
         private static T m_instance;
 
-        public static SingletonModule<T> Instance
+        public static SingletonModuleMono<T> Instance
         {
             get
             {
@@ -24,7 +24,18 @@ namespace Common
             }
         }
 
+        public void Init()
+        {
+            OnInit();
+        }
 
+        public void Cleanup()
+        {
+            OnCleanup();
+        }
+        protected abstract void OnInit();
+
+        protected abstract void OnCleanup();
     }
 }
 

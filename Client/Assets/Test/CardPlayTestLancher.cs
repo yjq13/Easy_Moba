@@ -28,8 +28,8 @@ namespace Test
             List<uint> card_id_list_tow = new List<uint> { 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 2, 2, 2, 2, 2, 2, 6, 18, 18, 18, 8, 8, 8, 20, 7, 7, 7, 24, 26, 12 };
             cardSet_playerOne.InitCardSet(card_id_list_one);
             cardSet_playerTwo.InitCardSet(card_id_list_tow);
-            player_one = new RoleBase(cardSet_playerOne, RoleType.ARCHER);
-            player_two = new RoleBase(cardSet_playerTwo, RoleType.ARCHER);
+            player_one = new RoleArcher(cardSet_playerOne);
+            player_two = new RoleArcher(cardSet_playerTwo);
 
 
             TestWindow myWindow = (TestWindow)EditorWindow.GetWindow(typeof(TestWindow), false, "MyWindow", false);
@@ -52,7 +52,7 @@ namespace Test
                 hp_1 = EditorGUILayout.IntField(hp_1);
                 if (GUILayout.Button("+-HP"))
                 {
-                    player_one.ChangeHP(hp_1);
+                    player_one.ChangeHP((uint)hp_1);
                 }
                 action_1 = EditorGUILayout.IntField(action_1);
                 if (GUILayout.Button("+-action"))
@@ -99,7 +99,7 @@ namespace Test
                 hp_2 = EditorGUILayout.IntField(hp_2);
                 if (GUILayout.Button("+-HP"))
                 {
-                    player_two.ChangeHP(hp_2);
+                    player_two.ChangeHP((uint)hp_2);
                 }
                 action_2 = EditorGUILayout.IntField(action_2);
                 if (GUILayout.Button("+-action"))

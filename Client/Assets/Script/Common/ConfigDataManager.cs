@@ -95,7 +95,6 @@ namespace Common
             {
                 return result.As<T>();
             }
-            Debug.LogError(typeKey+ "  " + key);
             return null;
         }
         private string GetDataListsKey<T>() where T : CSVBaseData
