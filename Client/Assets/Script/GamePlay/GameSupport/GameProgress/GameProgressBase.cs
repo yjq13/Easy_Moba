@@ -4,16 +4,13 @@ using System.Collections.Generic;
 
 namespace GamePlay
 {
-    interface IGameProgress
-    {
-        void StartProgress();
-        void EndProgress();
-    }
 
-    public abstract class GameProgressBase : IGameProgress
+    public abstract class GameProgressBase
     {
         private static List<GameProgressBase> m_registerGameProgress = new List<GameProgressBase>();
         private static int m_static_current_index = 0;
+        public static uint RoundCount { get; private set; }
+        public static uint MaxRoundCount = 9999;
 
         protected GameProgressBase()
         {
@@ -21,21 +18,43 @@ namespace GamePlay
             InitProgress();
         }
 
-        public static void ClearGameProgress()
+        public static GameProgressBase GetCurrenProgress()
         {
-            foreach(var progress in m_registerGameProgress)
+            if(m_registerGameProgress.Count > 0)
+            {
+                return m_registerGameProgress[m_static_current_index];
+            }
+            else
+            {
+                return null;
+            }
+
+        }
+
+
+        public static void ResetGameProgress()
+        {
+            RoundCount = 1;
+            m_static_current_index = 0;
+            foreach (var progress in m_registerGameProgress)
             {
                 progress.OnClearGameProgress();   
             }
+            m_registerGameProgress.Clear();
         }
 
-        public void EndProgress()
+        protected void EndProgress()
         {
             OnEndProgress();
             m_static_current_index++;
             if(m_static_current_index >= m_registerGameProgress.Count)
             {
                 m_static_current_index = 0;
+                RoundCount++;
+                if(RoundCount > MaxRoundCount)
+                {
+                    return;
+                }
             }
 
             m_registerGameProgress[m_static_current_index].StartProgress();
@@ -46,7 +65,7 @@ namespace GamePlay
             OnInitProgress();
         }
 
-        public void StartProgress()
+        protected void StartProgress()
         {
             OnStartProgress();
         }
@@ -54,6 +73,13 @@ namespace GamePlay
         public void SetProgressEnd()
         {
             EndProgress();
+        }
+
+        public void KillCurrentRound()
+        {
+            OnClearGameProgress();
+            m_static_current_index = 0;
+            m_registerGameProgress[m_static_current_index].StartProgress();
         }
 
         public abstract void OnInitProgress();

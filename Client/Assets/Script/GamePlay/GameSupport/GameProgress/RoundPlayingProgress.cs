@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using Common;
 using System.Collections.Generic;
 
 namespace GamePlay
@@ -18,7 +19,8 @@ namespace GamePlay
 
         public override void OnStartProgress()
         {
-            if(GameManager.Instance.GetCurrentAuthorizationPlayer() != GamePlayer.GAME_MANAGER)
+            GamePlayer authorization_player = GameFacade.GetCurrentCardGame().GetCurrentAuthorizationPlayer();
+            if (authorization_player != GamePlayer.GAME_MANAGER)
             {
                 //GameManager.Instance.StartCoroutine(UseCardTimeCounting());
             }

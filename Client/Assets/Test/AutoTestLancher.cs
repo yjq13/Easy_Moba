@@ -22,6 +22,7 @@ namespace Test
                 test.Test();
                 test.ClearContext();
             }
+
             Debug.Log("Auto test is finished! please check the error and fix it");
         }
 
@@ -30,6 +31,7 @@ namespace Test
         {
             driverList.Add(new Test_ConfigDataManager_Driver());
             driverList.Add(new Test_CalculateSpeedProgress_Driver());
+            driverList.Add(new Test_AllProgress_Driver());
         }
     }
 }

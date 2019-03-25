@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using Common;
 
 namespace GamePlay
 {
@@ -18,9 +19,9 @@ namespace GamePlay
 
         public override void OnStartProgress()
         {
-            if(GameManager.Instance.GetCurrentAuthorizationPlayer() != GamePlayer.GAME_MANAGER)
+            if (GameFacade.GetCurrentCardGame().GetCurrentAuthorizationPlayer() != GamePlayer.GAME_MANAGER)
             {
-                GamePlayer player = GameManager.Instance.GetCurrentAuthorizationPlayer();
+                GamePlayer player = GameFacade.GetCurrentCardGame().GetCurrentAuthorizationPlayer();
                 //deal with ActionPoint
                 if(player.Role != null)
                 {
@@ -29,6 +30,7 @@ namespace GamePlay
                     //to do
                 }
             }
+            SetProgressEnd();
         }
 
         public override void OnClearGameProgress()

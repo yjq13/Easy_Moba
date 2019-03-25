@@ -1,5 +1,6 @@
 ﻿using Common;
 using GamePlay;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
@@ -11,13 +12,13 @@ namespace Test
         public void ClearContext()
         {
             ConfigDataManager.Instance.Cleanup();
-            GameProgressBase.ClearGameProgress();
+            GameProgressBase.ResetGameProgress();
         }
 
         public void InitContext()
         {
             ConfigDataManager.Instance.LoadCSV<RoleData>(ResourceIDDef.GAME_PLAYER_CONFIG);
-            GameProgressBase.ClearGameProgress();
+            GameProgressBase.ResetGameProgress();
         }
 
         public void Test()
@@ -30,9 +31,9 @@ namespace Test
             cardSet_playerTwo.InitCardSet(card_id_list_tow);
 
             RoleArcher archer = new RoleArcher(cardSet_playerOne);
-            GamePlayer player_one = new GamePlayer(archer);
+            GamePlayer player_one = new GamePlayer(archer,1);
             RoleMage mage = new RoleMage(cardSet_playerTwo);
-            GamePlayer player_two = new GamePlayer(mage);
+            GamePlayer player_two = new GamePlayer(mage,2);
 
             List<GamePlayer> players = new List<GamePlayer>
             {
@@ -40,24 +41,27 @@ namespace Test
                 player_two
             };
 
-            GameManager.Instance.SetGameInfo(players);
+            CardGame Card_Game = new CardGame();
+            Card_Game.OnAwake();
+
+            Card_Game.SetGameInfo(players);
 
             CalculateSpeedProgress progress = new CalculateSpeedProgress();
-            progress.StartProgress();
-            Assert.IsTrue(GameManager.Instance.GetCurrentAuthorizationPlayer().PlayerID == 1);
-            GameManager.Instance.GetBackAuthorization();
-            progress.StartProgress();
-            Assert.IsTrue(GameManager.Instance.GetCurrentAuthorizationPlayer().PlayerID == 2);
-            GameManager.Instance.GetBackAuthorization();
-            progress.StartProgress();
-            Assert.IsTrue(GameManager.Instance.GetCurrentAuthorizationPlayer().PlayerID == 1);
-            GameManager.Instance.GetBackAuthorization();
-            progress.StartProgress();
-            Assert.IsTrue(GameManager.Instance.GetCurrentAuthorizationPlayer().PlayerID == 1);
-            GameManager.Instance.GetBackAuthorization();
-            progress.StartProgress();
-            Assert.IsTrue(GameManager.Instance.GetCurrentAuthorizationPlayer().PlayerID == 2);
-            GameManager.Instance.GetBackAuthorization();
+            progress.FirstStartProgress();
+            Assert.IsTrue(Card_Game.GetCurrentAuthorizationPlayer().PlayerID == 1);
+            Card_Game.GetBackAuthorization();
+            progress.FirstStartProgress();
+            Assert.IsTrue(Card_Game.GetCurrentAuthorizationPlayer().PlayerID == 2);
+            Card_Game.GetBackAuthorization();
+            progress.FirstStartProgress();
+            Assert.IsTrue(Card_Game.GetCurrentAuthorizationPlayer().PlayerID == 1);
+            Card_Game.GetBackAuthorization();
+            progress.FirstStartProgress();
+            Assert.IsTrue(Card_Game.GetCurrentAuthorizationPlayer().PlayerID == 1);
+            Card_Game.GetBackAuthorization();
+            progress.FirstStartProgress();
+            Assert.IsTrue(Card_Game.GetCurrentAuthorizationPlayer().PlayerID == 2);
+            Card_Game.GetBackAuthorization();
         }
     }
 }

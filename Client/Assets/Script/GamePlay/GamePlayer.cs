@@ -12,13 +12,12 @@ namespace GamePlay
         public RoleBase Role;
         public RoleType RoleType;
         public PlayerID PlayerID;
-        static uint id_index_for_test = 1;
 
         public static GamePlayer GAME_MANAGER = null;
 
-        public GamePlayer(RoleBase role)
+        public GamePlayer(RoleBase role,uint id)
         {
-            PlayerID = id_index_for_test++;
+            PlayerID = id;
             Role = role;
             RoleType = Role.GetRoleType();
         }

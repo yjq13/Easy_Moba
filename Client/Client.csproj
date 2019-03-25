@@ -104,6 +104,8 @@
   <ItemGroup>
     <Compile Include="Assets\Script\Common\CSVBaseData.cs" />
     <Compile Include="Assets\Script\Common\ConfigDataManager.cs" />
+    <Compile Include="Assets\Script\Common\GameFramework\GameBase.cs" />
+    <Compile Include="Assets\Script\Common\GameFramework\GameEngine.cs" />
     <Compile Include="Assets\Script\Common\PlayerID.cs" />
     <Compile Include="Assets\Script\Common\ResourceID.cs" />
     <Compile Include="Assets\Script\Common\ResourceManager.cs" />
@@ -115,11 +117,19 @@
     <Compile Include="Assets\Script\GamePlay\Card\CardSet.cs" />
     <Compile Include="Assets\Script\GamePlay\ConfigData\Resource_Config.cs" />
     <Compile Include="Assets\Script\GamePlay\ConfigData\RoleData.cs" />
-    <Compile Include="Assets\Script\GamePlay\GameSupport\GameCardManager.cs" />
+    <Compile Include="Assets\Script\GamePlay\GamePlayer.cs" />
+    <Compile Include="Assets\Script\GamePlay\GameSupport\Game\CardGame.cs" />
+    <Compile Include="Assets\Script\GamePlay\GameSupport\Game\GameFacade.cs" />
+    <Compile Include="Assets\Script\GamePlay\GameSupport\Game\MyGameBase.cs" />
     <Compile Include="Assets\Script\GamePlay\GameSupport\GameProgress\CalculateSpeedProgress.cs" />
-    <Compile Include="Assets\Script\GamePlay\GameSupport\GameProgress\InterfaceGameProgress.cs" />
-    <Compile Include="Assets\Script\GamePlay\Player.cs" />
+    <Compile Include="Assets\Script\GamePlay\GameSupport\GameProgress\GameProgressBase.cs" />
+    <Compile Include="Assets\Script\GamePlay\GameSupport\GameProgress\RoundEndProgress.cs" />
+    <Compile Include="Assets\Script\GamePlay\GameSupport\GameProgress\RoundPlayerGetCardProgress.cs" />
+    <Compile Include="Assets\Script\GamePlay\GameSupport\GameProgress\RoundPlayingProgress.cs" />
+    <Compile Include="Assets\Script\GamePlay\GameSupport\GameProgress\RoundStartProgress.cs" />
+    <Compile Include="Assets\Script\GamePlay\Role\RoleArcher.cs" />
     <Compile Include="Assets\Script\GamePlay\Role\RoleBase.cs" />
+    <Compile Include="Assets\Script\GamePlay\Role\RoleMage.cs" />
     <Compile Include="Assets\Script\GameStartManager.cs" />
     <Compile Include="Assets\Script\NetWork\NetworkManager.cs" />
     <Compile Include="Assets\Script\NetWork\ProtoMessage\battle.cs" />
@@ -130,6 +140,8 @@
     <Compile Include="Assets\Test\AutoTestLancher.cs" />
     <Compile Include="Assets\Test\CardPlayTestLancher.cs" />
     <Compile Include="Assets\Test\Driver\InterfaceTestDriver.cs" />
+    <Compile Include="Assets\Test\Driver\Test_AllProgress_Driver.cs" />
+    <Compile Include="Assets\Test\Driver\Test_CalculateSpeedProgress_Driver.cs" />
     <Compile Include="Assets\Test\Driver\Test_ConfigDataManager_Driver.cs" />
   </ItemGroup>
   <ItemGroup>

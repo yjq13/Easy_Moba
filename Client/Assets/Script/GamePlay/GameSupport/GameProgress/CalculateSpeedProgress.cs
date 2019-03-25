@@ -12,6 +12,11 @@ namespace GamePlay
         private Dictionary<PlayerID, float> m_need_time_list = new Dictionary<PlayerID, float>();
         private GamePlayer m_getRoundPlayer = null;
 
+        public void FirstStartProgress()
+        {
+            StartProgress();
+        }
+
         private void CalculateSpeedEffect()
         {
             float temp_load = 0;
@@ -19,13 +24,12 @@ namespace GamePlay
 
             PlayerID get_round_id = 0;
             GamePlayer getRoundPlayer = null;
-
-            List<GamePlayer> PlayerList = GameManager.Instance.GetAllGamePlayers();
+            List<GamePlayer> PlayerList = GameFacade.GetCurrentCardGame().GetAllGamePlayers();
             m_need_time_list.Clear();
+
 
             foreach (var player in PlayerList)
             {
-                
                 if (m_players_race_flag[player.PlayerID] >= 100)
                 {
                     m_players_race_flag[player.PlayerID] = 0;
@@ -69,14 +73,14 @@ namespace GamePlay
 
         public override void OnEndProgress()
         {
-            GameManager.Instance.SetAuthorization(m_getRoundPlayer);
+            GameFacade.GetCurrentCardGame().SetAuthorization(m_getRoundPlayer);
         }
 
         public override void OnInitProgress()
         {
-            if(GameManager.Instance.GetAllGamePlayers() != null)
+            if (GameFacade.GetCurrentCardGame().GetAllGamePlayers() != null)
             {
-                foreach(var player in GameManager.Instance.GetAllGamePlayers())
+                foreach(var player in GameFacade.GetCurrentCardGame().GetAllGamePlayers())
                 {
                     m_players_race_flag.Add(player.PlayerID, 0);
                 }
@@ -89,7 +93,7 @@ namespace GamePlay
 
         public override void OnStartProgress()
         {
-            if (GameManager.Instance.GetCurrentAuthorizationPlayer() == GamePlayer.GAME_MANAGER)
+            if (GameFacade.GetCurrentCardGame().GetCurrentAuthorizationPlayer() == GamePlayer.GAME_MANAGER)
             {
                 CalculateSpeedEffect();
             }
