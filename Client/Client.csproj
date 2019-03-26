@@ -113,11 +113,14 @@
     <Compile Include="Assets\Script\Common\SingletonModuleContext.cs" />
     <Compile Include="Assets\Script\Common\SingletonModuleMono.cs" />
     <Compile Include="Assets\Script\Common\StringConverter.cs" />
+    <Compile Include="Assets\Script\GamePlay\Buff\BuffBase.cs" />
     <Compile Include="Assets\Script\GamePlay\Card\CardBase.cs" />
     <Compile Include="Assets\Script\GamePlay\Card\CardSet.cs" />
     <Compile Include="Assets\Script\GamePlay\ConfigData\Resource_Config.cs" />
     <Compile Include="Assets\Script\GamePlay\ConfigData\RoleData.cs" />
+    <Compile Include="Assets\Script\GamePlay\Effect\EffectBase.cs" />
     <Compile Include="Assets\Script\GamePlay\GamePlayer.cs" />
+    <Compile Include="Assets\Script\GamePlay\GameSupport\GameTarget.cs" />
     <Compile Include="Assets\Script\GamePlay\GameSupport\Game\CardGame.cs" />
     <Compile Include="Assets\Script\GamePlay\GameSupport\Game\GameFacade.cs" />
     <Compile Include="Assets\Script\GamePlay\GameSupport\Game\MyGameBase.cs" />
@@ -149,6 +152,7 @@
     <None Include="Assets\Plugins\protobuf-net\protobuf-net.xml" />
     <None Include="Assets\README.txt" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
 </Project>
