@@ -104,6 +104,7 @@
   <ItemGroup>
     <Compile Include="Assets\Script\Common\CSVBaseData.cs" />
     <Compile Include="Assets\Script\Common\ConfigDataManager.cs" />
+    <Compile Include="Assets\Script\Common\GameFramework\EventDispatcher.cs" />
     <Compile Include="Assets\Script\Common\GameFramework\GameBase.cs" />
     <Compile Include="Assets\Script\Common\GameFramework\GameEngine.cs" />
     <Compile Include="Assets\Script\Common\PlayerID.cs" />

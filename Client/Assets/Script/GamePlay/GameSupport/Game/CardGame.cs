@@ -10,7 +10,7 @@ namespace GamePlay
         private GamePlayer m_authorizationPlayer = null;
         private List<GamePlayer> m_gamePlayerList;
         private GamePlayer m_GamePlayer = null;
-        
+
         public uint GetCurrentRoundCount()
         {
             return GameProgressManager.Instance.RoundCount;

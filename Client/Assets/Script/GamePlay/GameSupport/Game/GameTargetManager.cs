@@ -46,6 +46,10 @@ namespace GamePlay
                 {
                     return I_target.GetChoosedTarget();
                 }
+                else
+                {
+
+                }
             }
 
             return null;
