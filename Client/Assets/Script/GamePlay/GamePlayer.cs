@@ -7,11 +7,18 @@ using UnityEngine;
 
 namespace GamePlay
 {
+    public enum CampType
+    {
+        SELF = 0,
+        OPPO = 1
+    }
+
     public class GamePlayer
     {
         public RoleBase Role;
         public RoleType RoleType;
         public PlayerID PlayerID;
+        public CampType CampType;
 
         public static GamePlayer GAME_MANAGER = null;
 

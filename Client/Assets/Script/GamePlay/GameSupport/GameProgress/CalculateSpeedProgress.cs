@@ -105,5 +105,10 @@ namespace GamePlay
             m_need_time_list.Clear();
             m_getRoundPlayer = null;
         }
+
+        public override ProgressType GetProgressState()
+        {
+            return ProgressType.CalculateSpeed;
+        }
     }
 }

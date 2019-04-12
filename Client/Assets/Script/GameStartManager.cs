@@ -2,9 +2,11 @@ using UnityEngine;
 using System.Collections;
 using NetWork;
 using easy_moba;
+using Common;
 
 public class GameStartManager : MonoBehaviour
 {
+    private GameEngine m_GameEngine;
     private bool is_web_connected = false;
     IEnumerator Start()
     {
@@ -42,6 +44,7 @@ public class GameStartManager : MonoBehaviour
     private void Update()
     {
         UpdateGetWebInfomation();
+        m_GameEngine.RunOneFrame();
     }
 
     private void UpdateGetWebInfomation()

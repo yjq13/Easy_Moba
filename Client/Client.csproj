@@ -113,19 +113,22 @@
     <Compile Include="Assets\Script\Common\SingletonModuleContext.cs" />
     <Compile Include="Assets\Script\Common\SingletonModuleMono.cs" />
     <Compile Include="Assets\Script\Common\StringConverter.cs" />
+    <Compile Include="Assets\Script\Common\XmlBaseData.cs" />
     <Compile Include="Assets\Script\GamePlay\Buff\BuffBase.cs" />
     <Compile Include="Assets\Script\GamePlay\Card\CardBase.cs" />
     <Compile Include="Assets\Script\GamePlay\Card\CardSet.cs" />
-    <Compile Include="Assets\Script\GamePlay\ConfigData\Resource_Config.cs" />
-    <Compile Include="Assets\Script\GamePlay\ConfigData\RoleData.cs" />
+    <Compile Include="Assets\Script\GamePlay\ConfigData\CSVData\RoleData.cs" />
+    <Compile Include="Assets\Script\GamePlay\ConfigData\CSV_Resource_Config.cs" />
+    <Compile Include="Assets\Script\GamePlay\Effect\DamageEffect.cs" />
     <Compile Include="Assets\Script\GamePlay\Effect\EffectBase.cs" />
     <Compile Include="Assets\Script\GamePlay\GamePlayer.cs" />
-    <Compile Include="Assets\Script\GamePlay\GameSupport\GameTarget.cs" />
     <Compile Include="Assets\Script\GamePlay\GameSupport\Game\CardGame.cs" />
     <Compile Include="Assets\Script\GamePlay\GameSupport\Game\GameFacade.cs" />
+    <Compile Include="Assets\Script\GamePlay\GameSupport\Game\GameTargetManager.cs" />
     <Compile Include="Assets\Script\GamePlay\GameSupport\Game\MyGameBase.cs" />
     <Compile Include="Assets\Script\GamePlay\GameSupport\GameProgress\CalculateSpeedProgress.cs" />
     <Compile Include="Assets\Script\GamePlay\GameSupport\GameProgress\GameProgressBase.cs" />
+    <Compile Include="Assets\Script\GamePlay\GameSupport\GameProgress\GameProgressManager.cs" />
     <Compile Include="Assets\Script\GamePlay\GameSupport\GameProgress\RoundEndProgress.cs" />
     <Compile Include="Assets\Script\GamePlay\GameSupport\GameProgress\RoundPlayerGetCardProgress.cs" />
     <Compile Include="Assets\Script\GamePlay\GameSupport\GameProgress\RoundPlayingProgress.cs" />
@@ -133,6 +136,7 @@
     <Compile Include="Assets\Script\GamePlay\Role\RoleArcher.cs" />
     <Compile Include="Assets\Script\GamePlay\Role\RoleBase.cs" />
     <Compile Include="Assets\Script\GamePlay\Role\RoleMage.cs" />
+    <Compile Include="Assets\Script\GamePlay\mark\MarkBase.cs" />
     <Compile Include="Assets\Script\GameStartManager.cs" />
     <Compile Include="Assets\Script\NetWork\NetworkManager.cs" />
     <Compile Include="Assets\Script\NetWork\ProtoMessage\battle.cs" />
@@ -140,19 +144,15 @@
     <Compile Include="Assets\Script\NetWork\ProtoMessage\down.cs" />
     <Compile Include="Assets\Script\NetWork\ProtoMessage\game.cs" />
     <Compile Include="Assets\Script\NetWork\ProtoMessage\up.cs" />
-    <Compile Include="Assets\Test\AutoTestLancher.cs" />
-    <Compile Include="Assets\Test\CardPlayTestLancher.cs" />
-    <Compile Include="Assets\Test\Driver\InterfaceTestDriver.cs" />
-    <Compile Include="Assets\Test\Driver\Test_AllProgress_Driver.cs" />
-    <Compile Include="Assets\Test\Driver\Test_CalculateSpeedProgress_Driver.cs" />
-    <Compile Include="Assets\Test\Driver\Test_ConfigDataManager_Driver.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Plugins\LumenWorks.Framework.IO\ReadMe.txt" />
     <None Include="Assets\Plugins\protobuf-net\protobuf-net.xml" />
     <None Include="Assets\README.txt" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Assets\Script\GamePlay\GameSupport\GameTarget\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
 </Project>

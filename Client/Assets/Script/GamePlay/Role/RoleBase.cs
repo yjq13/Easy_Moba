@@ -58,7 +58,7 @@ namespace GamePlay
             }
         }
 
-        public virtual void OnGetCard(uint cardCount)
+        protected virtual void OnGetCard(uint cardCount)
         {
             
         }
@@ -77,7 +77,7 @@ namespace GamePlay
             }
         }
 
-        public virtual void OnChangeHP(uint change_hp)
+        protected virtual void OnChangeHP(uint change_hp)
         {
 
         }
@@ -100,7 +100,7 @@ namespace GamePlay
             }
         }
 
-        public virtual void OnUseCard(CardBase card)
+        protected virtual void OnUseCard(CardBase card)
         {
             
         }

@@ -37,6 +37,11 @@ namespace GamePlay
         {
 
         }
+
+        public override ProgressType GetProgressState()
+        {
+            return ProgressType.RoundStart;
+        }
     }
 }
 

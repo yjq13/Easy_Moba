@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using UnityEngine;
+using System.Xml;
 
 namespace Common
 {
@@ -12,6 +13,9 @@ namespace Common
     {
         private Dictionary<string, List<CSVBaseData>> m_ConfigDataLists = new Dictionary<string, List<CSVBaseData>>();
         private Dictionary<string, CSVBaseData> m_ConfigDataItemss = new Dictionary<string, CSVBaseData>();
+
+        private Dictionary<string, List<XmlBaseData>> m_XmlConfigDataLists = new Dictionary<string, List<XmlBaseData>>();
+        private Dictionary<string, XmlBaseData> m_XmlConfigDataItemss = new Dictionary<string, XmlBaseData>();
 
         protected override void OnInit()
         {
@@ -43,6 +47,39 @@ namespace Common
                 return null;
 
             return ParseCSV<T>(csvText);
+        }
+        public void LoadXmlData<T>(ResourceID resID) where T : XmlBaseData
+        {
+            string typeKey = GetDataListsKey<T>();
+            if (m_XmlConfigDataLists.ContainsKey(typeKey))
+            {
+                Debug.LogWarning("duplicated key in config: " + typeKey);
+                return;
+            }
+            List<T> result = ParseXml<T>(resID);
+            if (result != null)
+            {
+                List<XmlBaseData> list = new List<XmlBaseData>();
+                for (int i = 0; i < result.Count; i++)
+                {
+                    XmlBaseData item = result[i];
+                    list.Add(item);
+                    string pKey = item.GetPrimaryKey();
+                    if (string.IsNullOrEmpty(pKey) == false)
+                    {
+                        string itemKey = GetDataItemKey<T>(pKey);
+                        if (m_XmlConfigDataItemss.ContainsKey(itemKey) == false)
+                        {
+                            m_XmlConfigDataItemss.Add(itemKey, item);
+                        }
+                        else
+                        {
+                            Debug.Log("duplicate item key: " + itemKey);
+                        }
+                    }
+                }
+                m_XmlConfigDataLists.Add(typeKey, list);
+            }
         }
         public void LoadCSV<T>(ResourceID resID) where T : CSVBaseData
         {
@@ -87,6 +124,29 @@ namespace Common
             }
             return null;
         }
+
+        public List<XmlBaseData> GetXmlDataList<T>() where T : XmlBaseData
+        {
+            string typeKey = GetDataListsKey<T>();
+            List<XmlBaseData> result;
+            if (m_XmlConfigDataLists.TryGetValue(typeKey, out result))
+            {
+                return result;
+            }
+            return null;
+        }
+
+        public T GetXmlData<T>(string key) where T : XmlBaseData
+        {
+            string typeKey = GetDataItemKey<T>(key);
+            XmlBaseData result;
+            if (m_XmlConfigDataItemss.TryGetValue(typeKey, out result))
+            {
+                return result.As<T>();
+            }
+            return null;
+        }
+
         public T GetData<T>(string key) where T : CSVBaseData
         {
             string typeKey = GetDataItemKey<T>(key);
@@ -97,11 +157,11 @@ namespace Common
             }
             return null;
         }
-        private string GetDataListsKey<T>() where T : CSVBaseData
+        private string GetDataListsKey<T>()
         {
             return typeof(T).ToString();
         }
-        private string GetDataItemKey<T>(string pKey) where T : CSVBaseData
+        private string GetDataItemKey<T>(string pKey)
         {
             return string.Format("{0}|{1}", GetDataListsKey<T>(), pKey);
         }
@@ -125,5 +185,22 @@ namespace Common
             }
             return result;
         }
+        public static List<T> ParseXml<T>(string filepath) where T : XmlBaseData
+        {
+            XmlDocument xmlDoc = new XmlDocument();
+            xmlDoc.Load(filepath);
+            T obj = (T)Activator.CreateInstance(typeof(T));
+            XmlNodeList nodeList = xmlDoc.SelectSingleNode(XmlBaseData.GetRootName()).ChildNodes;
+            List<T> result = new List<T>();
+            foreach (XmlElement xe in nodeList)
+            {
+                obj.ParseXmlData(xe);
+            }
+            result.Add(obj);
+
+            return result;
+        }
     }
+
+
 }
