@@ -8,18 +8,18 @@ namespace GamePlay
 {
     public static class GameFacade
     {
-        public static MyGameBase CurrentGame;
+        private static MyGameBase m_currentGame;
 
         public static void SetCurrentGame(MyGameBase game)
         {
-            CurrentGame = game;
+            m_currentGame = game;
         }
 
         public static CardGame GetCurrentCardGame()
         {
-            if(CurrentGame.GameType == GameType.CARD_GAME)
+            if(m_currentGame.GameType == GameType.CARD_GAME)
             {
-                return CurrentGame as CardGame;
+                return m_currentGame as CardGame;
             }
             return null;
         }

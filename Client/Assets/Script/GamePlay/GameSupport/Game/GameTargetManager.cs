@@ -21,17 +21,7 @@ namespace GamePlay
 
     }
 
-    public interface Interface_Target
-    {
-        void Clear();
-        bool CheckFinishChoose();
-        bool NeedChooseTarget();
-        List<GamePlayer> GetCanChooseTarget();
-        void AddChooseTarget();
-        List<GamePlayer> GetChoosedTarget();
-    }
-
-    public class GameTargetManager : SingletonModule<GameTargetManager>
+    public class GameTargetManager
     {
         private Dictionary<GameTargetType, Interface_Target> m_tartgetDic;
         private Interface_Target m_CurrentTarget;
@@ -42,13 +32,15 @@ namespace GamePlay
             if (m_tartgetDic.TryGetValue(tartget,out I_target))
             {
                 m_CurrentTarget = I_target;
+                m_CurrentTarget.Clear();
                 if (!I_target.NeedChooseTarget())
                 {
                     return I_target.GetChoosedTarget();
                 }
                 else
                 {
-
+                    List<GamePlayer> alternate_target = I_target.GetCanChooseTarget();
+                    GameFacade.GetCurrentCardGame().GameEventDispatcher.DispatchEvent((uint)EventID.UI_CHECK_ADD_TARGET, alternate_target);
                 }
             }
 
@@ -72,13 +64,15 @@ namespace GamePlay
             }
         }
 
-        protected override void OnInit()
+        public void Init()
         {
-            m_tartgetDic = new Dictionary<GameTargetType, Interface_Target>();
-            m_tartgetDic.Add(GameTargetType.SELF,null);
+            m_tartgetDic = new Dictionary<GameTargetType, Interface_Target>
+            {
+                { GameTargetType.SELF, null }
+            };
         }
 
-        protected override void OnCleanup()
+        public void CleanUp()
         {
             m_tartgetDic.Clear();
             m_tartgetDic = null;
