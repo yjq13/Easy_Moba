@@ -148,7 +148,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Editor\Test\AutoTestLancher.cs" />
     <Compile Include="Assets\Editor\Test\CardPlayTestLancher.cs" />
     <Compile Include="Assets\Editor\Test\Driver\InterfaceTestDriver.cs" />
     <Compile Include="Assets\Editor\Test\Driver\Test_AllProgress_Driver.cs" />

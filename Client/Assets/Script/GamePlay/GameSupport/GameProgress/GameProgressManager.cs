@@ -15,7 +15,7 @@ namespace GamePlay
         RoundEnd,
         ExtraPlayerOperation = 100
     }
-    public class GameProgressManager : SingletonModule<GameProgressManager>
+    public class GameProgressManager
     {
         private  List<GameProgressBase> m_registerGameProgress = new List<GameProgressBase>();
         private int m_static_current_index = 0;
@@ -23,7 +23,7 @@ namespace GamePlay
         public  uint MaxRoundCount = 9999;
         private CalculateSpeedProgress start_progress;
 
-        protected override void OnInit()
+        public void Init()
         {
             CalculateSpeedProgress progress_cal = new CalculateSpeedProgress();
             RoundStartProgress progress_Start = new RoundStartProgress();
@@ -68,10 +68,9 @@ namespace GamePlay
         }
 
 
-        protected override void OnCleanup()
+        public void Cleanup()
         {
             m_registerGameProgress.Clear();
-            m_registerGameProgress = null;
             start_progress = null;
         }
 

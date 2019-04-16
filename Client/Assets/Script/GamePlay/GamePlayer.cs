@@ -9,8 +9,8 @@ namespace GamePlay
 {
     public enum CampType
     {
-        SELF = 0,
-        OPPO = 1
+        Angle = 0,
+        Devil = 1
     }
 
     public class GamePlayer

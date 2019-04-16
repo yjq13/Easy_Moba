@@ -7,21 +7,19 @@ using UnityEngine.Assertions;
 
 namespace Test
 {
-    class Test_CalculateSpeedProgress_Driver :Interface_TestDriver
+    class Test_CalculateSpeedProgress_Driver : DriverBase
     {
-        public void ClearContext()
+        public override void ClearContext()
         {
             ConfigDataManager.Instance.Cleanup();
-            GameProgressManager.Instance.Cleanup();
         }
 
-        public void InitContext()
+        public override void InitContext()
         {
             ConfigDataManager.Instance.LoadCSV<RoleData>(ResourceIDDef.GAME_PLAYER_CONFIG);
-            GameProgressManager.Instance.Cleanup();
         }
 
-        public void Test()
+        public override void Test()
         {
             CardSet cardSet_playerOne = new CardSet();
             CardSet cardSet_playerTwo = new CardSet();

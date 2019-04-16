@@ -5,19 +5,19 @@ using UnityEngine.Assertions;
 
 namespace Test
 {
-    class Test_ConfigDataManager_Driver :Interface_TestDriver
+    class Test_ConfigDataManager_Driver : DriverBase
     {
-        public void ClearContext()
+        public override void ClearContext()
         {
             ConfigDataManager.Instance.Cleanup();
         }
 
-        public void InitContext()
+        public override void InitContext()
         {
             ConfigDataManager.Instance.LoadCSV<RoleData>(ResourceIDDef.GAME_PLAYER_CONFIG);
         }
 
-        public void Test()
+        public override void Test()
         {
             List<CSVBaseData> dataList = ConfigDataManager.Instance.GetDataList<RoleData>();
             Assert.IsNotNull(dataList);

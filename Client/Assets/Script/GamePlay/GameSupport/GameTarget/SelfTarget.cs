@@ -3,43 +3,32 @@ using Common;
 
 namespace GamePlay
 {
-    public class SelfTarget : Interface_Target
+    public class SelfTarget : TargetBase
     {
-        private List<GamePlayer> m_gameplayer = new List<GamePlayer>()
+        public override void Init()
         {
-            GameFacade.GetCurrentCardGame().GetMyPlayer()
-        };
-
-        public void AddChooseTarget()
-        {
-            //do nothing
-            return;
+            base.Init();
+            m_gameplayer.Add(GameFacade.GetCurrentCardGame().GetMyPlayer());
         }
 
-        public bool CheckFinishChoose()
+        public override bool CheckFinishChoose()
         {
             return true;
         }
 
-        public void Clear()
+        public override void Reset()
         {
-            
         }
 
-        public List<GamePlayer> GetCanChooseTarget()
-        {
-
-            return m_gameplayer;
-        }
-
-        public List<GamePlayer> GetChoosedTarget()
-        {
-            return null;
-        }
-
-        public bool NeedChooseTarget()
+        public override bool NeedChooseTarget()
         {
             return false;
+        }
+
+
+        public override List<GamePlayer> GetCanChooseTarget()
+        {
+            return m_gameplayer;
         }
     }
 }

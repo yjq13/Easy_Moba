@@ -8,14 +8,13 @@ namespace GamePlay
     {
         protected GameProgressBase()
         {
-            GameProgressManager.Instance.RegisterProgress(this);
             InitProgress();
         }
 
         protected void EndProgress()
         {
             OnEndProgress();
-            GameProgressManager.Instance.StartNextProgress();
+            GameFacade.GetCurrentCardGame().StartNextProgress();
         }
 
         private void InitProgress()
@@ -36,7 +35,7 @@ namespace GamePlay
         public void KillCurrentRound()
         {
             OnClearGameProgress();
-            GameProgressManager.Instance.JumpToLastProgress();
+            GameFacade.GetCurrentCardGame().JumpToLastProgress();
         }
 
         public abstract void OnInitProgress();

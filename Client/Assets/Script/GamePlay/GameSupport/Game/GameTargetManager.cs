@@ -32,7 +32,7 @@ namespace GamePlay
             if (m_tartgetDic.TryGetValue(tartget,out I_target))
             {
                 m_CurrentTarget = I_target;
-                m_CurrentTarget.Clear();
+                m_CurrentTarget.Reset();
                 if (!I_target.NeedChooseTarget())
                 {
                     return I_target.GetChoosedTarget();
@@ -60,7 +60,7 @@ namespace GamePlay
         {
             if (m_CurrentTarget != null)
             {
-                m_CurrentTarget.AddChooseTarget();
+                m_CurrentTarget.AddChooseTarget(tartget);
             }
         }
 

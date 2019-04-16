@@ -9,11 +9,23 @@ namespace GamePlay
     {
         private GamePlayer m_authorizationPlayer = null;
         private List<GamePlayer> m_gamePlayerList;
+        private Dictionary<CampType, List<GamePlayer>> m_campPlayerList;
         private GamePlayer m_GamePlayer = null;
+        private GameProgressManager m_prgressManager = null;
 
         public uint GetCurrentRoundCount()
         {
-            return GameProgressManager.Instance.RoundCount;
+            return m_prgressManager.RoundCount;
+        }
+
+        public void StartNextProgress()
+        {
+            m_prgressManager.StartNextProgress();
+        }
+
+        public void JumpToLastProgress()
+        {
+            m_prgressManager.JumpToLastProgress();
         }
 
         public void SetMaxGameRoundCount()
@@ -23,7 +35,7 @@ namespace GamePlay
 
         public GameProgressBase GetCurrenProgress()
         {
-            return GameProgressManager.Instance.GetCurrenProgress();
+            return m_prgressManager.GetCurrenProgress();
         }
 
         public override void OnAwake()
@@ -67,6 +79,22 @@ namespace GamePlay
         {
             m_gamePlayerList = players;
             m_GamePlayer = myGamePlayer;
+            foreach(var player in m_gamePlayerList)
+            {
+                List<GamePlayer> temp_list;
+                if (m_campPlayerList.TryGetValue(player.CampType, out temp_list))
+                {
+                    temp_list.Add(player);
+                }
+                else
+                {
+                    temp_list = new List<GamePlayer>();
+                    temp_list.Add(player);
+                    m_campPlayerList.Add(player.CampType, temp_list);
+                }
+            }
+            m_prgressManager = new GameProgressManager();
+            m_prgressManager.Init();
             StartGame();
         }
 
@@ -82,7 +110,7 @@ namespace GamePlay
 
         private void StartGame()
         {
-            GameProgressManager.Instance.StartProgress();
+            m_prgressManager.StartProgress();
         }
 
         public bool CheckIsHappened(int probability)
@@ -94,6 +122,35 @@ namespace GamePlay
         public GamePlayer GetMyPlayer()
         {
             return m_GamePlayer;
+        }
+
+        public List<GamePlayer> GetSelfCampPlayers()
+        {
+            return GetGamePlayersByCamp(m_GamePlayer.CampType);
+        }
+
+        public List<GamePlayer> GetOppoCampPlayers()
+        {
+            return GetGamePlayersByCamp(GetOppoType());
+        }
+
+        public CampType GetOppoType()
+        {
+            if(m_GamePlayer.CampType == CampType.Angle)
+            {
+                return CampType.Devil;
+            }
+            else
+            {
+                return CampType.Angle;
+            }
+        }
+
+        private List<GamePlayer> GetGamePlayersByCamp(CampType campType)
+        {
+            List<GamePlayer> list;
+            m_campPlayerList.TryGetValue(campType,out list);
+            return list;
         }
     }
 }
