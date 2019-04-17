@@ -31,6 +31,11 @@ namespace NetWork
             return web_socket.Connect();
         }
 
+        public void CloseConnect()
+        {
+            web_socket.Close();
+        }
+
         public void SendMessage<T>(T msg)
         {
             MemoryStream memory_stream = new MemoryStream();
@@ -42,7 +47,7 @@ namespace NetWork
             web_socket.Send(binary_msg);
         }
 
-        public down_msg ReceiveMessage()
+        public object ReceiveMessage()
         {
             byte[] recv_msg = web_socket.Recv();
             if(recv_msg != null)

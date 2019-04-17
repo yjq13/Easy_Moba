@@ -156,6 +156,15 @@
     <Compile Include="Assets\Script\NetWork\ProtoMessage\down.cs" />
     <Compile Include="Assets\Script\NetWork\ProtoMessage\game.cs" />
     <Compile Include="Assets\Script\NetWork\ProtoMessage\up.cs" />
+    <Compile Include="Assets\Test\CardPlayTestLancher.cs" />
+    <Compile Include="Assets\Test\Driver\Game\Test_AllProgress_Driver.cs" />
+    <Compile Include="Assets\Test\Driver\Game\Test_CalculateSpeedProgress_Driver.cs" />
+    <Compile Include="Assets\Test\Driver\Game\Test_ConfigDataManager_Driver.cs" />
+    <Compile Include="Assets\Test\Driver\InterfaceTestDriver.cs" />
+    <Compile Include="Assets\Test\Driver\InterfaceTestUnityDriver.cs" />
+    <Compile Include="Assets\Test\Driver\NetWork\Msg\CardGameMsgDriver.cs" />
+    <Compile Include="Assets\Test\Driver\NetWork\Test_NetWorkManager_Driver.cs" />
+    <Compile Include="Assets\Test\Driver\Util\DriverUtil.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Plugins\LumenWorks.Framework.IO\ReadMe.txt" />

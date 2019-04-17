@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/EasyMoba.unity
+- path: Assets/InitTestScene636911063000954725.unity
   isLoaded: 1
   isActive: 1

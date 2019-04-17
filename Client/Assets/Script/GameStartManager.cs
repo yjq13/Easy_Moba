@@ -10,35 +10,14 @@ public class GameStartManager : MonoBehaviour
     private bool is_web_connected = false;
     IEnumerator Start()
     {
+        m_GameEngine = GameEngine.instance;
         yield return StartCoroutine(NetworkManager.Instance.StartConnect());
         is_web_connected = true;
-        SendTestMessage();
     }
 
     public void CurrentGameStartCoroutine(IEnumerator erator)
     {
         StartCoroutine(erator);
-    }
-
-    private void SendTestMessage()
-    {
-        down_msg msg = new down_msg()
-        {
-            svr_ts = 1543483207,
-            seq = 0,
-            err_code = new reply_err_code()
-            {
-                err_code = "Yingjiaqi is your daddy"
-            }
-        };
-        up_msg msg2 = new up_msg()
-        {
-            data_op = new req_data_op()
-            {
-                op = t_op.add
-            }
-        };
-        NetworkManager.Instance.SendMessage(msg2);
     }
 
     private void Update()
@@ -54,7 +33,7 @@ public class GameStartManager : MonoBehaviour
             var data = NetworkManager.Instance.ReceiveMessage();
             if (data != null)
             {
-                Debug.Log(data.data_op.result);
+                Debug.Log(data);
             }
         }
     }

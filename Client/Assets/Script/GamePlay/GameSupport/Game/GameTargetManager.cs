@@ -68,7 +68,15 @@ namespace GamePlay
         {
             m_tartgetDic = new Dictionary<GameTargetType, Interface_Target>
             {
-                { GameTargetType.SELF, null }
+                { GameTargetType.SELF,new SelfTarget() },
+                { GameTargetType.SELF_ALL,new SelfAllTarget() },
+                { GameTargetType.SELF_ONE,new SelfOneTarget() },
+                { GameTargetType.SELF_ALL_EXCEPT_SELF,new SelfAllExceptSelfTarget() },
+                { GameTargetType.SELF_ONE_EXCEPT_SELF,new SelfOneExceptSelfTarget() },
+                { GameTargetType.OPPO_ONE,new OppoOneTarget() },
+                { GameTargetType.OPPO_ALL,new OppoAllTarget() },
+                { GameTargetType.ALL,new AllTarget() },
+                { GameTargetType.ALL_EXCEPT_SELF,new AllExceptSelfTarget() },
             };
         }
 

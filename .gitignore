@@ -57,3 +57,4 @@ Client/Temp/UnityVS_obj/Debug/Client.csproj.CoreCompileInputs.cache
 Client/Temp/UnityVS_obj/Debug/Client.Editor.csproj.CoreCompileInputs.cache
 Client/Temp/UnityVS_obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
 Client/Client.csproj
+*.bin
