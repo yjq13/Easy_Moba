@@ -1,43 +1,46 @@
-﻿
+﻿using UnityEngine;
+using UnityEngine.TestTools;
+using NUnit.Framework;
+using System.Collections;
 using easy_moba;
 using NetWork;
+using System.Collections.Generic;
+using System;
 
 namespace Test
 {
-    class Test_up_msg_Driver : Test_NetWorkManager_Driver
+    public class Test_up_msg_Driver : Test_NetWorkManager_Driver
     {
-        public override void SendTestMessage()
+        public override Type SendTestMessage()
         {
+            up_msg msg = new up_msg()
             {
-                up_msg msg = new up_msg()
+                data_op = new req_data_op()
                 {
-                    data_op = new req_data_op()
-                    {
-                        op = t_op.add
-                    }
-                };
-                NetworkManager.Instance.SendMessage(msg);
-            }
+                    op = t_op.add
+                }
+            };
+            NetworkManager.Instance.SendMessage(msg);
+
+            return msg.GetType();
         }
     }
 
 
-    class Test_down_msg_Driver : Test_NetWorkManager_Driver
+    public class Test_down_msg_Driver : Test_NetWorkManager_Driver
     {
-        public override void SendTestMessage()
+        public override Type SendTestMessage()
         {
+            down_msg msg = new down_msg()
             {
-                down_msg msg = new down_msg()
+                svr_ts = 1543483207,
+                seq = 0,
+                err_code = new reply_err_code()
                 {
-                    svr_ts = 1543483207,
-                    seq = 0,
-                    err_code = new reply_err_code()
-                    {
-                        err_code = "Yingjiaqi is your daddy"
-                    }
-                };
-                NetworkManager.Instance.SendMessage(msg);
-            }
+                    err_code = "Yingjiaqi is your daddy"
+                }
+            };
+            return msg.GetType();
         }
     }
 

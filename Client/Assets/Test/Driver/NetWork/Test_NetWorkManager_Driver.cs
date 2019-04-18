@@ -4,28 +4,39 @@ using NUnit.Framework;
 using System.Collections;
 using easy_moba;
 using NetWork;
+
+using System;
+using System.Linq;
 using System.Collections.Generic;
 
 namespace Test
 {
     public abstract class Test_NetWorkManager_Driver : UnityDriverBase
     {
-        public static int frameForWait_ForNetWork = 300;
+        private static int frameForWait_ForNetWork = 300;
 
         public override IEnumerator ClearContext()
         {
-            NetworkManager.Instance.CloseConnect();
+            NetWorkUtil.CheckAndCloseNetWorkContext();
             yield return null;
         }
 
         public override IEnumerator InitContext()
         {
-            yield return NetworkManager.Instance.StartConnect();
+            yield return NetWorkUtil.NetWorkContextCreate();
         }
 
         public override IEnumerator Test()
         {
-            SendTestMessage();
+            Type driverType = SendTestMessage();
+            yield return CheckMsgResult(driverType);
+        }
+
+        public abstract Type SendTestMessage();
+           
+
+        public IEnumerator CheckMsgResult(Type driver)
+        {
             int frameForWait = frameForWait_ForNetWork;
             bool isOk = false;
             while (frameForWait > 0)
@@ -39,9 +50,7 @@ namespace Test
                 yield return null;
                 frameForWait--;
             }
-            Assert.IsTrue(isOk,"Connect is failed");
+            Assert.IsTrue(isOk, "Connect is failed: " + driver.Name);
         }
-
-        public abstract void SendTestMessage();
     }
 }
