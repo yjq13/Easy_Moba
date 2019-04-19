@@ -12,6 +12,7 @@ namespace GamePlay
         private Dictionary<CampType, List<GamePlayer>> m_campPlayerList;
         private GamePlayer m_GamePlayer = null;
         private GameProgressManager m_prgressManager = null;
+        private GameTargetManager m_GameTargetManager = null;
 
         public uint GetCurrentRoundCount()
         {
@@ -95,6 +96,8 @@ namespace GamePlay
             }
             m_prgressManager = new GameProgressManager();
             m_prgressManager.Init();
+            m_GameTargetManager = new GameTargetManager();
+            m_GameTargetManager.Init();
             StartGame();
         }
 

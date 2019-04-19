@@ -124,7 +124,9 @@
     <Compile Include="Assets\Script\GamePlay\Effect\DamageEffect.cs" />
     <Compile Include="Assets\Script\GamePlay\Effect\EffectBase.cs" />
     <Compile Include="Assets\Script\GamePlay\GamePlayer.cs" />
+    <Compile Include="Assets\Script\GamePlay\GameSupport\Game\GameBuffManager.cs" />
     <Compile Include="Assets\Script\GamePlay\GameSupport\Game\CardGame.cs" />
+    <Compile Include="Assets\Script\GamePlay\GameSupport\Game\GameEffectManager.cs" />
     <Compile Include="Assets\Script\GamePlay\GameSupport\Game\GameFacade.cs" />
     <Compile Include="Assets\Script\GamePlay\GameSupport\Game\GameTargetManager.cs" />
     <Compile Include="Assets\Script\GamePlay\GameSupport\Game\MyGameBase.cs" />

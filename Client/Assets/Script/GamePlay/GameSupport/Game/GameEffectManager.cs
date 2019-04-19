@@ -5,7 +5,8 @@ using System.Text;
 
 namespace GamePlay
 {
-    public class BuffBase
+    public class GameEffectManager
     {
+
     }
 }
