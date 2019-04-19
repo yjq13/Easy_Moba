@@ -29,6 +29,11 @@ namespace GamePlay
             }
         }
 
+        public void AddBuff(BuffBase buff)
+        {
+            RegisterTrigger(BUFF_TRIGGER_TYPE triggerType, BuffDelegate buff_delegate)
+        }
+
         public void RegisterTrigger(BUFF_TRIGGER_TYPE triggerType, BuffDelegate buff_delegate)
         {
             BuffDelegate handler;

@@ -5,7 +5,10 @@ using System.Text;
 
 namespace GamePlay
 {
-    public class BuffBase
+    public abstract class BuffBase
     {
+
+        public abstract void OnTriggerBuff(params object[] param);
+        public abstract uint GetInterestedTrigger();
     }
 }
