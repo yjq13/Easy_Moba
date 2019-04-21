@@ -32,10 +32,27 @@ namespace Common
             return GetFieldValueWithFieldName(fieldName, headers, values);
         }
 
+        protected static string[] ReadDoubleValue(string fieldName, string[] headers, string[] values, string defaultValue = null)
+        {
+            string value =  GetFieldValueWithFieldName(fieldName, headers, values);
+            string[] parseValue = value.Split(';');
+            string[] doubleValue = new string[2];
+            doubleValue[0] = parseValue[0];
+            if (parseValue.Length > 1)
+            {
+                doubleValue[1] = parseValue[1];
+            }
+            else
+            {
+                doubleValue[1] = defaultValue;
+            }
+            return doubleValue;
+        }
+
         protected static string[] ReadStringArray(string fieldName, string[] headers, string[] values, string defaultValue = null)
         {
             string value = GetFieldValueWithFieldName(fieldName, headers, values);
-            string[] result = value.Split(',');
+            string[] result = value.Split(';');
             return result;
         }
         protected static uint[] ReadUIntArray(string fieldName, string[] headers, string[] values, uint defaultValue = 0, char InSplitChar = ',')

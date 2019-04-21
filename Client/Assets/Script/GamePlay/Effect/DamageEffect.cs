@@ -9,12 +9,22 @@ namespace GamePlay
     public enum DAMAGE_TYPE
     {
         NORMAL = 0,
+        FIRE,
+        ANY,
     }
 
     class DamageEffect : EffectBase
     {
         private DAMAGE_TYPE m_type;
         private uint m_damageCount;
+
+        public DAMAGE_TYPE EffectType
+        {
+            get
+            {
+                return m_type;
+            }
+        }
 
         public void InitDamageEffect(params object[] param)
         {

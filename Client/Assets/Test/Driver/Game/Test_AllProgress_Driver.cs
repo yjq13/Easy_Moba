@@ -16,7 +16,7 @@ namespace Test
 
         public override void InitContext()
         {
-            ConfigDataManager.Instance.LoadCSV<RoleData>(ResourceIDDef.GAME_PLAYER_CONFIG);
+            ConfigDataManager.Instance.LoadCSV<RoleData>(ResourceIDDef.GAME_ROLE_CONFIG);
         }
 
         public override void Test()

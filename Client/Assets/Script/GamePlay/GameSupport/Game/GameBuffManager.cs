@@ -5,7 +5,7 @@ using System.Text;
 
 namespace GamePlay
 {
-    public enum BUFF_TRIGGER_TYPE
+    public enum Buff_NOTIFY_TYPE
     {
         GET_DAMAGE,
         CAUSE_DAMAGE,
@@ -18,9 +18,9 @@ namespace GamePlay
     public class GameBuffManager
     {
         public delegate void BuffDelegate(params object[] param);
-        private Dictionary<BUFF_TRIGGER_TYPE, BuffDelegate> m_BuffTriggerEventDic;
+        private Dictionary<Buff_NOTIFY_TYPE, BuffDelegate> m_BuffTriggerEventDic;
 
-        public void DispatchBuffTrigger(BUFF_TRIGGER_TYPE triggerType, params object[] data)
+        public void DispatchBuffTrigger(Buff_NOTIFY_TYPE triggerType, params object[] data)
         {
             BuffDelegate handler;
             if (m_BuffTriggerEventDic.TryGetValue(triggerType, out handler))
@@ -29,12 +29,12 @@ namespace GamePlay
             }
         }
 
-        public void AddBuff(BuffBase buff)
+        public void AddBuff(Buff buff)
         {
-            RegisterTrigger(BUFF_TRIGGER_TYPE triggerType, BuffDelegate buff_delegate)
+            //RegisterTrigger(triggerType,buff)
         }
 
-        public void RegisterTrigger(BUFF_TRIGGER_TYPE triggerType, BuffDelegate buff_delegate)
+        public void RegisterTrigger(Buff_NOTIFY_TYPE triggerType, BuffDelegate buff_delegate)
         {
             BuffDelegate handler;
             if (m_BuffTriggerEventDic.TryGetValue(triggerType, out handler))
@@ -47,7 +47,7 @@ namespace GamePlay
             }
         }
 
-        public void UnRegisterTrigger(BUFF_TRIGGER_TYPE triggerType, BuffDelegate buff_delegate)
+        public void UnRegisterTrigger(Buff_NOTIFY_TYPE triggerType, BuffDelegate buff_delegate)
         {
             BuffDelegate handler;
             if (m_BuffTriggerEventDic.TryGetValue(triggerType, out handler))

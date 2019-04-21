@@ -58,3 +58,15 @@ Client/Temp/UnityVS_obj/Debug/Client.Editor.csproj.CoreCompileInputs.cache
 Client/Temp/UnityVS_obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
 Client/Client.csproj
 *.bin
+
+*.cache
+
+Client/Assets/Test/Stub.meta
+
+*.meta
+
+Client/Library/ScriptAssemblies/Assembly-CSharp-Editor.dll.mdb
+
+Client/Library/ScriptAssemblies/Assembly-CSharp-Editor.dll
+
+Client/Library/metadata/57/577856beabc324af7be6b0197bd017f8.info
