@@ -12,7 +12,6 @@ namespace GamePlay
         private Dictionary<CampType, List<GamePlayer>> m_campPlayerList;
         private GamePlayer m_GamePlayer = null;
         private GameProgressManager m_prgressManager = null;
-        private GameTargetManager m_GameTargetManager = null;
 
         public uint GetCurrentRoundCount()
         {
@@ -96,8 +95,6 @@ namespace GamePlay
             }
             m_prgressManager = new GameProgressManager();
             m_prgressManager.Init();
-            m_GameTargetManager = new GameTargetManager();
-            m_GameTargetManager.Init();
             StartGame();
         }
 
@@ -127,19 +124,9 @@ namespace GamePlay
             return m_GamePlayer;
         }
 
-        public List<GamePlayer> GetSelfCampPlayers()
+        public CampType GetOppoType(CampType camptype)
         {
-            return GetGamePlayersByCamp(m_GamePlayer.CampType);
-        }
-
-        public List<GamePlayer> GetOppoCampPlayers()
-        {
-            return GetGamePlayersByCamp(GetOppoType());
-        }
-
-        public CampType GetOppoType()
-        {
-            if(m_GamePlayer.CampType == CampType.Angle)
+            if(camptype == CampType.Angle)
             {
                 return CampType.Devil;
             }
@@ -149,7 +136,7 @@ namespace GamePlay
             }
         }
 
-        private List<GamePlayer> GetGamePlayersByCamp(CampType campType)
+        public List<GamePlayer> GetGamePlayersByCamp(CampType campType)
         {
             List<GamePlayer> list;
             m_campPlayerList.TryGetValue(campType,out list);

@@ -7,20 +7,15 @@ namespace GamePlay
 {
     public class SelfAllTarget : TargetBase
     {
-        public override void Init()
+        public override void SetGameTarget(GamePlayer player)
         {
-            base.Init();
-            m_gameplayer = GameFacade.GetCurrentCardGame().GetSelfCampPlayers();
+            base.SetGameTarget(player);
+            m_gameplayer = GameFacade.GetCurrentCardGame().GetGamePlayersByCamp(self_player.CampType);
         }
 
         public override bool CheckFinishChoose()
         {
             return true;
-        }
-
-        public override void Reset()
-        {
-            m_gameplayer = GameFacade.GetCurrentCardGame().GetSelfCampPlayers();
         }
 
         public override List<GamePlayer> GetCanChooseTarget()

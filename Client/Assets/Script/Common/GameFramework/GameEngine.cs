@@ -8,12 +8,12 @@ namespace Common
 {
     class GameEngine : MonoBehaviour
     {
-        public static GameEngine instance;
+        public static GameEngine Instance;
         private MyGameBase m_CurrentGame;
 
         private void Awake()
         {
-            instance = this;
+            Instance = this;
         }
 
         public void LoadGame()

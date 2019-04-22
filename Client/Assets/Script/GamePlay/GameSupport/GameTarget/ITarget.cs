@@ -6,7 +6,7 @@ namespace GamePlay
     public interface Interface_Target
     {
         void Reset();
-        void Init();
+        void SetGameTarget(GamePlayer player);
         bool CheckFinishChoose();
         bool NeedChooseTarget();
         List<GamePlayer> GetCanChooseTarget();
@@ -19,6 +19,12 @@ namespace GamePlay
     public abstract class TargetBase : Interface_Target
     {
         protected List<GamePlayer> m_gameplayer;
+        protected GamePlayer self_player;
+
+        public TargetBase()
+        {
+            Init();
+        }
 
         public void AddChooseTarget(GamePlayer target)
         {
@@ -36,14 +42,20 @@ namespace GamePlay
 
         public abstract bool CheckFinishChoose();
 
-        public virtual void Reset()
+        public void Reset()
         {
             m_gameplayer.Clear();
+            self_player = null;
         }
 
-        public virtual void Init()
+        public void Init()
         {
             m_gameplayer = new List<GamePlayer>();
+        }
+
+        public virtual void SetGameTarget(GamePlayer player)
+        {
+            self_player = player;
         }
 
         public abstract List<GamePlayer> GetCanChooseTarget();

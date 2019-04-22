@@ -10,7 +10,7 @@ namespace GamePlay
         public override List<GamePlayer> GetCanChooseTarget()
         {
             List<GamePlayer> players = new List<GamePlayer>();
-            foreach (var player in GameFacade.GetCurrentCardGame().GetSelfCampPlayers())
+            foreach (var player in GameFacade.GetCurrentCardGame().GetGamePlayersByCamp(self_player.CampType))
             {
                 if(player != GameFacade.GetCurrentCardGame().GetMyPlayer())
                 {

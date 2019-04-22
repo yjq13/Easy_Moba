@@ -18,7 +18,9 @@ namespace GamePlay
 
         public override List<GamePlayer> GetCanChooseTarget()
         {
-            return GameFacade.GetCurrentCardGame().GetOppoCampPlayers();
+            CampType m_camp = self_player.CampType;
+            CampType oppo_camp = GameFacade.GetCurrentCardGame().GetOppoType(m_camp);
+            return GameFacade.GetCurrentCardGame().GetGamePlayersByCamp(oppo_camp);
         }
 
         public override bool NeedChooseTarget()

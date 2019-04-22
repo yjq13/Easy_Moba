@@ -4,6 +4,7 @@ using Common;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using System.Collections;
 
 namespace GamePlay
 {
@@ -18,6 +19,7 @@ namespace GamePlay
         private uint m_BuffCount = 0;
         private string m_BuffID = string.Empty;
         private ITriggerCondition triggerCondition;
+        private GamePlayer OwnPlayer = null;
 
         public Buff(string buffID)
         {
@@ -26,15 +28,31 @@ namespace GamePlay
             triggerCondition = BuffConditionFactory.CreateBuffCondition(m_BuffData.TriggerTime);
         }
 
-        public void OnTriggerBuff(params object[] param)
+        public void BundleBuff(GamePlayer player)
         {
+            OwnPlayer = player;
+        }
+
+        public IEnumerator OnTriggerBuff(params object[] param)
+        {
+            bool TriggerEffect = true;
             if (triggerCondition != null)
             {
-                triggerCondition.GetTriggerCondition(m_BuffData.TriggerParam, param);
+                TriggerEffect = triggerCondition.GetTriggerCondition(m_BuffData.TriggerParam, param);
             }
-            else
+            if (TriggerEffect)
             {
-                Debug.LogError("Condition is not create successfully！please check it");
+                foreach(EffectInfoData effect_info in m_BuffData.EffectList)
+                {
+                    EffectBase effect = EffectFactory.CreateEffect(effect_info.EffectID);
+                    List<GamePlayer> targets = null;
+                    yield return GameEngine.Instance.StartCoroutine(GameTargetManager.Instance.StartGetTarget(OwnPlayer, effect_info.TargetType));
+                    targets = GameTargetManager.Instance.GetChoosedTarget();
+                    if (targets != null)
+                    {
+                        effect.TakeEffect(targets);
+                    }
+                }
             }
         }
 

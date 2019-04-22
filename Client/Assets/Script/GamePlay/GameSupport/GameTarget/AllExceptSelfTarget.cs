@@ -7,25 +7,11 @@ namespace GamePlay
 {
     class AllExceptSelfTarget : AllTarget
     {
-        public override void Init()
+        public override void SetGameTarget(GamePlayer player)
         {
-            base.Init();
+            base.SetGameTarget(player);
             List<GamePlayer> players = new List<GamePlayer>();
-            foreach(var player in GameFacade.GetCurrentCardGame().GetAllGamePlayers())
-            {
-                if (player != GameFacade.GetCurrentCardGame().GetMyPlayer())
-                {
-                    players.Add(player);
-                }
-
-            }
-            m_gameplayer = players;
-        }
-
-        public override void Reset()
-        {
-            List<GamePlayer> players = new List<GamePlayer>();
-            foreach (var player in GameFacade.GetCurrentCardGame().GetAllGamePlayers())
+            foreach(var player_target in GameFacade.GetCurrentCardGame().GetAllGamePlayers())
             {
                 if (player != GameFacade.GetCurrentCardGame().GetMyPlayer())
                 {

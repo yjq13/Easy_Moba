@@ -5,19 +5,15 @@ namespace GamePlay
 {
     public class SelfTarget : TargetBase
     {
-        public override void Init()
+        public override void SetGameTarget(GamePlayer player)
         {
-            base.Init();
-            m_gameplayer.Add(GameFacade.GetCurrentCardGame().GetMyPlayer());
+            base.SetGameTarget(player);
+            m_gameplayer.Add(self_player);
         }
 
         public override bool CheckFinishChoose()
         {
             return true;
-        }
-
-        public override void Reset()
-        {
         }
 
         public override bool NeedChooseTarget()

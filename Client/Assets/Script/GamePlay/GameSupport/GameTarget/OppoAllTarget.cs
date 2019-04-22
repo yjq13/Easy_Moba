@@ -7,15 +7,12 @@ namespace GamePlay
 {
     class OppoAllTarget : TargetBase
     {
-        public override void Init()
+        public override void SetGameTarget(GamePlayer player)
         {
-            base.Init();
-            m_gameplayer = GameFacade.GetCurrentCardGame().GetOppoCampPlayers();
-        }
-
-        public override void Reset()
-        {
-            m_gameplayer = GameFacade.GetCurrentCardGame().GetOppoCampPlayers();
+            base.SetGameTarget(player);
+            CampType m_camp = self_player.CampType;
+            CampType oppo_camp = GameFacade.GetCurrentCardGame().GetOppoType(m_camp);
+            m_gameplayer = GameFacade.GetCurrentCardGame().GetGamePlayersByCamp(oppo_camp);
         }
 
         public override bool CheckFinishChoose()

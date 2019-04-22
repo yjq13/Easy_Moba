@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,30 +22,36 @@ namespace GamePlay
 
     }
 
-    public class GameTargetManager
+    public class GameTargetManager : SingletonModule<GameTargetManager>
     {
         private Dictionary<GameTargetType, Interface_Target> m_tartgetDic;
         private Interface_Target m_CurrentTarget;
+        public bool ChoosingTarget = false;
 
-        public List<GamePlayer> TryToGetTarget(GameTargetType tartget)
+        public IEnumerator StartGetTarget(GamePlayer player ,GameTargetType tartget)
         {
-            Interface_Target I_target = null;
-            if (m_tartgetDic.TryGetValue(tartget,out I_target))
+            ChoosingTarget = true;
+                Interface_Target I_target = null;
+            if (m_tartgetDic.TryGetValue(tartget, out I_target))
             {
                 m_CurrentTarget = I_target;
                 m_CurrentTarget.Reset();
+                m_CurrentTarget.SetGameTarget(player);
                 if (!I_target.NeedChooseTarget())
                 {
-                    return I_target.GetChoosedTarget();
+                    ChoosingTarget = false;
                 }
                 else
                 {
                     List<GamePlayer> alternate_target = I_target.GetCanChooseTarget();
                     GameFacade.GetCurrentCardGame().GameEventDispatcher.DispatchEvent((uint)EventID.UI_CHECK_ADD_TARGET, alternate_target);
+
+                    while (ChoosingTarget)
+                    {
+                        yield return null;
+                    }
                 }
             }
-
-            return null;
         }
 
         public bool CheckFinishChoose()
@@ -56,6 +63,24 @@ namespace GamePlay
             return false;
         }
 
+        public void SetConFirmChoose()
+        {
+            ChoosingTarget = false;
+            if (m_CurrentTarget != null)
+            {
+               m_CurrentTarget.GetChoosedTarget();
+            }
+        }
+        
+        public List<GamePlayer> GetChoosedTarget()
+        {
+            if (m_CurrentTarget != null)
+            {
+                return m_CurrentTarget.GetChoosedTarget();
+            }
+            return null;
+        }
+
         public void RequestAddTarget(GamePlayer tartget)
         {
             if (m_CurrentTarget != null)
@@ -64,7 +89,7 @@ namespace GamePlay
             }
         }
 
-        public void Init()
+        protected override void OnInit()
         {
             m_tartgetDic = new Dictionary<GameTargetType, Interface_Target>
             {
@@ -80,7 +105,7 @@ namespace GamePlay
             };
         }
 
-        public void CleanUp()
+        protected override void OnCleanup()
         {
             m_tartgetDic.Clear();
             m_tartgetDic = null;

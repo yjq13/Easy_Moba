@@ -6,31 +6,21 @@ using System.Text;
 namespace GamePlay
 {
 
-    public class EffectBase
+    public abstract class EffectBase
     {
-        private List<GamePlayer> m_targetList = null;
-
-        public void SetTarget(List<GamePlayer> targets)
+        public void TakeEffect(List<GamePlayer> targets)
         {
-            m_targetList = targets;
-        }
-
-        public void TakeEffect()
-        {
-            if(m_targetList == null)
+            if(targets == null)
             {
                 return;
             }
-            foreach(var target in m_targetList)
+            foreach(var target in targets)
             {
                 OnTakeEffect(target);
             }
 
         }
 
-        protected virtual void OnTakeEffect(GamePlayer target)
-        {
-
-        }
+        protected abstract void OnTakeEffect(GamePlayer target);
     }
 }

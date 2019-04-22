@@ -5,10 +5,10 @@ namespace GamePlay
 {
     public struct EffectInfoData 
     {
-        GameTargetType TargetType;
-        string EffectID;
-        string EffectParam1;
-        string EffectParam2;
+        public GameTargetType TargetType;
+        public string EffectID;
+        public string EffectParam1;
+        public string EffectParam2;
 
         public EffectInfoData(GameTargetType targetType, string effectID,string param1,string param2)
         {

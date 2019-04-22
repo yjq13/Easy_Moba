@@ -10,7 +10,7 @@ public class GameStartManager : MonoBehaviour
     private bool is_web_connected = false;
     IEnumerator Start()
     {
-        m_GameEngine = GameEngine.instance;
+        m_GameEngine = GameEngine.Instance;
         yield return StartCoroutine(NetworkManager.Instance.StartConnect());
         is_web_connected = true;
     }

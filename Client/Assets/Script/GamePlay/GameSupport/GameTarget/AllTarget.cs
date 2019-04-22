@@ -7,14 +7,9 @@ namespace GamePlay
 {
     class AllTarget : TargetBase
     {
-        public override void Init()
+        public override void SetGameTarget(GamePlayer player)
         {
-            base.Init();
-            m_gameplayer = GameFacade.GetCurrentCardGame().GetAllGamePlayers();
-        }
-
-        public override void Reset()
-        {
+            base.SetGameTarget(player);
             m_gameplayer = GameFacade.GetCurrentCardGame().GetAllGamePlayers();
         }
 
