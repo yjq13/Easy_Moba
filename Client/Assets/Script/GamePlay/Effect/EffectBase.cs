@@ -8,7 +8,7 @@ namespace GamePlay
 
     public abstract class EffectBase
     {
-        public void TakeEffect(List<GamePlayer> targets)
+        public void TakeEffect(List<GamePlayer> targets, params object[] param)
         {
             if(targets == null)
             {
@@ -16,11 +16,11 @@ namespace GamePlay
             }
             foreach(var target in targets)
             {
-                OnTakeEffect(target);
+                OnTakeEffect(target, param);
             }
 
         }
 
-        protected abstract void OnTakeEffect(GamePlayer target);
+        protected abstract void OnTakeEffect(GamePlayer target, params object[] param);
     }
 }
