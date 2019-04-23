@@ -7,13 +7,15 @@ namespace GamePlay
 {
     public static class EffectFactory
     {
-        public static EffectBase CreateEffect(string effectID)
+        public static EffectBase CreateEffect(EffectInfoData data)
         {
-            switch (effectID)
+            switch (data.EffectID)
             {
                 case "Damage":
                     {
-                        return new DamageEffect();
+                        var effect = new DamageEffect();
+                        effect.InitDamageEffect();
+                        return effect;
                     }
             }
             return null;

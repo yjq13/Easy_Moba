@@ -44,7 +44,7 @@ namespace GamePlay
             {
                 foreach(EffectInfoData effect_info in m_BuffData.EffectList)
                 {
-                    EffectBase effect = EffectFactory.CreateEffect(effect_info.EffectID);
+                    EffectBase effect = EffectFactory.CreateEffect(effect_info);
                     List<GamePlayer> targets = null;
                     yield return GameEngine.Instance.StartCoroutine(GameTargetManager.Instance.StartGetTarget(OwnPlayer, effect_info.TargetType));
                     targets = GameTargetManager.Instance.GetChoosedTarget();

@@ -20,6 +20,8 @@ namespace GamePlay
         public PlayerID PlayerID;
         public CampType CampType;
 
+        private GameBuffManager m_buffManager;
+
         public static GamePlayer GAME_MANAGER = null;
 
         public GamePlayer(RoleBase role,uint id)
@@ -27,6 +29,12 @@ namespace GamePlay
             PlayerID = id;
             Role = role;
             RoleType = Role.GetRoleType();
+
+        }
+
+        public void SendGameBuffTriggerEvent(Buff_NOTIFY_TYPE triggerType, params object[] data)
+        {
+            m_buffManager.DispatchBuffTrigger(triggerType, data);
         }
     }
 }

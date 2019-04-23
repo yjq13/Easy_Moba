@@ -44,9 +44,9 @@ namespace GamePlay
             m_damageCount = damageCount;
         }
 
-        protected override void OnTakeEffect(GamePlayer target)
+        protected override void OnTakeEffect(GamePlayer target, params object[] param)
         {
-            base.OnTakeEffect(target);
+            target.SendGameBuffTriggerEvent( Buff_NOTIFY_TYPE.GET_DAMAGE,this);
             target.Role.ChangeHP(m_damageCount);
         }
     }

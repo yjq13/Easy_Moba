@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Common;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,7 +19,7 @@ namespace GamePlay
     }
     public class GameBuffManager
     {
-        public delegate void BuffDelegate(params object[] param);
+        public delegate IEnumerator BuffDelegate(params object[] param);
         private Dictionary<Buff_NOTIFY_TYPE, BuffDelegate> m_BuffTriggerEventDic;
 
         public void DispatchBuffTrigger(Buff_NOTIFY_TYPE triggerType, params object[] data)
@@ -25,13 +27,13 @@ namespace GamePlay
             BuffDelegate handler;
             if (m_BuffTriggerEventDic.TryGetValue(triggerType, out handler))
             {
-                handler.Invoke(data);
+                GameEngine.Instance.StartCoroutine(handler.Invoke(data));
             }
         }
 
         public void AddBuff(Buff buff)
         {
-            //RegisterTrigger(triggerType,buff)
+            RegisterTrigger(buff.GetTriggerTime(), buff.OnTriggerBuff);
         }
 
         public void RegisterTrigger(Buff_NOTIFY_TYPE triggerType, BuffDelegate buff_delegate)
