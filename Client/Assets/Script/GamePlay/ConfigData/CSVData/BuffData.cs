@@ -10,6 +10,7 @@ namespace GamePlay
         public string TriggerParam;
         public Buff_NOTIFY_TYPE CutCountTime;
         public List<EffectInfoData> EffectList;
+        public bool Compositable;
 
         public override string GetPrimaryKey()
         {

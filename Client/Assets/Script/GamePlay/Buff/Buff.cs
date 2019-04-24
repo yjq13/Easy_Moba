@@ -18,6 +18,15 @@ namespace GamePlay
         private BuffData m_BuffData = null;
         private uint m_BuffCount = 0;
         private string m_BuffID = string.Empty;
+        public string BuffID
+        {
+            get { return m_BuffID; }
+        }
+
+        public bool Compositable
+        {
+            get { return Compositable; }
+        }
         private ITriggerCondition triggerCondition;
         private GamePlayer OwnPlayer = null;
 
@@ -26,6 +35,11 @@ namespace GamePlay
             m_BuffID = buffID;
             m_BuffData = ConfigDataManager.Instance.GetData<BuffData>(ResourceIDDef.GAME_BUFF_CONFIG);
             triggerCondition = BuffConditionFactory.CreateBuffCondition(m_BuffData.TriggerTime);
+        }
+
+        public uint GetBuffCount()
+        {
+            return m_BuffCount;
         }
 
         public void BundleBuff(GamePlayer player)
@@ -42,7 +56,7 @@ namespace GamePlay
             }
             if (TriggerEffect)
             {
-                foreach(EffectInfoData effect_info in m_BuffData.EffectList)
+                foreach (EffectInfoData effect_info in m_BuffData.EffectList)
                 {
                     EffectBase effect = EffectFactory.CreateEffect(effect_info);
                     List<GamePlayer> targets = null;
@@ -50,24 +64,23 @@ namespace GamePlay
                     targets = GameTargetManager.Instance.GetChoosedTarget();
                     if (targets != null)
                     {
-                        effect.TakeEffect(targets, effect_info.EffectParam1,effect_info.EffectParam2);
+                        effect.TakeEffect(targets, effect_info.EffectParam1, effect_info.EffectParam2);
                     }
                 }
             }
         }
 
-        public bool OnCutCountTime()
+        public IEnumerator OnCutCountTime(params object[] param)
         {
-            if(m_BuffCount != 0)
+            if(m_BuffCount > 0)
             {
                 m_BuffCount--;
             }
             else
             {
                 m_BuffCount = 0;
-                return false;
             }
-            return true;
+            yield return null;
         }
 
         public Buff_NOTIFY_TYPE GetTriggerTime()
