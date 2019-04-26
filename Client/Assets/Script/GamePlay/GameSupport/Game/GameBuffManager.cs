@@ -40,9 +40,11 @@ namespace GamePlay
                 {
                     if(buffList.Count > 0)
                     {
-                        Buff oldBuff = buffList[0];
-                        UnRegisterTrigger(oldBuff.GetTriggerTime(), oldBuff.OnTriggerBuff);
-                        UnRegisterTrigger(oldBuff.GetCuntCountTime(), oldBuff.OnCutCountTime);
+                        foreach(Buff oldBuff in buffList)
+                        {
+                            UnRegisterTrigger(oldBuff.GetTriggerTime(), oldBuff.OnTriggerBuff);
+                            UnRegisterTrigger(oldBuff.GetCuntCountTime(), oldBuff.OnCutCountTime);
+                        }
                         buffList.Clear();
                     }
                 }
