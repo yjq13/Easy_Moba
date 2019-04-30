@@ -22,6 +22,18 @@ namespace GamePlay
         private Dictionary<Buff_NOTIFY_TYPE, BuffDelegate> m_BuffTriggerEventDic;
         private Dictionary<string, List<Buff>> m_BuffDic;
 
+        public void Init()
+        {
+            m_BuffTriggerEventDic = new Dictionary<Buff_NOTIFY_TYPE, BuffDelegate>();
+            m_BuffDic = new Dictionary<string, List<Buff>>();
+        }
+
+        public void Clear()
+        {
+            m_BuffDic = null;
+            m_BuffTriggerEventDic = null;
+        }
+
         public void DispatchBuffTrigger(Buff_NOTIFY_TYPE triggerType, params object[] data)
         {
             BuffDelegate handler;

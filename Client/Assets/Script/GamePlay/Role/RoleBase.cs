@@ -22,7 +22,7 @@ namespace GamePlay
 
         public ulong PlayerID { get; private set; }
         public RoleType Role_Type;
-        public uint CurrentHP { get; private set; }
+        public int CurrentHP { get; private set; }
         public int ActionPoint  { get; private set;  }
         public float Speed { get; private set; }
         public uint HP_Limit_Max = 100;
@@ -36,7 +36,7 @@ namespace GamePlay
             Role_Type = type;
             int role_type = (int)type;
             m_roleData = ConfigDataManager.Instance.GetData<RoleData>(role_type.ToString());
-            CurrentHP = m_roleData.HP;
+            CurrentHP = (int)m_roleData.HP;
             Speed = m_roleData.Speed;
         }
 
@@ -63,13 +63,13 @@ namespace GamePlay
             
         }
 
-        public void ChangeHP(uint change_hp)
+        public void ChangeHP(int change_hp)
         {
             OnChangeHP(change_hp);
-            uint new_hp = CurrentHP + change_hp;
+            int new_hp = CurrentHP + change_hp;
             if(new_hp > HP_Limit_Max)
             {
-                CurrentHP = HP_Limit_Max;
+                CurrentHP = (int)HP_Limit_Max;
             }
             else
             {
@@ -77,7 +77,7 @@ namespace GamePlay
             }
         }
 
-        protected virtual void OnChangeHP(uint change_hp)
+        protected virtual void OnChangeHP(int change_hp)
         {
 
         }

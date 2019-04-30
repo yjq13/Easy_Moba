@@ -52,7 +52,7 @@ namespace Test
                 hp_1 = EditorGUILayout.IntField(hp_1);
                 if (GUILayout.Button("+-HP"))
                 {
-                    player_one.ChangeHP((uint)hp_1);
+                    player_one.ChangeHP(hp_1);
                 }
                 action_1 = EditorGUILayout.IntField(action_1);
                 if (GUILayout.Button("+-action"))
@@ -99,7 +99,7 @@ namespace Test
                 hp_2 = EditorGUILayout.IntField(hp_2);
                 if (GUILayout.Button("+-HP"))
                 {
-                    player_two.ChangeHP((uint)hp_2);
+                    player_two.ChangeHP(hp_2);
                 }
                 action_2 = EditorGUILayout.IntField(action_2);
                 if (GUILayout.Button("+-action"))

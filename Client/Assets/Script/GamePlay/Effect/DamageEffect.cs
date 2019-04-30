@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Common;
 using UnityEngine;
 
 namespace GamePlay
@@ -16,7 +17,7 @@ namespace GamePlay
     class DamageEffect : EffectBase
     {
         private DAMAGE_TYPE m_type;
-        private uint m_damageCount;
+        private int m_damageCount;
 
         public DAMAGE_TYPE EffectType
         {
@@ -29,11 +30,11 @@ namespace GamePlay
         public void InitDamageEffect(params object[] param)
         {
             DAMAGE_TYPE d_Type = DAMAGE_TYPE.NORMAL;
-            uint damageCount = 1;
+            int damageCount = 1;
             if (param.Length == 2)
             {
-                d_Type = (DAMAGE_TYPE)param[0];
-                damageCount = (uint)param[1];
+                d_Type = (DAMAGE_TYPE)Enum.Parse(typeof(DAMAGE_TYPE), param[0].ToString());
+                damageCount = StringConverter.ToInt(param[1].ToString(), 0);
             }
             else
             {
@@ -41,7 +42,7 @@ namespace GamePlay
             }
 
             m_type = d_Type;
-            m_damageCount = damageCount;
+            m_damageCount = -1 * damageCount;
         }
 
         protected override void OnTakeEffect(GamePlayer target, params object[] param)

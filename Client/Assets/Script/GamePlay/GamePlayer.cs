@@ -29,7 +29,8 @@ namespace GamePlay
             PlayerID = id;
             Role = role;
             RoleType = Role.GetRoleType();
-
+            m_buffManager = new GameBuffManager();
+            m_buffManager.Init();
         }
 
         public void SendGameBuffTriggerEvent(Buff_NOTIFY_TYPE triggerType, params object[] data)
