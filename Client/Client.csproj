@@ -164,6 +164,7 @@
     <Compile Include="Assets\Script\NetWork\ProtoMessage\game.cs" />
     <Compile Include="Assets\Script\NetWork\ProtoMessage\up.cs" />
     <Compile Include="Assets\Test\CardPlayTestLancher.cs" />
+    <Compile Include="Assets\Test\Driver\Game\Effect\Test_DamageEffect_Driver.cs" />
     <Compile Include="Assets\Test\Driver\Game\Test_AllProgress_Driver.cs" />
     <Compile Include="Assets\Test\Driver\Game\Test_CalculateSpeedProgress_Driver.cs" />
     <Compile Include="Assets\Test\Driver\Game\Test_ConfigDataManager_Driver.cs" />

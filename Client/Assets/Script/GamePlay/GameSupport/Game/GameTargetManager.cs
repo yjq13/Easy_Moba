@@ -68,7 +68,7 @@ namespace GamePlay
             ChoosingTarget = false;
             if (m_CurrentTarget != null)
             {
-               m_CurrentTarget.GetChoosedTarget();
+                m_CurrentTarget.Reset();
             }
         }
         
