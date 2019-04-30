@@ -14,7 +14,6 @@ namespace Test
             EffectInfoData effect_info = new EffectInfoData(GameTargetType.OPPO_ONE, "Damage", "NORMAL","5");
             EffectBase effect = EffectFactory.CreateEffect(effect_info);
             List<GamePlayer> targets = null;
-            GameTargetManager.Instance.StartGetTarget(test_players[0], effect_info.TargetType);
             targets = test_players;
             if (targets != null)
             {
