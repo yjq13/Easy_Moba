@@ -6,6 +6,8 @@ using UnityEngine;
 
 namespace Test
 {
+    [Category("Effect Test")]
+    [TestFixture]
     abstract class Test_Effect_Driver : DriverBase
     {
         public List<GamePlayer> test_players;
@@ -24,7 +26,10 @@ namespace Test
         public override void Test()
         {
             InitPlayers();
+            OnEffectTest();
         }
+
+        public abstract void OnEffectTest();
 
         public abstract void InitPlayers();
     }
