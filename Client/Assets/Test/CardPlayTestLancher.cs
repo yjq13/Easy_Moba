@@ -63,7 +63,7 @@ namespace Test
 
                 GUILayout.BeginHorizontal();
                 GUILayout.Label("HP:"+player_one.CurrentHP);
-                GUILayout.Label("Action:" + player_one.ActionPoint);
+                GUILayout.Label("Action:" + player_one.CurrentActionPoint);
                 GUILayout.Label("RemainingCount:" + player_one.GetRemainingCardCount());
                 string usingCard = "";
                 foreach(var card in player_one.CurrentUsingCardList)
@@ -110,7 +110,7 @@ namespace Test
 
                 GUILayout.BeginHorizontal();
                 GUILayout.Label("HP:" + player_two.CurrentHP);
-                GUILayout.Label("Action:" + player_two.ActionPoint);
+                GUILayout.Label("Action:" + player_two.CurrentActionPoint);
                 GUILayout.Label("RemainingCount:" + player_two.GetRemainingCardCount());
                 string usingCard1 = "";
                 foreach (var card in player_two.CurrentUsingCardList)

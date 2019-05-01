@@ -41,7 +41,7 @@ namespace GamePlay
                 }
 
                 temp_load = RACE_LOAD_LENGTH - m_players_race_flag[player.PlayerID];
-                m_need_time_list.Add(player.PlayerID,temp_load / player.Role.Speed);
+                m_need_time_list.Add(player.PlayerID,temp_load / player.Role.CurrentSpeed);
             }
 
 
@@ -63,7 +63,7 @@ namespace GamePlay
                 }
                 else
                 {
-                    m_players_race_flag[player.PlayerID] += temp_min_time * player.Role.Speed;
+                    m_players_race_flag[player.PlayerID] += temp_min_time * player.Role.CurrentSpeed;
                 }
             }
 

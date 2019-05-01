@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 using Common;
+using System.Reflection;
 
 namespace GamePlay
 {
@@ -23,8 +24,8 @@ namespace GamePlay
         public ulong PlayerID { get; private set; }
         public RoleType Role_Type;
         public int CurrentHP { get; private set; }
-        public int ActionPoint  { get; private set;  }
-        public float Speed { get; private set; }
+        public int CurrentActionPoint  { get; private set;  }
+        public float CurrentSpeed { get; private set; }
         public uint HP_Limit_Max = 100;
 
 
@@ -36,8 +37,19 @@ namespace GamePlay
             Role_Type = type;
             int role_type = (int)type;
             m_roleData = ConfigDataManager.Instance.GetData<RoleData>(role_type.ToString());
-            CurrentHP = (int)m_roleData.HP;
-            Speed = m_roleData.Speed;
+            FieldInfo[] Properties = m_roleData.GetType().GetFields(BindingFlags.Public | BindingFlags.Instance);
+            foreach (var property in Properties)
+            {
+                PropertyInfo targetProperty = GetType().GetProperty("Current" + property.Name);
+                object value = property.GetValue(m_roleData);
+                if (targetProperty != null && value != null)
+                {
+                    Debug.Log(targetProperty.Name);
+                    targetProperty.SetValue(this, value,null);
+                }
+            }
+            //CurrentHP = m_roleData.HP;
+            //CurrentSpeed = m_roleData.Speed;
         }
 
         public RoleType GetRoleType()
@@ -112,7 +124,7 @@ namespace GamePlay
 
         public void ChangeActionPoint(int change_point)
         {
-            ActionPoint += change_point;
+            CurrentActionPoint += change_point;
         }
     }
 }
