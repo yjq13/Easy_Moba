@@ -78,8 +78,13 @@ namespace GamePlay
         public void SetGameInfo(List<GamePlayer> players,GamePlayer myGamePlayer)
         {
             m_gamePlayerList = players;
+
             m_GamePlayer = myGamePlayer;
-            foreach(var player in m_gamePlayerList)
+
+            m_authorizationPlayer = GamePlayer.GAME_MANAGER;
+
+            m_campPlayerList = new Dictionary<CampType, List<GamePlayer>>();
+            foreach (var player in m_gamePlayerList)
             {
                 List<GamePlayer> temp_list;
                 if (m_campPlayerList.TryGetValue(player.CampType, out temp_list))
@@ -93,8 +98,10 @@ namespace GamePlay
                     m_campPlayerList.Add(player.CampType, temp_list);
                 }
             }
+
             m_prgressManager = new GameProgressManager();
             m_prgressManager.Init();
+
             StartGame();
         }
 

@@ -9,10 +9,6 @@ namespace GamePlay
 {
     public class RoleMage : RoleBase
     {
-        private CardSet m_GameCardSet;
-        private RoleData m_roleData;
-
-
         public RoleMage(CardSet game_card_list) : base(game_card_list, RoleType.MEGE)
         {
 

@@ -16,8 +16,9 @@ namespace GamePlay
 
     public class RoleBase
     {
-        private CardSet m_GameCardSet;
-        private RoleData m_roleData;
+        protected CardSet m_GameCardSet;
+        protected RoleData m_roleData;
+
         public List<CardBase> CurrentCanUseCardList;
         public List<CardBase> CurrentUsingCardList;
 
