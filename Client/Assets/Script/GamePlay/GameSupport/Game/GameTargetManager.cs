@@ -44,7 +44,7 @@ namespace GamePlay
                 else
                 {
                     List<GamePlayer> alternate_target = I_target.GetCanChooseTarget();
-                    GameFacade.GetCurrentCardGame().GameEventDispatcher.DispatchEvent((uint)EventID.UI_CHECK_ADD_TARGET, alternate_target);
+                    GameFacade.GetCurrentCardGame().GameEventDispatcher.DispatchEvent((uint)EventID.INPUT_TARGET_ADD_REQUEST, alternate_target);
 
                     while (ChoosingTarget)
                     {
