@@ -8,13 +8,25 @@ namespace GamePlay
 {
     public enum Buff_NOTIFY_TYPE
     {
-        GET_DAMAGE,
-        CAUSE_DAMAGE,
-        AFTER_ROUND,
-        DIE,
-        USE_CARD,
         IMMEDIATELY,
         BEFORE_ROUND,
+        CARD_IN,
+        CARD_OUT,
+        CARD_DISCARD,
+        AFTER_ROUND,
+        DO_EFFECT,
+        UNDO_EFFECT,
+        GET_DAMAGE,
+        // GET_DAMAGE,
+        // GET_DAMAGE,
+        GET_DAMAGE_EXCEPT,
+        CAUSE_DAMAGE,
+        // CAUSE_DAMAGE,
+        DIE,
+        USE_CARD,
+        GAIN_ASSET,
+        // GAIN_ASSET,
+        // CHANGE_ELEMENT_PROPERTY_EXCEPT
     }
     public class GameBuffManager
     {

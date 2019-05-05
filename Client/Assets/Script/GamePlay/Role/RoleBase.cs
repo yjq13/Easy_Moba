@@ -29,6 +29,12 @@ namespace GamePlay
         public float CurrentSpeed { get; private set; }
         public uint HP_Limit_Max = 100;
 
+        // 不走表，在RoleData中无对应的一些属性
+        public bool             IsStaySpElmtProp    { get; private set; };
+        public ELEMENT_PROPERTY StaySpElmtProp      { get; private set; };
+        public int              SkipCardOutTimes    { get; private set; };
+        public int              SkipRoundTimes      { get; private set; };
+        public Tuple<int, int, float> SwordSink     { get; private set; };
 
         protected RoleBase(CardSet game_card_list, RoleType type)
         {
@@ -51,6 +57,11 @@ namespace GamePlay
             }
             //CurrentHP = m_roleData.HP;
             //CurrentSpeed = m_roleData.Speed;
+
+            IsStaySpElmtProp    = false;
+            StaySpElmtProp      = ELEMENT_PROPERTY.NONE;
+            SkipCardOutTimes    = 0;
+            SkipRoundTimes      = 0; 
         }
 
         public RoleType GetRoleType()
@@ -127,5 +138,167 @@ namespace GamePlay
         {
             CurrentActionPoint += change_point;
         }
+
+        // ========================================================-
+        public void ChangeStaySpElmtProp(ELEMENT_PROPERTY elmt_prop)
+        {
+            IsStaySpElmtProp = true;
+            StaySpElmtProp   = elmt_prop;
+            OnChangeSpElmtProp(elmt_prop);
+        }
+
+        protected virtual void OnChangeStaySpElmtProp(ELEMENT_PROPERTY elmt_prop)
+        {
+
+        }
+
+        // ---------------------------------------------------------
+        public void ChangeSpeedCnt(int speed_cnt)
+        {
+            CurrentSpeed += change_speed;
+            OnChangeSpeedCnt(change_speed);
+        }
+
+        protected virtual void OnChangeSpeedCnt(int speed_cnt)
+        {
+
+        }
+
+        // ---------------------------------------------------------
+        public void ChangeSpeedPct(int speed_pct)
+        {
+            CurrentSpeed += (CurrentSpeed * speed_pct / 100);
+            OnChangeSpeedPct(change_speed);
+        }
+
+        protected virtual void OnChangeSpeedPct(int speed_pct)
+        {
+
+        }
+        // ---------------------------------------------------------
+        public void AddSkipCardOutTimes(bool add_times)
+        {
+            SkipCardOutTimes += add_times;
+            OnAddSkipCardOutTimes(add_times);
+        }
+
+        protected virtual void OnAddSkipCardOutTimes(int add_times)
+        {
+
+        }
+
+        // ---------------------------------------------------------
+        public void AddSkipRoundTimes(bool add_times)
+        {
+            SkipRoundTimes += add_times;
+            OnAddSkipRoundTimes(add_times);
+        }
+
+        protected virtual void OnAddSkipRoundTimes(int add_times)
+        {
+
+        }
+
+        // ---------------------------------------------------------
+        public void GainSpCard(int card_id, uint card_cnt)
+        {
+            // !!! 暂未实现
+            OnGainSpCard(card_id, card_cnt);
+        }
+
+        protected virtual void OnGainSpCard(int card_id, uint card_cnt)
+        {
+
+        }
+
+        // ---------------------------------------------------------
+        // 资源数量
+        public uint GetAssetCnt(ASSET_MAJOR_TYPE mj_type, ASSET_SUB_TYPE sub_type)
+        {
+            // !!! 暂未实现
+            return 0;
+        }
+
+        public uint GetAssetCnt(ASSET_SUB_TYPE sub_type)
+        {
+            // !!! 暂未实现
+            return 0;
+        }
+
+        // ---------------------------------------------------------
+        // 最后一次获取的资源
+        public uint LastAcquiredAsset()
+        {
+            // !!! 暂未实现
+            return new Tuple<ASSET_MAJOR_TYPE, ASSET_SUB_TYPE, uint>(ASSET_MAJOR_TYPE.NONE, ASSET_SUB_TYPE.NONE, 0);
+        }
+
+        // ---------------------------------------------------------
+        public void GainAsset(ASSET_MAJOR_TYPE mj_type, ASSET_SUB_TYPE sub_type, uint asset_cnt)
+        {
+            // !!! 暂未实现
+            OnGainAsset(mj_type, sub_type, asset_cnt);
+        }
+
+        protected virtual void OnGainAsset(ASSET_MAJOR_TYPE mj_type, ASSET_SUB_TYPE sub_type, uint asset_cnt)
+        {
+
+        }
+
+        // ---------------------------------------------------------
+        public void GainAsset(ASSET_SUB_TYPE sub_type, uint asset_cnt)
+        {
+            // !!! 暂未实现
+            OnGainAsset(sub_type, asset_cnt);
+        }
+
+        protected virtual void OnGainAsset(ASSET_SUB_TYPE sub_type, uint asset_cnt)
+        {
+
+        }
+
+        // ---------------------------------------------------------
+        public void TransAssetTo(GamePlayer source_player, ASSET_MAJOR_TYPE mj_type, ASSET_SUB_TYPE sub_type, uint asset_cnt)
+        {
+            // !!! 暂未实现
+            OnTransAssetTo(mj_type, sub_type, asset_cnt);
+        }
+
+        protected virtual void OnTransAssetTo(GamePlayer source_player, ASSET_MAJOR_TYPE mj_type, ASSET_SUB_TYPE sub_type, uint asset_cnt)
+        {
+
+        }
+
+        // ---------------------------------------------------------
+        public void StoleAsset(GamePlayer target_player, ASSET_SUB_TYPE sub_type, uint asset_cnt)
+        {
+            // !!! 暂未实现
+            OnStoleAsset(target_player, sub_type, asset_cnt);
+        }
+
+        protected virtual void OnStoleAsset(GamePlayer target_player, ASSET_SUB_TYPE sub_type, uint asset_cnt)
+        {
+
+        }
+
+        // ---------------------------------------------------------
+        public void SwordSink(int card_id, int target_uid, float act_progress)
+        {
+            SwordSink = new Tuple<int, int, float>(card_id, target_uid, act_progress);
+            OnSwordSink(target_player, sub_type, asset_cnt);
+        }
+
+        protected virtual void OnStoleAsset(GamePlayer target_player, ASSET_SUB_TYPE sub_type, uint asset_cnt)
+        {
+
+        }
+
+        // ---------------------------------------------------------
+        public int GetLastCardID()
+        {
+            // !!! 暂未实现
+            return 0;
+        }
+
     }
 }

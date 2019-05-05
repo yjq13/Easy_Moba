@@ -7,48 +7,19 @@ using UnityEngine;
 
 namespace GamePlay
 {
-    public enum DAMAGE_TYPE
-    {
-        NORMAL = 0,
-        FIRE,
-        ANY,
-    }
-
     class DamageEffect : EffectBase
     {
-        private DAMAGE_TYPE m_type;
-        private int m_damageCount;
+        private int damageCnt = 0;
 
-        public DAMAGE_TYPE EffectType
+        protected override void OnInitEffect(params object[] objs)
         {
-            get
-            {
-                return m_type;
-            }
+            damageCnt = CountUtil.CalcCnt(objs)
         }
 
-        public void InitDamageEffect(params object[] param)
+        protected override void OnTakeEffect(GamePlayer player)
         {
-            DAMAGE_TYPE d_Type = DAMAGE_TYPE.NORMAL;
-            int damageCount = 1;
-            if (param.Length == 2)
-            {
-                d_Type = (DAMAGE_TYPE)Enum.Parse(typeof(DAMAGE_TYPE), param[0].ToString());
-                damageCount = StringConverter.ToInt(param[1].ToString(), 0);
-            }
-            else
-            {
-                Debug.LogError("wrong param count input: DamageEffect" );
-            }
-
-            m_type = d_Type;
-            m_damageCount = -1 * damageCount;
-        }
-
-        protected override void OnTakeEffect(GamePlayer target, params object[] param)
-        {
-            target.SendGameBuffTriggerEvent( Buff_NOTIFY_TYPE.GET_DAMAGE,this);
-            target.Role.ChangeHP(m_damageCount);
+            player.SendGameBuffTriggerEvent( Buff_NOTIFY_TYPE.GET_DAMAGE, this);
+            player.Role.ChangeHP(0 - damageCnt);
         }
     }
 }
