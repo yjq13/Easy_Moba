@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,7 +23,7 @@ namespace GamePlay
             act_prog    = 0;
         }
 
-        protected override void OnTakeEffect(GamePlayer player)
+        protected override void OnTakeEffect(GamePlayer source_player,GamePlayer player)
         {
             if (isSwordSink && cardID > 0)
             {

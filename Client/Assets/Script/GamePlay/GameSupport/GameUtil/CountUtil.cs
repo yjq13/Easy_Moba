@@ -2,14 +2,16 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using UnityEngine;
+using Common;
 
 namespace GamePlay
 {
-    class CountUtil
+    public class CountUtil
     {
-        public int CalcCount(params object[] count_params)
+        public static int CalcCount(params object[] count_params)
         {
-            firstParam = count_params[0].ToString();
+            string firstParam = count_params[0].ToString();
             if (IsNum(firstParam))
             {
                 StringConverter.ToInt(firstParam, 0);
@@ -21,18 +23,17 @@ namespace GamePlay
                 {
                     case "sp_card_cost_magic_point_cnt":
                         return 0;
-                        break;
                     case "magic_point_cnt":
                         return 0;
-                        break;
                     default:
                         Debug.LogError("calc count error with first param: " + firstParam);
                         break;
                 }
             }
+            return -1;
         }
 
-        public bool IsNum(string str)
+        public static bool IsNum(string str)
         {
             char[] chars = new char[str.Length];
             chars =str.ToCharArray();

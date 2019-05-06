@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,7 +18,7 @@ namespace GamePlay
             BuffTimes = StringConverter.ToInt(objs[1].ToString(), 0);
         }
 
-        protected override void OnTakeEffect(GamePlayer player)
+        protected override void OnTakeEffect(GamePlayer source_player,GamePlayer player)
         {
             if (BuffTimes > 0)
             {

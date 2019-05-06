@@ -13,15 +13,15 @@ namespace GamePlay
 
         protected override void OnInitEffect(params object[] objs)
         {
-            drawCnt = CountUtil.CalcCnt(objs)
+            drawCnt = CountUtil.CalcCount(objs);
         }
 
-        protected override void OnTakeEffect(GamePlayer player)
+        protected override void OnTakeEffect(GamePlayer source_player, GamePlayer player)
         {
             if (drawCnt > 0)
             {
                 // player.SendGameBuffTriggerEvent( Buff_NOTIFY_TYPE.GET_DAMAGE, this);
-                player.Role.GetCard(drawCnt);
+                player.Role.GetCard((uint)drawCnt);
             }
         }
     }

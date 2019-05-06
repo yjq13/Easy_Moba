@@ -30,11 +30,11 @@ namespace GamePlay
         public uint HP_Limit_Max = 100;
 
         // 不走表，在RoleData中无对应的一些属性
-        public bool             IsStaySpElmtProp    { get; private set; };
-        public ELEMENT_PROPERTY StaySpElmtProp      { get; private set; };
-        public int              SkipCardOutTimes    { get; private set; };
-        public int              SkipRoundTimes      { get; private set; };
-        public Tuple<int, int, float> SwordSink     { get; private set; };
+        public bool             IsStaySpElmtProp    { get; private set; }
+        public ELEMENT_PROPERTY StaySpElmtProp      { get; private set; }
+        public int              SkipCardOutTimes    { get; private set; }
+        public int              SkipRoundTimes      { get; private set; }
+        //public ValueTuple<int, int, float> SwordSink     { get; private set; } 、//SZY Error 目前不支持元组这个东西啊……unity只支持C#4.0以前的特性
 
         protected RoleBase(CardSet game_card_list, RoleType type)
         {
@@ -188,7 +188,7 @@ namespace GamePlay
         }
 
         // ---------------------------------------------------------
-        public void AddSkipRoundTimes(bool add_times)
+        public void AddSkipRoundTimes(int add_times)
         {
             SkipRoundTimes += add_times;
             OnAddSkipRoundTimes(add_times);
@@ -281,14 +281,14 @@ namespace GamePlay
 
         }
 
-        // ---------------------------------------------------------
-        public void SwordSink(int card_id, int target_uid, float act_progress)
-        {
-            SwordSink = new Tuple<int, int, float>(card_id, target_uid, act_progress);
-            OnSwordSink(target_player, sub_type, asset_cnt);
-        }
+        // ---------------------------------------------------------//SZY Error 重复命名
+        //public void SwordSink(int card_id, int target_uid, float act_progress)
+        //{
+        //    SwordSink = new Tuple<int, int, float>(card_id, target_uid, act_progress);
+        //    OnSwordSink(target_player, sub_type, asset_cnt);
+        //}
 
-        protected virtual void OnStoleAsset(GamePlayer target_player, ASSET_SUB_TYPE sub_type, uint asset_cnt)
+        protected virtual void OnSwordSink(GamePlayer target_player, ASSET_SUB_TYPE sub_type, uint asset_cnt)
         {
 
         }

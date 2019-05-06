@@ -23,7 +23,7 @@ namespace GamePlay
 
     public enum ASSET_SUB_TYPE
     {
-        NONE
+        NONE,
         FIRE,
         WATER,
         SOLID,
@@ -95,7 +95,7 @@ namespace GamePlay
             }
             foreach(var player in players)
             {
-                OnTakeEffect(source_player, player, objs);
+                OnTakeEffect(source_player, player);
             }
 
         }

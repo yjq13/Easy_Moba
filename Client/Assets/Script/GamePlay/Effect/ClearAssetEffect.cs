@@ -18,7 +18,7 @@ namespace GamePlay
             assetSubType    = (ASSET_SUB_TYPE)Enum.Parse(typeof(ASSET_SUB_TYPE), objs[0].ToString());
         }
 
-        protected override void OnTakeEffect(GamePlayer player)
+        protected override void OnTakeEffect(GamePlayer source_player, GamePlayer player)
         {
             if (assetCnt > 0)
             {

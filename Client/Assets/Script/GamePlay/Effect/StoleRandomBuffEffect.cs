@@ -13,7 +13,7 @@ namespace GamePlay
 
         protected override void OnInitEffect(params object[] objs)
         {
-            BuffCnt = CountUtil.CalcCnt(objs)
+            BuffCnt = CountUtil.CalcCount(objs);
         }
 
         protected override void OnTakeEffect(GamePlayer source_player, GamePlayer target_player)

@@ -13,10 +13,10 @@ namespace GamePlay
 
         protected override void OnInitEffect(params object[] objs)
         {
-            speedCnt = CountUtil.CalcCnt(objs)
+            speedCnt = CountUtil.CalcCount(objs);
         }
 
-        protected override void OnTakeEffect(GamePlayer player)
+        protected override void OnTakeEffect(GamePlayer source_player, GamePlayer player)
         {
             // player.SendGameBuffTriggerEvent( Buff_NOTIFY_TYPE.GET_DAMAGE, this);
             player.Role.ChangeSpeedCnt(speedCnt);

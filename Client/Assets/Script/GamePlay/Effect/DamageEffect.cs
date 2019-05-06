@@ -13,12 +13,12 @@ namespace GamePlay
 
         protected override void OnInitEffect(params object[] objs)
         {
-            damageCnt = CountUtil.CalcCnt(objs)
+            damageCnt = CountUtil.CalcCount(objs);
         }
 
-        protected override void OnTakeEffect(GamePlayer player)
+        protected override void OnTakeEffect(GamePlayer source_player, GamePlayer player)
         {
-            player.SendGameBuffTriggerEvent( Buff_NOTIFY_TYPE.GET_DAMAGE, this);
+            player.SendGameBuffTriggerEvent(Buff_NOTIFY_TYPE.GET_DAMAGE, this);
             player.Role.ChangeHP(0 - damageCnt);
         }
     }

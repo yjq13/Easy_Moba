@@ -13,12 +13,12 @@ namespace GamePlay
 
         protected override void OnInitEffect(params object[] objs)
         {
-            stayHp = 1
+            stayHp = 1;
         }
 
-        protected override void OnTakeEffect(GamePlayer player)
+        protected override void OnTakeEffect(GamePlayer source_player, GamePlayer player)
         {
-            if (Role.CurrentHP <= 0 && stayHp > 0)
+            if (player.Role.CurrentHP <= 0 && stayHp > 0)
             {
                 // player.SendGameBuffTriggerEvent( Buff_NOTIFY_TYPE.GET_DAMAGE, this);
                 player.Role.ChangeHP(stayHp);

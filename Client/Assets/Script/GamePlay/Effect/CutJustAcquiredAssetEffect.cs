@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,7 +18,7 @@ namespace GamePlay
             assetSubType    = (ASSET_SUB_TYPE)Enum.Parse(typeof(ASSET_SUB_TYPE), objs[0].ToString());
         }
 
-        protected override void OnTakeEffect(GamePlayer player)
+        protected override void OnTakeEffect(GamePlayer source_player,GamePlayer player)
         {
             justAcqAsset = player.Role.LastAcquiredAsset();
             if (justAcqAsset.Item1 == assetMjType && justAcqAsset.Item2 == assetMjType && justAcqAsset.Item3 > 0)

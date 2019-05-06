@@ -64,7 +64,7 @@ namespace GamePlay
                     targets = GameTargetManager.Instance.GetChoosedTarget();
                     if (targets != null)
                     {
-                        effect.TakeEffect(targets, effect_info.EffectParam1, effect_info.EffectParam2);
+                        effect.TakeEffect(OwnPlayer,targets, effect_info.EffectParam1, effect_info.EffectParam2);
                     }
                 }
             }
