@@ -10,8 +10,38 @@
 
 -export([req/2, check_login/5]).
 
+-export([test_req/0]).
+
 %% ====================================================================
-req(#req_login{platform = Platform, open_id = OpenID, svr_id = SvrID, token = Token, os = OS, push_id = PushID, cli_version = CliVersion, lang = Lang, time_zone = TimeZone, name = Name} = Msg, IP) ->
+test_req() ->
+  Req = #req_login{
+    platform    = dev,
+    open_id     = "open_id_1",
+    svr_id      = 1,
+    token       = "token_str59757990",
+    os          = web,
+    push_id     = "push_id_1",
+    cli_version = "1.1.0",
+    lang        = en,
+    time_zone   = 0,
+    name        = "name_1"
+  },
+  IP = "192.168.5.5",
+  ?TEST_REQ(?MODULE, req, [Req, IP]).
+
+req(Msg, IP) ->
+  #req_login{
+    platform    = Platform,
+    open_id     = OpenID,
+    svr_id      = SvrID,
+    token       = Token,
+    os          = OS,
+    push_id     = PushID,
+    cli_version = CliVersion,
+    lang        = Lang,
+    time_zone   = TimeZone,
+    name        = Name
+  } = Msg,
   ok            = check_time_zone(TimeZone),
   ok            = check_os(OS),
   ok            = check_platform(Platform),

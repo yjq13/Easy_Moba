@@ -43,7 +43,7 @@ get(UID) ->
 %% --------------------------------------------------------------------
 set(User) when is_record(User, user) ->
   ets:insert(?USER_ETS, User),
-  ok.
+  User.
 
 %% --------------------------------------------------------------------
 pack_user(User) when is_record(User, user)  ->

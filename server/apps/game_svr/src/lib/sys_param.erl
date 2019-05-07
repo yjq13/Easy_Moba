@@ -15,4 +15,5 @@ init_ets() ->
 % -----------------------------------------------------------------------
 next(uid) ->
   [{_, I}] = ets:lookup(?SYS_PARAM_ETS, uid),
-  ets:update_counter(?SYS_PARAM_ETS, uid, {2, 1}).
+  ets:update_counter(?SYS_PARAM_ETS, uid, {2, 1}),
+  {ok, I}.
