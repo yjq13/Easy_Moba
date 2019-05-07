@@ -6,6 +6,7 @@ using System.Text;
 
 namespace GamePlay
 {
+
     public class CauseDamageCondition : ITriggerCondition
     {
         public bool GetTriggerCondition(string triggerParam , params object[] param)

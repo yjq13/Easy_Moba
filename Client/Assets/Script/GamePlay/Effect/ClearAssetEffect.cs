@@ -20,11 +20,12 @@ namespace GamePlay
 
         protected override void OnTakeEffect(GamePlayer source_player, GamePlayer player)
         {
-            if (assetCnt > 0)
-            {
-                // player.SendGameBuffTriggerEvent( Buff_NOTIFY_TYPE.GET_DAMAGE, this);
-                player.Role.GainAsset(assetSubType, assetCnt);
-            }
+            //SZY Error 不知道assetCnt是啥
+            //if (assetCnt > 0)
+            //{
+            //    // player.SendGameBuffTriggerEvent( Buff_NOTIFY_TYPE.GET_DAMAGE, this);
+            //    player.Role.GainAsset(assetSubType, assetCnt);
+            //}
         }
     }
 }

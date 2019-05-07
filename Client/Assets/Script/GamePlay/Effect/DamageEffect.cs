@@ -7,9 +7,15 @@ using UnityEngine;
 
 namespace GamePlay
 {
+    public enum DAMAGE_TYPE
+    {
+        ANY,
+    }
+
     class DamageEffect : EffectBase
     {
         private int damageCnt = 0;
+        public DAMAGE_TYPE EffectType = DAMAGE_TYPE.ANY;
 
         protected override void OnInitEffect(params object[] objs)
         {

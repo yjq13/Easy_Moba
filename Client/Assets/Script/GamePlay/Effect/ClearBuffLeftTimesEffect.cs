@@ -24,7 +24,7 @@ namespace GamePlay
             if (BuffTimes > 0)
             {
                 // player.SendGameBuffTriggerEvent( Buff_NOTIFY_TYPE.GET_DAMAGE, this);
-                player.GainBuff(BuffID, 0 - BuffTimes);
+                //player.GainBuff(BuffID, 0 - (int)BuffTimes);//SZY ERROR 你这个方法第二个参数是uint，结果你传了一个int…………还是个负数
             }
         }
     }
