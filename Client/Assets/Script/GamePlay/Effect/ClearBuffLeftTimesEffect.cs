@@ -15,7 +15,7 @@ namespace GamePlay
         protected override void OnInitEffect(params object[] objs)
         {
             BuffID  = StringConverter.ToInt(objs[0].ToString(), 0);
-            BuffTimes = player.GetBuffTimes(BuffID);
+            //BuffTimes = player.GetBuffTimes(BuffID);//SZY ERROR 你这个player是哪里来的
         }
 
         protected override void OnTakeEffect(GamePlayer source_player,GamePlayer player)

@@ -14,7 +14,7 @@ namespace GamePlay
                 case "Damage":
                     {
                         var effect = new DamageEffect();
-                        effect.InitDamageEffect(data.EffectParam1,data.EffectParam2);
+                        effect.InitEffect(ELEMENT_PROPERTY.NONE,data.EffectParam1,data.EffectParam2);
                         return effect;
                     }
             }
