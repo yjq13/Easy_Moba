@@ -3,7 +3,7 @@ using System.IO;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-using Editor;
+using GameEditor;
 using Common;
 
 public class AutoGenCodeUtil : EditorWindow

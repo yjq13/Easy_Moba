@@ -16,7 +16,7 @@ namespace Test
             targets = test_players;
             if (targets != null)
             {
-                effect.TakeEffect(targets, effect_info.EffectParam1, effect_info.EffectParam2);
+                effect.TakeEffect(test_players[0], targets, effect_info.EffectParam1, effect_info.EffectParam2);
             }
             Assert.IsTrue(test_players[0].Role.CurrentHP == 95);
         }

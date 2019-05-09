@@ -144,7 +144,7 @@ namespace GamePlay
         {
             IsStaySpElmtProp = true;
             StaySpElmtProp   = elmt_prop;
-            OnChangeSpElmtProp(elmt_prop);
+            //OnChangeSpElmtProp(elmt_prop);//SZY ERROR 不存在的方法，去设定一个
         }
 
         protected virtual void OnChangeStaySpElmtProp(ELEMENT_PROPERTY elmt_prop)
@@ -155,8 +155,8 @@ namespace GamePlay
         // ---------------------------------------------------------
         public void ChangeSpeedCnt(int speed_cnt)
         {
-            CurrentSpeed += change_speed;
-            OnChangeSpeedCnt(change_speed);
+            //CurrentSpeed += change_speed;//SZY ERROR 不存在的change_speed，去设定一个
+            //OnChangeSpeedCnt(change_speed);//SZY ERROR 不存在的change_speed，去设定一个
         }
 
         protected virtual void OnChangeSpeedCnt(int speed_cnt)
@@ -168,7 +168,7 @@ namespace GamePlay
         public void ChangeSpeedPct(int speed_pct)
         {
             CurrentSpeed += (CurrentSpeed * speed_pct / 100);
-            OnChangeSpeedPct(change_speed);
+            //OnChangeSpeedPct(change_speed);//SZY ERROR 你这个change_speed又是啥
         }
 
         protected virtual void OnChangeSpeedPct(int speed_pct)
@@ -176,7 +176,7 @@ namespace GamePlay
 
         }
         // ---------------------------------------------------------
-        public void AddSkipCardOutTimes(bool add_times)
+        public void AddSkipCardOutTimes(int add_times)
         {
             SkipCardOutTimes += add_times;
             OnAddSkipCardOutTimes(add_times);
@@ -230,7 +230,8 @@ namespace GamePlay
         public uint LastAcquiredAsset()
         {
             // !!! 暂未实现
-            return new Tuple<ASSET_MAJOR_TYPE, ASSET_SUB_TYPE, uint>(ASSET_MAJOR_TYPE.NONE, ASSET_SUB_TYPE.NONE, 0);
+            //return new Tuple<ASSET_MAJOR_TYPE, ASSET_SUB_TYPE, uint>(ASSET_MAJOR_TYPE.NONE, ASSET_SUB_TYPE.NONE, 0);//SZY ERROR 你返回值是uint，结果return Tuple，我真的是
+            return 0;
         }
 
         // ---------------------------------------------------------
@@ -261,7 +262,7 @@ namespace GamePlay
         public void TransAssetTo(GamePlayer source_player, ASSET_MAJOR_TYPE mj_type, ASSET_SUB_TYPE sub_type, uint asset_cnt)
         {
             // !!! 暂未实现
-            OnTransAssetTo(mj_type, sub_type, asset_cnt);
+            OnTransAssetTo(source_player,mj_type, sub_type, asset_cnt);
         }
 
         protected virtual void OnTransAssetTo(GamePlayer source_player, ASSET_MAJOR_TYPE mj_type, ASSET_SUB_TYPE sub_type, uint asset_cnt)
@@ -281,12 +282,12 @@ namespace GamePlay
 
         }
 
-        // ---------------------------------------------------------//SZY Error 重复命名
-        //public void SwordSink(int card_id, int target_uid, float act_progress)
-        //{
-        //    SwordSink = new Tuple<int, int, float>(card_id, target_uid, act_progress);
-        //    OnSwordSink(target_player, sub_type, asset_cnt);
-        //}
+        // ---------------------------------------------------------//SZY Error 重复命名 改名SetSwordSink
+        public void SetSwordSink(int card_id, int target_uid, float act_progress)
+        {
+            //SwordSink = new Tuple<int, int, float>(card_id, target_uid, act_progress); //这里也需要重新改写
+            //OnSwordSink(target_player, sub_type, asset_cnt);
+        }
 
         protected virtual void OnSwordSink(GamePlayer target_player, ASSET_SUB_TYPE sub_type, uint asset_cnt)
         {

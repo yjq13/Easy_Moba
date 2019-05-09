@@ -9,11 +9,11 @@ namespace GamePlay
 {
     class StoleRandomBuffEffect : EffectBase
     {
-        private int BuffCnt  = 0;
+        private uint BuffCnt  = 0;
 
         protected override void OnInitEffect(params object[] objs)
         {
-            BuffCnt = CountUtil.CalcCount(objs);
+            BuffCnt = (uint)CountUtil.CalcCount(objs);
         }
 
         protected override void OnTakeEffect(GamePlayer source_player, GamePlayer target_player)

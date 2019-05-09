@@ -55,7 +55,7 @@ namespace GamePlay
         public int GetBuffTimes(int buff_id)
         {
             // !!! 暂未实现
-            0;
+            return 0;
         }
 
         // ---------------------------------------------------------

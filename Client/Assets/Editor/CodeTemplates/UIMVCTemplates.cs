@@ -3,9 +3,9 @@ using System.IO;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-using Editor;
+using GameEditor;
 
-namespace Editor
+namespace GameEditor
 {
     public class UIControllerTemplate : TemplateBase
     {
