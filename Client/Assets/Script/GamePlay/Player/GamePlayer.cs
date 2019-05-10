@@ -24,13 +24,21 @@ namespace GamePlay
 
         public static GamePlayer GAME_MANAGER = null;
 
+        private PlayerAttributes Attributes = null;
+
         public GamePlayer(RoleBase role,uint id)
         {
             PlayerID = id;
             Role = role;
             RoleType = Role.GetRoleType();
+            Attributes = new PlayerAttributes();
             m_buffManager = new GameBuffManager();
             m_buffManager.Init();
+        }
+
+        public PlayerAttributes GetAttributes()
+        {
+            return Attributes;
         }
 
         public void SendGameBuffTriggerEvent(Buff_NOTIFY_TYPE triggerType, params object[] data)
