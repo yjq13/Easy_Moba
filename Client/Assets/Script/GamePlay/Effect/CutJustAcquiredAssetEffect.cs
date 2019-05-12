@@ -20,12 +20,12 @@ namespace GamePlay
 
         protected override void OnTakeEffect(GamePlayer source_player,GamePlayer player)
         {
-            //justAcqAsset = player.Role.LastAcquiredAsset();//SZY ERROR 你这个justAcqAsset又是啥
-            //if (justAcqAsset.Item1 == assetMjType && justAcqAsset.Item2 == assetMjType && justAcqAsset.Item3 > 0)
-            //{
-            //    // player.SendGameBuffTriggerEvent( Buff_NOTIFY_TYPE.GET_DAMAGE, this);
-            //    player.Role.GainAsset(assetMjType, assetMjType, justAcqAsset.Item3);
-            //}
+            Asset lastAcqAsset = player.Role.LastAcquiredAsset();
+            if (lastAcqAsset.majorType == assetMjType && lastAcqAsset.subType == assetSubType && lastAcqAsset.cnt > 0)
+            {
+                // player.SendGameBuffTriggerEvent( Buff_NOTIFY_TYPE.GET_DAMAGE, this);
+                player.Role.GainAsset(assetMjType, assetSubType, lastAcqAsset.cnt);
+            }
         }
     }
 }

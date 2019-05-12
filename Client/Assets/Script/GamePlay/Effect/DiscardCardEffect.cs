@@ -22,7 +22,7 @@ namespace GamePlay
             if (cardCnt > 0)
             {
                 // player.SendGameBuffTriggerEvent( Buff_NOTIFY_TYPE.GET_DAMAGE, this);
-                //player.Role.GetCard(0 - cardCnt);//SZY Error 这里弃卡还没实现，不能传入负数，会报错
+                player.Role.GetCard(0 - cardCnt);
             }
         }
     }

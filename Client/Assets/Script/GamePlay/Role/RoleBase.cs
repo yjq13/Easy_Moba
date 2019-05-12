@@ -14,6 +14,33 @@ namespace GamePlay
         MEGE = 2,
     }
 
+    public class Asset
+    {
+        public ASSET_MAJOR_TYPE    majorType { get; private set; }
+        public ASSET_SUB_TYPE      subType { get; private set; }
+        public int                 cnt { get; private set; }
+        
+        public Asset(ASSET_MAJOR_TYPE major_type, ASSET_SUB_TYPE sub_type, int count)
+        {
+            majorType   = major_type;
+            subType     = sub_type;
+            cnt         = count;
+        }
+    }
+    public class SwordSink
+    {
+        public int   cardID { get; private set; }
+        public int   targetID { get; private set; }
+        public float actProgress { get; private set; }
+
+        public SwordSink(int card_id, int target_id, float act_progress)
+        {
+            cardID      = card_id;
+            targetID    = target_id;
+            actProgress = act_progress;
+        }
+    }
+
     public class RoleBase
     {
         protected CardSet m_GameCardSet;
@@ -34,7 +61,7 @@ namespace GamePlay
         public ELEMENT_PROPERTY StaySpElmtProp      { get; private set; }
         public int              SkipCardOutTimes    { get; private set; }
         public int              SkipRoundTimes      { get; private set; }
-        //public ValueTuple<int, int, float> SwordSink     { get; private set; } 、//SZY Error 目前不支持元组这个东西啊……unity只支持C#4.0以前的特性
+        public SwordSink        SwordSink           { get; private set; }
 
         protected RoleBase(CardSet game_card_list, RoleType type)
         {
@@ -69,7 +96,8 @@ namespace GamePlay
             return Role_Type;
         }
 
-        public void GetCard(uint cardCount)
+        // !!! 弃牌暂未实现
+        public void GetCard(int cardCount)
         {
             OnGetCard(cardCount);
             if(m_GameCardSet != null)
@@ -82,7 +110,7 @@ namespace GamePlay
             }
         }
 
-        protected virtual void OnGetCard(uint cardCount)
+        protected virtual void OnGetCard(int cardCount)
         {
             
         }
@@ -144,7 +172,7 @@ namespace GamePlay
         {
             IsStaySpElmtProp = true;
             StaySpElmtProp   = elmt_prop;
-            //OnChangeSpElmtProp(elmt_prop);//SZY ERROR 不存在的方法，去设定一个
+            OnChangeStaySpElmtProp(elmt_prop);
         }
 
         protected virtual void OnChangeStaySpElmtProp(ELEMENT_PROPERTY elmt_prop)
@@ -155,8 +183,8 @@ namespace GamePlay
         // ---------------------------------------------------------
         public void ChangeSpeedCnt(int speed_cnt)
         {
-            //CurrentSpeed += change_speed;//SZY ERROR 不存在的change_speed，去设定一个
-            //OnChangeSpeedCnt(change_speed);//SZY ERROR 不存在的change_speed，去设定一个
+            CurrentSpeed += speed_cnt;
+            OnChangeSpeedCnt(speed_cnt);
         }
 
         protected virtual void OnChangeSpeedCnt(int speed_cnt)
@@ -168,7 +196,7 @@ namespace GamePlay
         public void ChangeSpeedPct(int speed_pct)
         {
             CurrentSpeed += (CurrentSpeed * speed_pct / 100);
-            //OnChangeSpeedPct(change_speed);//SZY ERROR 你这个change_speed又是啥
+            OnChangeSpeedPct(speed_pct);
         }
 
         protected virtual void OnChangeSpeedPct(int speed_pct)
@@ -200,13 +228,13 @@ namespace GamePlay
         }
 
         // ---------------------------------------------------------
-        public void GainSpCard(int card_id, uint card_cnt)
+        public void GainSpCard(int card_id, int card_cnt)
         {
             // !!! 暂未实现
             OnGainSpCard(card_id, card_cnt);
         }
 
-        protected virtual void OnGainSpCard(int card_id, uint card_cnt)
+        protected virtual void OnGainSpCard(int card_id, int card_cnt)
         {
 
         }
@@ -227,33 +255,33 @@ namespace GamePlay
 
         // ---------------------------------------------------------
         // 最后一次获取的资源
-        public uint LastAcquiredAsset()
+        public Asset LastAcquiredAsset()
         {
             // !!! 暂未实现
-            //return new Tuple<ASSET_MAJOR_TYPE, ASSET_SUB_TYPE, uint>(ASSET_MAJOR_TYPE.NONE, ASSET_SUB_TYPE.NONE, 0);//SZY ERROR 你返回值是uint，结果return Tuple，我真的是
-            return 0;
+            Asset asset = new Asset(ASSET_MAJOR_TYPE.NONE, ASSET_SUB_TYPE.NONE, 0);
+            return asset;
         }
 
         // ---------------------------------------------------------
-        public void GainAsset(ASSET_MAJOR_TYPE mj_type, ASSET_SUB_TYPE sub_type, uint asset_cnt)
+        public void GainAsset(ASSET_MAJOR_TYPE mj_type, ASSET_SUB_TYPE sub_type, int asset_cnt)
         {
             // !!! 暂未实现
             OnGainAsset(mj_type, sub_type, asset_cnt);
         }
 
-        protected virtual void OnGainAsset(ASSET_MAJOR_TYPE mj_type, ASSET_SUB_TYPE sub_type, uint asset_cnt)
+        protected virtual void OnGainAsset(ASSET_MAJOR_TYPE mj_type, ASSET_SUB_TYPE sub_type, int asset_cnt)
         {
 
         }
 
         // ---------------------------------------------------------
-        public void GainAsset(ASSET_SUB_TYPE sub_type, uint asset_cnt)
+        public void GainAsset(ASSET_SUB_TYPE sub_type, int asset_cnt)
         {
             // !!! 暂未实现
             OnGainAsset(sub_type, asset_cnt);
         }
 
-        protected virtual void OnGainAsset(ASSET_SUB_TYPE sub_type, uint asset_cnt)
+        protected virtual void OnGainAsset(ASSET_SUB_TYPE sub_type, int asset_cnt)
         {
 
         }
@@ -285,11 +313,11 @@ namespace GamePlay
         // ---------------------------------------------------------//SZY Error 重复命名 改名SetSwordSink
         public void SetSwordSink(int card_id, int target_uid, float act_progress)
         {
-            //SwordSink = new Tuple<int, int, float>(card_id, target_uid, act_progress); //这里也需要重新改写
-            //OnSwordSink(target_player, sub_type, asset_cnt);
+            SwordSink = new SwordSink(card_id, target_uid, act_progress);
+            OnSwordSink(card_id, target_uid, act_progress);
         }
 
-        protected virtual void OnSwordSink(GamePlayer target_player, ASSET_SUB_TYPE sub_type, uint asset_cnt)
+        protected virtual void OnSwordSink(int card_id, int target_uid, float act_progress)
         {
 
         }
@@ -301,5 +329,12 @@ namespace GamePlay
             return 0;
         }
 
+        // ---------------------------------------------------------
+        // 进度条百分比
+        public float GetActProgress()
+        {
+            // !!! 暂未实现
+            return 0;
+        }
     }
 }

@@ -20,11 +20,11 @@ namespace GamePlay
 
         protected override void OnTakeEffect(GamePlayer source_player,GamePlayer player)
         {
-            //if (cardCnt > 0)//SZY ERROR 你这个cardCnt又是啥
-            //{
-            //    // player.SendGameBuffTriggerEvent( Buff_NOTIFY_TYPE.GET_DAMAGE, this);
-            //    player.Role.GainSpCard(cardID, cardCnt);
-            //}
+            if (cardCnt > 0)
+            {
+                // player.SendGameBuffTriggerEvent( Buff_NOTIFY_TYPE.GET_DAMAGE, this);
+                player.Role.GainSpCard(cardID, cardCnt);
+            }
         }
     }
 }

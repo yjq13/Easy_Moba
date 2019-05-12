@@ -1,4 +1,5 @@
-
+*.csproj
+Client/Library/metadata/00/*
 Client/Temp/UnityLockfile
 Client/.vs/Client/v15/Server/sqlite3/storage.ide-wal
 Client/.vs/Client/v15/Server/sqlite3/storage.ide-shm
