@@ -40,13 +40,13 @@ namespace GamePlay
         }
 
         // ---------------------------------------------------------
-        public void GainBuff(int buff_id, uint buff_times)
+        public void GainBuff(int buff_id, int buff_times)
         {
             // !!! 暂未实现
             OnGainBuff(buff_id, buff_times);
         }
 
-        protected virtual void OnGainBuff(int buff_id, uint buff_times)
+        protected virtual void OnGainBuff(int buff_id, int buff_times)
         {
 
         }

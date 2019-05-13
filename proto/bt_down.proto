@@ -1,0 +1,26 @@
+//-------------------------------------------------------------------
+// @doc
+// bt_down.proto
+// @end
+//-------------------------------------------------------------------
+syntax = "proto3";
+
+import "down.proto";
+import "bt_common.proto";
+
+package easy_moba;
+
+//-------------------------------------------------------------------
+message bt_down_msg {
+  uint32 								svr_time				= 1;	//	服务器时间戳
+  uint32 								seq 						= 2;	//	消息标志位
+  reply_err_code   			err_code				= 3;	//	错误码
+  uint32                room_id         = 4;
+  //  以下是功能
+  reply_bt_init         init            = 5;  //  战斗初始化
+  repeated bt_seq				bt_seqs 				=	6;	//	战斗序列
+}
+
+message reply_bt_init {
+	map<uint32, uint32>		progresses 			=	1;	//	<slot, progress>
+}
