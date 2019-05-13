@@ -1,0 +1,98 @@
+//-------------------------------------------------------------------
+// @doc
+// up.proto
+// @end
+//-------------------------------------------------------------------
+syntax = "proto3";
+
+import "common.proto";
+
+package easy_moba;
+
+//-------------------------------------------------------------------
+//	<测试用>数据运算类型
+enum t_op {
+  add   								= 0;
+  sub         					= 1;
+  mul       						= 2;
+  div      							= 3;
+}
+
+message req_msg {
+}
+
+message up_msg {
+	uint32           			seq             = 1;	//	消息标志位
+	uint32           			repeat          = 2;  //	重复消息标识
+  //	以下是功能
+	req_heartbeat    			heartbeat      	= 3; 	//	心跳
+  req_gm           			gm             	= 4;  // 	GM系统，暂时不做
+  req_sdk_login    			sdk_login      	= 5;  // 	登录
+  req_login        			login          	= 6; 	// 	登陆
+  req_reconnect    			reconnect      	= 7; 	// 	重连
+  req_tutorial     			tutorial       	= 8; 	// 	新手引导
+  req_settings     			settings       	= 9;  // 	个人设置
+	req_data_op 					data_op 				= 99;	//	<测试用>数字运算
+}
+
+message req_heartbeat {
+	uint32 								time 						= 1;
+}
+
+message req_gm {
+}
+
+message req_sdk_login {
+	t_platform 						platform   			= 1;  //  开发：dev
+	string     						open_id    			= 2;  //  设备id
+	string     						token      			= 3;  //  客户端随机一个字符串
+	uint32     						svr_id     			= 4;	//	开发：1
+}
+
+message req_login {
+  t_platform 						platform    		= 1;
+  string     						open_id     		= 2;
+  uint32     						svr_id      		= 3;
+  string     						token      			= 4;
+  //  以上参数是必要的，下面的参数暂时无效
+  t_os                  os              = 5;
+  t_lang     						lang        		= 6;
+  string     						cli_version 		= 7;	//	客户端版本号，默认“1.1.0”
+  int32      						time_zone   		= 8;
+  string     						push_id    		  = 9;
+  string     						idfa        		= 10;
+  string     						google_aid  		= 11;
+  string     						android_id  		= 12;
+  string     						os_version  		= 13;
+  string     						app_version 		= 14;
+  string     						device      		= 15;
+  string     						channel_id  		= 16;
+  string     						package     		= 17;
+  string     						avatar      		= 18; 
+  string     						union_id    		= 19; 
+  string     						name        		= 20;
+}
+
+message req_reconnect {
+	//没登陆成功不要重连；no_reply表示重连成功
+  uint32 								uid         		= 1;
+  string 								token      			= 2;
+  string 								cli_version 		= 3;	//	客户端版本号
+}
+
+message req_tutorial {
+  repeated uint32 			new_tutorials  	= 1;
+}
+
+message req_settings {
+  repeated setting  		settings 				= 1;
+}
+
+
+
+//	---------------------------------------------------------------------
+message req_data_op {
+	t_op 									op 							=	1;
+	uint32 								data 						= 2;
+	repeated uint32 			data_list 			= 3;
+}

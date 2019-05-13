@@ -1,0 +1,48 @@
+//-------------------------------------------------------------------
+// @doc
+// game.proto
+// @end
+//-------------------------------------------------------------------
+syntax = "proto3";
+
+import "common.proto";
+
+package easy_moba;
+
+//-------------------------------------------------------------------
+message user {
+	uint64 								uid 						=	1;	//	玩家唯一id
+	string 								uin 						= 2;	//	uin = 封装了平台信息的open_id
+  string            		union_id        = 3;	//	union_id
+	uint32 								svr_id 					=	4;	//	服务器id
+	uint32 								version 				=	5;	//	服务器版本号
+	string 								name 						=	6;
+	uint32 								level 					=	7;
+	uint32 								exp 						=	8;
+	uint32 								login_time 			=	9;
+	string 								login_ip 				=	10;
+	uint32 								logout_time 		=	11;
+	update_time 					update_time 		=	12;
+	bool              		is_online       = 13;
+  repeated red_dot      red_dots        = 14;
+  repeated setting      settings        = 15;	//	个人设置
+  repeated uint32       tutorials       = 16;	//	新手引导
+	t_lang            		lang            = 17;	//	语种
+	int32             		time_zone       = 18;	//	时区
+	string            		avatar          = 19; // 	头像
+	uint32            		frame           = 20; // 	头像框
+  t_gender          		gender          = 21;
+  uint32            		country         = 22;
+  uint32            		city         		= 23;
+  string            		desc            = 24; //	个性签名
+  uint32 								create_time			=	25;	//	创角时间
+  repeated uint32       runtime_funs    = 26; //	运行时函数，玩家在内存中会有的字段，存db时处理并置空
+  //	以上属性除了uid和uin目前 都 没 有 用
+
+}
+
+message update_time {
+	uint32 								last_hourly_time  = 1;
+	uint32 								last_daily_time   = 2;
+	uint32 								last_weekly_time  = 3;
+}
