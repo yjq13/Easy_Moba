@@ -1,0 +1,13 @@
+KST,O,B,B,B
+Type,Targets,IsIncludeSelf,IsSingle,IsNone
+类别,目标,是否包含自己,是否是单数,是否是无
+none,无,NO,NO,YES
+self,自己,YES,YES,NO
+self_one,己方单体,YES,YES,NO
+self_all,己方全体,YES,NO,NO
+self_one_except_self,除自己外的己方单体,NO,YES,NO
+self_all_except_self,除自己外的己方全体,NO,NO,NO
+oppo_one,对方单体,NO,YES,NO
+oppo_all,对方全体,NO,NO,NO
+all,双方全体,YES,NO,NO
+all_except_self,除自己外的双方全体,NO,NO,NO

@@ -1,5 +1,6 @@
 KST,O,AST,O,O,O,O,N,N,N,N,ASR,N,ASR,N,N,N,ASR,ASR,ASR
 Type,Type_CN,Race,Race_CN,Strength,Intelligence,Agility,HP,CardsOutCountPerRound,Speed,InitialCardsCount,InitialAssets,CardsInCountPerRound,AssetsInPerRound,CardsMaxCountDuringRound,CardsMaxCountAfterRound,CardsMaxCountBeyondRound,AssetsLimitDuringRound,AssetsLimitAfterRound,AssetsLimitBeyondRound
-magician,��ʦ,human;dwarf;goblin;elf;undead,����;����;�ؾ�;����;����,��,��,��,80,4,100,3,,1,,10,8,10,bt_asset;magic_point;0;bt_asset;action_point;0,bt_asset;magic_point;0;bt_asset;action_point;0,bt_asset;magic_point;0;bt_asset;action_point;0
-archer,����,,,��,��,��,100,2,120,0,,1,bt_asset;action_point;1,10,4,10,bt_asset;magic_point;0;bt_asset;action_point;999,bt_asset;magic_point;0;bt_asset;action_point;0,bt_asset;magic_point;0;bt_asset;action_point;999
-soldier,սʿ,,,��,��,��,120,2,80,,,,,,,,,,
+类别,类别,种族,种族,力量,智力,敏捷,生命值,回合出牌数,行动速度,初始手牌数,初始资源,回合摸牌数,回合获取资源,回合中手牌数量上限,回合结束时手牌数量上限,回合外手牌数量上限,回合中资源上限,回合结束时资源上限,回合外资源上限
+magician,法师,human;dwarf;goblin;elf;undead,人类;矮人;地精;精灵;亡灵,低,高,中,80,4,100,3,,1,,10,8,10,bt_asset;magic_point;0;bt_asset;action_point;0,bt_asset;magic_point;0;bt_asset;action_point;0,bt_asset;magic_point;0;bt_asset;action_point;0
+archer,射手,,,中,低,高,100,2,120,0,,1,bt_asset;action_point;1,10,4,10,bt_asset;magic_point;0;bt_asset;action_point;999,bt_asset;magic_point;0;bt_asset;action_point;999,bt_asset;magic_point;0;bt_asset;action_point;999
+soldier,战士,,,高,低,中,120,2,80,,,,,,,,,,

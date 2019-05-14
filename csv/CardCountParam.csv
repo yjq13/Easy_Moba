@@ -1,0 +1,16 @@
+此表只做说明文档使用,所有的四元组一般后两位或一位表示的就是数值，统一参看下表计算。,
+ST,ST,O
+Param1,Param2,Comment_CN
+参数1,参数2,说明
+Num,,数值直接表示数量
+sp_card_cost_magic_point_cnt,卡牌ID,某张牌消耗的法印数量
+sp_card_cost_magic_point_cnt,last_card_out,上张出的牌消耗的法印数量
+magic_point_cnt,元素,自己拥有某元素的数量
+his_magic_point_cnt,元素,其人拥有某元素的数量
+both_magic_point_cnt,元素,双方两人拥有某元素的数量
+cur_damage,,本次伤害量
+sp_card_damage_in_self_last_round,卡牌ID,自己上回合某张卡牌的单次伤害量
+hp_upper_limit,,血量上限
+cnt_to_full,,补满（某资源）所需要的数量
+magic_point_type_cnt,,自己拥有元素种类的数量
+magic_point_more_cnt,元素,自己比对方多的某法印的数量
