@@ -1,31 +1,20 @@
 #!/bin/sh
 
-client_dir=../Client
+proto_lib=libs/proto/msg
 csv_lib=libs/csv_lib
-
-sync_client()
-{
-  p4 sync $client_dir/csproto/...
-  p4 sync $client_dir/csvjs/...
-  p4 sync $client_dir/src/...
-}
 
 sync_proto()
 {
-  ##拉取客户端协议，并且建立软连接
-  p4 sync ${client_dir}/csproto/bc_down.proto ${client_dir}/csproto/bc_up.proto ${client_dir}/csproto/common.proto ${client_dir}/csproto/down.proto ${client_dir}/csproto/up.proto
-  echo "sync client proto, ok."
-  ln -f ../Client/csproto/* libs/proto/msg/
+  ##拉取协议，并且建立硬连接
+  ln -f ../proto/* $proto_lib
   echo "hard link client proto, ok."
 }
 
 sync_csv()
 {
-  # 拉取最新csv
-  p4 sync ${client_dir}/csv/...
   rm $csv_lib/csv -rf
   # 拷贝cs到指定位置
-  cp ${client_dir}/csv/ $csv_lib -rf
+  cp -rf ../csv/ $csv_lib
 }
 
 csv2record()
@@ -62,8 +51,7 @@ case $1 in
   record) csv2record;;
   help) help;;
   *)
-    # sync_client
-    # sync_proto
-    # sync_csv
+    sync_proto
+    sync_csv
     csv2record
 esac

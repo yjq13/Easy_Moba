@@ -86,7 +86,7 @@
 -ifndef('REPLY_SDK_LOGIN_PB_H').
 -define('REPLY_SDK_LOGIN_PB_H', true).
 -record(reply_sdk_login,
-        {token = []             :: iolist() | undefined % = 1
+        {htoken = []            :: iolist() | undefined % = 1
         }).
 -endif.
 

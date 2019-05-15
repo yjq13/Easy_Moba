@@ -71,7 +71,7 @@ message reply_heartbeat {
 }
 
 message reply_sdk_login {
-  string 								token      			= 1; //  用于断线重连，由客户端上传的token连接一个100000000内的随机数字
+  string 								htoken      		= 1; //  用于断线重连，由客户端上传的token连接一个100000000内的随机数字
 }
 
 message reply_login {

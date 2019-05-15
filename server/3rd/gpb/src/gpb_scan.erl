@@ -4090,6 +4090,206 @@
 %% @private
 %% @end
 -file("src/gpb_scan.xrl", 0).
+%% @doc automatically generated scanner
+%% @private
+%% @end
+-file("src/gpb_scan.xrl", 0).
+%% @doc automatically generated scanner
+%% @private
+%% @end
+-file("src/gpb_scan.xrl", 0).
+%% @doc automatically generated scanner
+%% @private
+%% @end
+-file("src/gpb_scan.xrl", 0).
+%% @doc automatically generated scanner
+%% @private
+%% @end
+-file("src/gpb_scan.xrl", 0).
+%% @doc automatically generated scanner
+%% @private
+%% @end
+-file("src/gpb_scan.xrl", 0).
+%% @doc automatically generated scanner
+%% @private
+%% @end
+-file("src/gpb_scan.xrl", 0).
+%% @doc automatically generated scanner
+%% @private
+%% @end
+-file("src/gpb_scan.xrl", 0).
+%% @doc automatically generated scanner
+%% @private
+%% @end
+-file("src/gpb_scan.xrl", 0).
+%% @doc automatically generated scanner
+%% @private
+%% @end
+-file("src/gpb_scan.xrl", 0).
+%% @doc automatically generated scanner
+%% @private
+%% @end
+-file("src/gpb_scan.xrl", 0).
+%% @doc automatically generated scanner
+%% @private
+%% @end
+-file("src/gpb_scan.xrl", 0).
+%% @doc automatically generated scanner
+%% @private
+%% @end
+-file("src/gpb_scan.xrl", 0).
+%% @doc automatically generated scanner
+%% @private
+%% @end
+-file("src/gpb_scan.xrl", 0).
+%% @doc automatically generated scanner
+%% @private
+%% @end
+-file("src/gpb_scan.xrl", 0).
+%% @doc automatically generated scanner
+%% @private
+%% @end
+-file("src/gpb_scan.xrl", 0).
+%% @doc automatically generated scanner
+%% @private
+%% @end
+-file("src/gpb_scan.xrl", 0).
+%% @doc automatically generated scanner
+%% @private
+%% @end
+-file("src/gpb_scan.xrl", 0).
+%% @doc automatically generated scanner
+%% @private
+%% @end
+-file("src/gpb_scan.xrl", 0).
+%% @doc automatically generated scanner
+%% @private
+%% @end
+-file("src/gpb_scan.xrl", 0).
+%% @doc automatically generated scanner
+%% @private
+%% @end
+-file("src/gpb_scan.xrl", 0).
+%% @doc automatically generated scanner
+%% @private
+%% @end
+-file("src/gpb_scan.xrl", 0).
+%% @doc automatically generated scanner
+%% @private
+%% @end
+-file("src/gpb_scan.xrl", 0).
+%% @doc automatically generated scanner
+%% @private
+%% @end
+-file("src/gpb_scan.xrl", 0).
+%% @doc automatically generated scanner
+%% @private
+%% @end
+-file("src/gpb_scan.xrl", 0).
+%% @doc automatically generated scanner
+%% @private
+%% @end
+-file("src/gpb_scan.xrl", 0).
+%% @doc automatically generated scanner
+%% @private
+%% @end
+-file("src/gpb_scan.xrl", 0).
+%% @doc automatically generated scanner
+%% @private
+%% @end
+-file("src/gpb_scan.xrl", 0).
+%% @doc automatically generated scanner
+%% @private
+%% @end
+-file("src/gpb_scan.xrl", 0).
+%% @doc automatically generated scanner
+%% @private
+%% @end
+-file("src/gpb_scan.xrl", 0).
+%% @doc automatically generated scanner
+%% @private
+%% @end
+-file("src/gpb_scan.xrl", 0).
+%% @doc automatically generated scanner
+%% @private
+%% @end
+-file("src/gpb_scan.xrl", 0).
+%% @doc automatically generated scanner
+%% @private
+%% @end
+-file("src/gpb_scan.xrl", 0).
+%% @doc automatically generated scanner
+%% @private
+%% @end
+-file("src/gpb_scan.xrl", 0).
+%% @doc automatically generated scanner
+%% @private
+%% @end
+-file("src/gpb_scan.xrl", 0).
+%% @doc automatically generated scanner
+%% @private
+%% @end
+-file("src/gpb_scan.xrl", 0).
+%% @doc automatically generated scanner
+%% @private
+%% @end
+-file("src/gpb_scan.xrl", 0).
+%% @doc automatically generated scanner
+%% @private
+%% @end
+-file("src/gpb_scan.xrl", 0).
+%% @doc automatically generated scanner
+%% @private
+%% @end
+-file("src/gpb_scan.xrl", 0).
+%% @doc automatically generated scanner
+%% @private
+%% @end
+-file("src/gpb_scan.xrl", 0).
+%% @doc automatically generated scanner
+%% @private
+%% @end
+-file("src/gpb_scan.xrl", 0).
+%% @doc automatically generated scanner
+%% @private
+%% @end
+-file("src/gpb_scan.xrl", 0).
+%% @doc automatically generated scanner
+%% @private
+%% @end
+-file("src/gpb_scan.xrl", 0).
+%% @doc automatically generated scanner
+%% @private
+%% @end
+-file("src/gpb_scan.xrl", 0).
+%% @doc automatically generated scanner
+%% @private
+%% @end
+-file("src/gpb_scan.xrl", 0).
+%% @doc automatically generated scanner
+%% @private
+%% @end
+-file("src/gpb_scan.xrl", 0).
+%% @doc automatically generated scanner
+%% @private
+%% @end
+-file("src/gpb_scan.xrl", 0).
+%% @doc automatically generated scanner
+%% @private
+%% @end
+-file("src/gpb_scan.xrl", 0).
+%% @doc automatically generated scanner
+%% @private
+%% @end
+-file("src/gpb_scan.xrl", 0).
+%% @doc automatically generated scanner
+%% @private
+%% @end
+-file("src/gpb_scan.xrl", 0).
+%% @doc automatically generated scanner
+%% @private
+%% @end
+-file("src/gpb_scan.xrl", 0).
 -file("/usr/local/lib/kerl/21.0/lib/parsetools-2.1.7/include/leexinc.hrl", 0).
 %% The source of this file is part of leex distribution, as such it
 %% has the same Copyright as the other files in the leex

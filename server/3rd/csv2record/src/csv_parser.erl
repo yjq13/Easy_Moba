@@ -17,7 +17,8 @@ parse(File) ->
       AllLines = re:split(Data, ?CSV_LINE_END, [{return, list}, trim]),
       {Attrs, Lines} =
         case AllLines of
-          [Types, Names| Tail] ->
+          %% 注释行跳过
+          [Types, Names, _Comment | Tail] ->
             TypeList = re:split(Types, ?CSV_COMMA, [{return, list}]),
             NameList = re:split(Names, ?CSV_COMMA, [{return, list}]),
             {build_attr(NameList, TypeList), Tail};

@@ -9,7 +9,7 @@
 -export([is_err_code/1, fetch_err_code/1]).
 
 %% -----------------------------------------------------------------
--export([index_of/2, cut_atom_head/2]).
+-export([index_of/2, cut_atom_head/2, if_then/3]).
 
 %% -----------------------------------------------------------------
 -export([get_uin/2, no_login_check/1]).
@@ -81,6 +81,12 @@ cut_atom_head(Atom, Head) ->
     _ ->
       Atom
   end.
+
+if_then(true, V1, _V2) ->
+  V1;
+if_then(_, _V1, V2) ->
+  V2.
+
 %% -----------------------------------------------------------------
 get_uin(Platform, OpenID) ->
   lists:concat([Platform, "-", OpenID]).

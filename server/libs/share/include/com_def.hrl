@@ -41,5 +41,7 @@
 -define(GAME_TOKEN_RANGE, 		100000000).	%%	token取值上限
 -define(LOGIN_MAX_SECONDS, 		86400 * 7).	%% 	最大登录在线时长
 
+%% test
+-define(TEST_REQ(Mod, Fun, Args), erlang:apply(Mod, Fun, Args)).
 
 -endif.
