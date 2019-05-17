@@ -61,8 +61,9 @@ load_host() {
   #linux_user,linux_host,svr_type,svr_id,work_id,port
   while IFS="," read f1 f2 f3 f4 f5 f6 f7 || [[ -n ${f1} ]];
   do
-      #If the line starts with ST then echo the line
-      if [[ $f1 = $USER ]] && [[ $f2 = $HOSTNAME ]] && [[ $f3 = $SERVER ]]; then
+      # If the line starts with ST then echo the line
+      # if [[ $f1 = $USER ]] && [[ $f2 = $HOSTNAME ]] && [[ $f3 = $SERVER ]]; then
+      if [[ $f1 = $USER ]] && [[ $f3 = $SERVER ]]; then
           export SERVER_ID=$f4
           export WORKER_ID=$f5
           export SERVER_IP=$f6

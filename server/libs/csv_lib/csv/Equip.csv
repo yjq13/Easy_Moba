@@ -1,0 +1,5 @@
+KN,SX,O,ST,ST,ST,N,AST,O,N,O,O,O,N
+ID,Name,Name_CN,RoleClass,Type,InitialElementProperty,MagicPointCount,MagicPointList,MagicPointList_CN,InitialMagicPointsCount,InitialMagicPoints,InitialMagicPoints_CN,InitialMagicPointIndex,MagicPointsInCountPerRound
+ID,名称,名称,职业,类别,初始元素属性,法印数量,法印序列,法印序列,初始法印数量,初始法印,初始法印,初始法印索引,每回合获得法印数量
+1,magic wand 1,金九法杖,magician,MagicWand,metal,9,"metal,wood,water,fire,soil,metal,wood,water,fire",金木水火土金木水火,5,"metal,wood,water,fire,soil",金木水火土,6,4
+2,magic wand 2,土八法杖,magician,MagicWand,soil,8,"soil,soil,metal,soil,wood,soil,fire,soil",土土金土木土火土,4,"soil,soil,metal,wood",土土金木,5,4

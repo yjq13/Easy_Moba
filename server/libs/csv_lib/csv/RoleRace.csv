@@ -1,0 +1,8 @@
+KST,O,AN,O,O,O,O
+Type,Type_CN,Skills,SkillName1_CN,SkillEffect1_CN,SkillCD1,SkillUseCountLimit
+类别,名称,种族技能,技能1,技能效果1,技能1CD,技能1限次
+human,人类,,人定胜天,下一张法术牌消耗的咒印减1,6,3
+dwarf,矮人,,天工开物,改变法杖的下一个咒印,4,4
+goblin,地精,,贪得无厌,给法杖增加一个咒印,3,5
+elf,精灵,,天地之灵,立即摸一张牌,3,5
+undead,亡灵,,阴魂不散,立即获得一个随机咒印，并消除对方一个随机咒印,6,3

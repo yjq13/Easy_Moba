@@ -1,4 +1,4 @@
-﻿<Properties StartupConfiguration="{12F44184-A422-5F27-22E6-507969043F15}|">
+<Properties StartupConfiguration="{12F44184-A422-5F27-22E6-507969043F15}|">
   <MonoDevelop.Ide.ItemProperties.Client PreferredExecutionTarget="Unity.Editor" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Script/GamePlay/Role/RoleBase.cs">
     <Files>
