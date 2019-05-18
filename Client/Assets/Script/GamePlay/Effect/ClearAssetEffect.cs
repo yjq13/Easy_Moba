@@ -20,7 +20,7 @@ namespace GamePlay
 
         protected override void OnTakeEffect(GamePlayer source_player, GamePlayer player)
         {
-            uint assetCnt = player.Role.GetAssetCnt(assetSubType);
+            int assetCnt = (int)player.Role.GetAssetCnt(assetSubType);
             if (assetCnt > 0)
             {
             //    // player.SendGameBuffTriggerEvent( Buff_NOTIFY_TYPE.GET_DAMAGE, this);
