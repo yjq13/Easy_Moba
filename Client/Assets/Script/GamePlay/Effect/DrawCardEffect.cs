@@ -21,7 +21,7 @@ namespace GamePlay
             if (drawCnt > 0)
             {
                 // player.SendGameBuffTriggerEvent( Buff_NOTIFY_TYPE.GET_DAMAGE, this);
-                player.Role.GetCard((uint)drawCnt);
+                player.Role.GetCard(drawCnt);
             }
         }
     }

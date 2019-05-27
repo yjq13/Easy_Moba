@@ -17,7 +17,7 @@ namespace GamePlay
 
         public static CardGame GetCurrentCardGame()
         {
-            if(m_currentGame.GameType == GameType.CARD_GAME)
+            if (m_currentGame.GameType == GameType.CARD_GAME)
             {
                 return m_currentGame as CardGame;
             }

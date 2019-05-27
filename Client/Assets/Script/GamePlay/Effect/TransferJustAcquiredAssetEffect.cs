@@ -24,7 +24,7 @@ namespace GamePlay
             if (assetCnt > 0)
             {
                 // player.SendGameBuffTriggerEvent( Buff_NOTIFY_TYPE.GET_DAMAGE, this);
-                player.Role.GainAsset(assetMjType, assetSubType, 0 - assetCnt);
+                player.Role.GainAsset(assetMjType, assetSubType, 0 - (int)assetCnt);
             }
         }
     }

@@ -23,7 +23,7 @@ namespace GamePlay
             if (BuffTimes > 0)
             {
                 // player.SendGameBuffTriggerEvent( Buff_NOTIFY_TYPE.GET_DAMAGE, this);
-                player.GainBuff(BuffID, BuffTimes);
+                player.GainBuff(BuffID, (int)BuffTimes);
             }
         }
     }
