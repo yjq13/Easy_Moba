@@ -26,22 +26,22 @@ namespace Test
         }
     }
 
-
-    public class Test_down_msg_Driver : Test_NetWorkManager_Driver
-    {
-        public override Type SendTestMessage()
-        {
-            down_msg msg = new down_msg()
-            {
-                svr_ts = 1543483207,
-                seq = 0,
-                err_code = new reply_err_code()
-                {
-                    err_code = "Yingjiaqi is your daddy"
-                }
-            };
-            return msg.GetType();
-        }
-    }
+    //[Ignore("no use")]
+    //public class Test_down_msg_Driver : Test_NetWorkManager_Driver
+    //{
+    //    public override Type SendTestMessage()
+    //    {
+    //        down_msg msg = new down_msg()
+    //        {
+    //            svr_ts = 1543483207,
+    //            seq = 0,
+    //            err_code = new reply_err_code()
+    //            {
+    //                err_code = "Yingjiaqi is your daddy"
+    //            }
+    //        };
+    //        return msg.GetType();
+    //    }
+    //}
 
 }

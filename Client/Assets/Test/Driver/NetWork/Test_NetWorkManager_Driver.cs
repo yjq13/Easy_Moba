@@ -13,31 +13,33 @@ namespace Test
 {
     public abstract class Test_NetWorkManager_Driver : UnityDriverBase
     {
-        private static int frameForWait_ForNetWork = 300;
+        private static int FrameForWait_ForNetWork = 300;
 
-        public override IEnumerator ClearContext()
+        public override void ClearContext()
         {
             NetWorkUtil.CheckAndCloseNetWorkContext();
-            yield return null;
         }
 
-        public override IEnumerator InitContext()
+        public override void InitContext()
         {
-            yield return NetWorkUtil.NetWorkContextCreate();
+
         }
 
         public override IEnumerator Test()
         {
+            if (!NetWorkUtil.NetWorkConnect)
+            {
+                yield return NetWorkUtil.NetWorkContextCreate();
+            }
             Type driverType = SendTestMessage();
             yield return CheckMsgResult(driverType);
         }
 
         public abstract Type SendTestMessage();
            
-
         public IEnumerator CheckMsgResult(Type driver)
         {
-            int frameForWait = frameForWait_ForNetWork;
+            int frameForWait = FrameForWait_ForNetWork;
             bool isOk = false;
             while (frameForWait > 0)
             {

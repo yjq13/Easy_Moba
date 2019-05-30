@@ -12,7 +12,7 @@ namespace GamePlay
         WATER       = 2,
         SOLID       = 3,
         WOOD        = 4,
-        GOLD        = 5
+        GOLD        = 5,
     }
 
     public enum ASSET_MAJOR_TYPE

@@ -17,6 +17,19 @@ namespace Test
 
     public abstract class DriverBase : Interface_TestDriver
     {
+
+        [TearDown]
+        public void TearDown()
+        {
+            ClearContext();
+        }
+
+        [SetUp]
+        public void SetUp()
+        {
+            InitContext();
+        }
+
         public abstract void ClearContext();
 
         public abstract void InitContext();
@@ -26,9 +39,7 @@ namespace Test
         [Test]
         public void StartTest()
         {
-            InitContext();
             Test();
-            ClearContext();
         }
     }
 }

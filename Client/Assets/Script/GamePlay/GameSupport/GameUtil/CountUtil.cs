@@ -21,6 +21,8 @@ namespace GamePlay
                 // !!! 暂未实现
                 switch (firstParam)
                 {
+                    case "NONE":
+                        return StringConverter.ToInt(count_params[1].ToString());
                     case "sp_card_cost_magic_point_cnt":
                         return 0;
                     case "magic_point_cnt":

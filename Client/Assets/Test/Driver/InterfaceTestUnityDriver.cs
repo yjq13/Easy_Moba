@@ -9,24 +9,34 @@ namespace Test
     public interface Interface_TestDriver_Unity
     {
         IEnumerator Test();
-        IEnumerator ClearContext();
-        IEnumerator InitContext();
+        void ClearContext();
+        void InitContext();
     }
 
     public abstract class UnityDriverBase : Interface_TestDriver_Unity
     {
-        public abstract IEnumerator ClearContext();
+        [TearDown]
+        public void TearDown()
+        {
+            ClearContext();
+        }
 
-        public abstract IEnumerator InitContext();
+        [SetUp]
+        public void SetUp()
+        {
+            InitContext();
+        }
+
+        public abstract void ClearContext();
+
+        public abstract void InitContext();
 
         public abstract IEnumerator Test();
 
         [UnityTest]
         public IEnumerator StartTest()
         {
-            yield return InitContext();
             yield return Test();
-            yield return ClearContext();
         }
     }
 }

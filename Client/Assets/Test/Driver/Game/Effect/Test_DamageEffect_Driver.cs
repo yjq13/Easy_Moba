@@ -6,11 +6,12 @@ using UnityEngine;
 
 namespace Test
 {
+
     class Test_DamageEffect_Driver : Test_Effect_Driver
     {
         public override void OnEffectTest()
         {
-            EffectInfoData effect_info = new EffectInfoData(GameTargetType.OPPO_ONE, "Damage", "NORMAL","5");
+            EffectInfoData effect_info = new EffectInfoData(GameTargetType.OPPO_ONE, "Damage", "NONE", "5");
             EffectBase effect = EffectFactory.CreateEffect(effect_info);
             List<GamePlayer> targets = null;
             targets = test_players;
