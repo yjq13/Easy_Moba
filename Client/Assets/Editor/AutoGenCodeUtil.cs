@@ -18,7 +18,8 @@ public class AutoGenCodeUtil : EditorWindow
     {
         UIView = 0,
         UIController = 1,
-        UIModel = 2
+        UIModel = 2,
+        EffectTest = 3,
     }
 
 
@@ -83,7 +84,7 @@ public class AutoGenCodeUtil : EditorWindow
         string codeStr = templateCode.GetCode();
         try
         {
-            string realDiskCSFilePath = codeExportBasePath + "/" + exportFileName;
+            string realDiskCSFilePath = codeExportBasePath + "/" + exportFileName + ".cs";
             string filePath = realDiskCSFilePath.Replace("Assets", "");
             filePath = Application.dataPath + filePath;
             Debug.Log(filePath + File.Exists(filePath));
@@ -126,6 +127,14 @@ public class AutoGenCodeUtil : EditorWindow
                 }
             case TemplateType.UIModel:
                 {
+                    break;
+                }
+            case TemplateType.EffectTest:
+                {
+                    if (templateCode == null || templateCode.GetType() != typeof(EffectTestDriverTemplates))
+                    {
+                        templateCode = new EffectTestDriverTemplates();
+                    }
                     break;
                 }
         }
