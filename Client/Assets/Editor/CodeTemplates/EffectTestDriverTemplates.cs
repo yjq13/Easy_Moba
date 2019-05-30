@@ -22,7 +22,7 @@ using UnityEngine;
 namespace Test
 {
 
-    class {0} : Test_Effect_Driver
+    class Test_{0}_Driver : Test_Effect_Driver
     {
         public override void OnEffectTest()
         {
@@ -43,7 +43,7 @@ namespace Test
         public override void ShowGetParam()
         {
             EditorGUILayout.BeginHorizontal();
-            EditorGUILayout.LabelField("Effect Class Name");
+            EditorGUILayout.LabelField("Effect Name");
             if (template_params == null)
             {
                 template_params = new string[1];
@@ -51,6 +51,20 @@ namespace Test
             }
             template_params[0] = EditorGUILayout.TextField(template_params[0]);
             EditorGUILayout.EndHorizontal();
+        }
+
+        public override string GetDefaultPath()
+        {
+            return "Assets/Test/Driver/Game/Effect";
+        }
+
+        public override string GetDefaultFileName()
+        {
+            if(template_params == null)
+            {
+                return "Test_NewEffect_Driver";
+            }
+            return "Test_" + template_params[0] + "_Driver";
         }
     }
 }

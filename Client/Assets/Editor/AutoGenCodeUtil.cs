@@ -12,6 +12,7 @@ public class AutoGenCodeUtil : EditorWindow
     private string exportFileName = string.Empty;
     private Rect codeExportBaseRect;
     private TemplateType template = TemplateType.UIController;
+    private TemplateType template_old = TemplateType.UIController;
     TemplateBase templateCode = null;
 
     public enum TemplateType
@@ -52,6 +53,12 @@ public class AutoGenCodeUtil : EditorWindow
 
         EditorGUILayout.LabelField("Template choose:");
         template = (TemplateType)EditorGUILayout.EnumPopup(template);
+        if(template_old != template)
+        {
+            codeExportBasePath = "";
+            exportFileName = "";
+            template_old = template;
+        }
 
         EditorGUILayout.Space();
 
@@ -64,6 +71,8 @@ public class AutoGenCodeUtil : EditorWindow
 
         if (templateCode != null)
         {
+            codeExportBasePath = templateCode.GetDefaultPath() != ""? templateCode.GetDefaultPath() : codeExportBasePath;
+            exportFileName = templateCode.GetDefaultFileName() != ""? templateCode.GetDefaultFileName() : exportFileName; ;
             templateCode.ShowGetParam();
 
             if (GUILayout.Button("Generate"))

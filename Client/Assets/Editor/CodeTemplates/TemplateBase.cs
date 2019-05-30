@@ -25,6 +25,16 @@ namespace GameEditor
         public abstract string GetTemplate();
 
         public abstract void ShowGetParam();
+
+        public virtual string GetDefaultPath()
+        {
+           return "";
+        }
+
+        public virtual string GetDefaultFileName()
+        {
+            return "";
+        }
     }
 
 }
