@@ -11,8 +11,9 @@ namespace Test
     {
         public override void OnEffectTest()
         {
-            
+            throw new System.NotImplementedException();
         }
+
         public override void InitPlayers()
         {
             CardSet cardSet_playerOne = new CardSet();
