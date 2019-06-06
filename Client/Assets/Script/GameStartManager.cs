@@ -3,6 +3,7 @@ using System.Collections;
 using NetWork;
 using easy_moba;
 using Common;
+using GamePlay;
 
 public class GameStartManager : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class GameStartManager : MonoBehaviour
         m_GameEngine = GameEngine.Instance;
         yield return StartCoroutine(NetworkManager.Instance.StartConnect());
         is_web_connected = true;
+        m_GameEngine.StartGame<CardGame>();
     }
 
     public void CurrentGameStartCoroutine(IEnumerator erator)

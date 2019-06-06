@@ -18,6 +18,7 @@ namespace Common
         private Dictionary<UIBaseController,uint> m_allControllers;
         private Queue<UIBaseController> m_queueControllers;
         private Stack<UIBaseController> m_stackControllers;
+        public static Transform UIRoot { get; private set; }
 
         public void Init()
         {
@@ -26,10 +27,17 @@ namespace Common
             m_stackControllers = new Stack<UIBaseController>();
         }
 
-        public UIBaseController OpenUIController<T>() where T : UIBaseController
+        public static void SetUIRoot(Transform root)
+        {
+            UIRoot = root;
+        }
+
+        public UIBaseController OpenUIController<T>(Transform parent) where T : UIBaseController
         {
             UnityEngine.Object res = ResourceManager.Instance.GetResource("");
             GameObject gameobj = GameObject.Instantiate(res) as GameObject;
+            gameobj.transform.parent = parent;
+            gameobj.transform.position = Vector3.zero;
             T m_controller = gameobj.AddComponent(typeof(T)) as T;
             return m_controller;
         }

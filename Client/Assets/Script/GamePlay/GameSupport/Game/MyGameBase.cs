@@ -16,6 +16,10 @@ namespace GamePlay
     public class MyGameBase : GameBase
     {
         public GameType GameType = GameType.NONE;
+        public UISceneBase CurrentUIScene
+        {
+            get; protected set;
+        }
         protected EventDispatcher m_GameEventDispatcher;
         public EventDispatcher GameEventDispatcher
         {
