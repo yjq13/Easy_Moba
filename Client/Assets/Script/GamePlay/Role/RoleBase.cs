@@ -49,19 +49,19 @@ namespace GamePlay
         public List<CardBase> CurrentCanUseCardList;
         public List<CardBase> CurrentUsingCardList;
 
-        public ulong PlayerID { get; private set; }
+        public ulong PlayerID { get; set; }
         public RoleType Role_Type;
-        public int CurrentHP { get; private set; }
-        public int CurrentActionPoint  { get; private set;  }
-        public float CurrentSpeed { get; private set; }
+        public int CurrentHP { get; set; }
+        public int CurrentActionPoint  { get; set;  }
+        public float CurrentSpeed { get; set; }
         public uint HP_Limit_Max = 100;
 
         // 不走表，在RoleData中无对应的一些属性
-        public bool             IsStaySpElmtProp    { get; private set; }
-        public ELEMENT_PROPERTY StaySpElmtProp      { get; private set; }
-        public int              SkipCardOutTimes    { get; private set; }
-        public int              SkipRoundTimes      { get; private set; }
-        public SwordSink        SwordSink           { get; private set; }
+        public bool             IsStaySpElmtProp    { get; set; }
+        public ELEMENT_PROPERTY StaySpElmtProp      { get; set; }
+        public int              SkipCardOutTimes    { get; set; }
+        public int              SkipRoundTimes      { get; set; }
+        public SwordSink        SwordSink           { get; set; }
 
         protected RoleBase(CardSet game_card_list, RoleType type)
         {
