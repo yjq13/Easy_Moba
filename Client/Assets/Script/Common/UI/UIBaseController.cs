@@ -10,7 +10,7 @@ namespace Common
 
             System.Reflection.MemberInfo info = typeof(T);
             object[] attributes = info.GetCustomAttributes(true);
-            T view = null;
+            T m_view = null;
             foreach (var attribute in attributes)
             {
                 UIResourceAttribute resourceInfo = (UIResourceAttribute)attribute;
@@ -19,14 +19,14 @@ namespace Common
                     ResourceID id = ResourceManager.Instance.GetResourceIDbyPath(resourceInfo.ResID);
                     UnityEngine.Object res = ResourceManager.Instance.GetResource(id);
                     GameObject viewObject = UnityEngine.Object.Instantiate(res) as GameObject;
-                    view = viewObject.GetComponent<T>();
+                    m_view = viewObject.GetComponent<T>();
+                    m_view.Init(UISceneBase.UIRoot);
                 }
             }
-            view.Init(UISceneBase.UIRoot);
-            return view;
+            return m_view;
         }
 
-        public void OnInit()
+        public void Init()
         {
             UIOnInit();
         }

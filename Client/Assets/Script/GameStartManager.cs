@@ -14,7 +14,8 @@ public class GameStartManager : MonoBehaviour
         m_GameEngine = GameEngine.Instance;
         yield return StartCoroutine(NetworkManager.Instance.StartConnect());
         is_web_connected = true;
-        m_GameEngine.StartGame<CardGame>();
+        m_GameEngine.StartGame<LobbyGame>();
+        GameFacade.GetCurrentUIScene().OpenUIController<UILoginController>();
     }
 
     public void CurrentGameStartCoroutine(IEnumerator erator)

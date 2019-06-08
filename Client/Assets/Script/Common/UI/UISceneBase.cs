@@ -9,20 +9,20 @@ namespace Common
     enum UI_OPEN_TYPE
     {
         NORMAL = 0,
-        STACK,
-        QUEUE//队列形式展示，关闭一个展示一个
+        STACK = 1,
+        QUEUE = 2//队列形式展示，关闭一个展示一个
     }
 
     public class UISceneBase
     {
-        private Dictionary<UIBaseController,uint> m_allControllers;
+        private Dictionary<UIBaseController, UI_OPEN_TYPE> m_allControllers;
         private Queue<UIBaseController> m_queueControllers;
         private Stack<UIBaseController> m_stackControllers;
         public static Transform UIRoot { get; private set; }
 
         public void Init()
         {
-            m_allControllers = new Dictionary<UIBaseController, uint>();
+            m_allControllers = new Dictionary<UIBaseController, UI_OPEN_TYPE>();
             m_queueControllers = new Queue<UIBaseController>();
             m_stackControllers = new Stack<UIBaseController>();
         }
@@ -32,13 +32,11 @@ namespace Common
             UIRoot = root;
         }
 
-        public UIBaseController OpenUIController<T>(Transform parent) where T : UIBaseController
+        public T OpenUIController<T>() where T : UIBaseController
         {
-            UnityEngine.Object res = ResourceManager.Instance.GetResource("");
-            GameObject gameobj = GameObject.Instantiate(res) as GameObject;
-            gameobj.transform.parent = parent;
-            gameobj.transform.position = Vector3.zero;
-            T m_controller = gameobj.AddComponent(typeof(T)) as T;
+            T m_controller = (T)Activator.CreateInstance(typeof(T));
+            m_controller.Init();
+            m_allControllers.Add(m_controller, UI_OPEN_TYPE.NORMAL);
             return m_controller;
         }
     }

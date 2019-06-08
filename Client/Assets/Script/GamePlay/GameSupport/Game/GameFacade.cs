@@ -23,5 +23,14 @@ namespace GamePlay
             }
             return null;
         }
+
+        public static UISceneBase GetCurrentUIScene()
+        {
+            if(m_currentGame != null)
+            {
+                return m_currentGame.CurrentUIScene;
+            }
+            return null;
+        }
     }
 }
