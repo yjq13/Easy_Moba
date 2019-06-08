@@ -78,7 +78,6 @@ namespace GamePlay
                 object value = property.GetValue(m_roleData);
                 if (targetProperty != null && value != null)
                 {
-                    Debug.Log(targetProperty.Name);
                     targetProperty.SetValue(this, value,null);
                 }
             }

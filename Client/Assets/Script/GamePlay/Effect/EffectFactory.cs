@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using UnityEngine;
 
 namespace GamePlay
 {
@@ -9,16 +10,19 @@ namespace GamePlay
     {
         public static EffectBase CreateEffect(EffectInfoData data)
         {
-            switch (data.EffectID)
+            Type effectClass = Type.GetType("GamePlay."+data.EffectID);
+            object effect_obj = Activator.CreateInstance(effectClass);
+            EffectBase effect = null;
+            if(effect_obj != null)
             {
-                case "Damage":
-                    {
-                        var effect = new DamageEffect();
-                        effect.InitEffect(ELEMENT_PROPERTY.NONE,data.EffectParam1,data.EffectParam2);
-                        return effect;
-                    }
+                effect = (EffectBase)effect_obj;
+                effect.InitEffect(data.elementPtoprtty,data.EffectParam1,data.EffectParam2);
             }
-            return null;
+            else
+            {
+                Debug.LogError("effect id can not be find!");
+            }
+            return effect;
         }
     }
 }

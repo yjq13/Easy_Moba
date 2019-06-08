@@ -6,16 +6,18 @@ namespace GamePlay
     public struct EffectInfoData 
     {
         public GameTargetType TargetType;
-        public string EffectID;
+        public EFFECT_TYPE EffectID;
+        public ELEMENT_PROPERTY elementPtoprtty;
         public string EffectParam1;
         public string EffectParam2;
 
-        public EffectInfoData(GameTargetType targetType, string effectID,string param1,string param2)
+        public EffectInfoData(GameTargetType targetType, EFFECT_TYPE effectID,string param1,string param2)
         {
             TargetType = targetType;
             EffectID = effectID;
             EffectParam1 = param1;
             EffectParam2 = param2;
+            elementPtoprtty = ELEMENT_PROPERTY.NONE;
         }
         public static List<EffectInfoData> ParseData(string[] list_array)
         {
@@ -23,7 +25,7 @@ namespace GamePlay
             for (int i = 0;i<list_array.Length;i++)
             {
                 GameTargetType _TargetType = GameTargetType.NONE;
-                string _EffectID = "";
+                EFFECT_TYPE _EffectID = EFFECT_TYPE.None;
                 string _EffectParam1 = "";
                 string _EffectParam2 = "";
                 switch (i % 4)
@@ -35,7 +37,7 @@ namespace GamePlay
                         }
                     case 1:
                         {
-                            _EffectID = list_array[i];
+                            _EffectID = (EFFECT_TYPE)Enum.Parse(typeof(EFFECT_TYPE), list_array[i]);
                             break;
                         }
                     case 2:

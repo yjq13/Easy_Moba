@@ -33,6 +33,7 @@ namespace GamePlay
 
     public enum EFFECT_TYPE
     {
+        None,
         DamageEffect,
         CureEffect,
         ReliveEffect,

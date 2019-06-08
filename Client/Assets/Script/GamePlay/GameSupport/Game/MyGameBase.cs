@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,7 +19,7 @@ namespace GamePlay
         public GameType GameType = GameType.NONE;
         public UISceneBase CurrentUIScene
         {
-            get; protected set;
+            get;protected set;
         }
         protected EventDispatcher m_GameEventDispatcher;
         public EventDispatcher GameEventDispatcher
@@ -34,6 +35,24 @@ namespace GamePlay
         public void Init()
         {
             m_GameEventDispatcher = new EventDispatcher();
+        }
+
+        public void SetUIScene()
+        {
+            CurrentUIScene = (UISceneBase)Activator.CreateInstance(GetUISceneType());
+            if(UISceneBase.UIRoot != null)
+            {
+                GameObject root = GameObject.Find("UIRoot");
+                if (root != null)
+                {
+                    UISceneBase.SetUIRoot(root.transform);
+                }
+            }
+        }
+
+        public Type GetUISceneType()
+        {
+            return typeof(UILobbyScene);
         }
     }
 }
