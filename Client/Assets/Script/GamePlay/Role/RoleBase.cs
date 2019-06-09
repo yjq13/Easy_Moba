@@ -49,7 +49,7 @@ namespace GamePlay
         public List<CardBase> CurrentCanUseCardList;
         public List<CardBase> CurrentUsingCardList;
 
-        public ulong PlayerID { get; set; }
+        public PlayerID PlayerID { get; set; }
         public RoleType Role_Type;
         public int CurrentHP { get; set; }
         public int CurrentActionPoint  { get; set;  }
@@ -345,8 +345,28 @@ namespace GamePlay
         // 进度条百分比
         public float GetActProgress()
         {
-            // !!! 暂未实现
+            if (GameFacade.GetCurrentCardGame() != null)
+            {
+                return GameFacade.GetCurrentCardGame().GetSpeedProgress().GetProgressPercentByPlayer(PlayerID);
+            }
+            else
+            {
+                Debug.LogError("Cant find the CurrentGame");
+            }
             return 0;
+        }
+
+        // 更改这个角色的当前进度
+        public void ChangeActProgress(float percent)
+        {
+            if (GameFacade.GetCurrentCardGame() != null)
+            {
+                GameFacade.GetCurrentCardGame().GetSpeedProgress().SetProgressPercentByPlayer(PlayerID,percent);
+            }
+            else
+            {
+                Debug.LogError("Cant find the CurrentGame");
+            }
         }
     }
 }

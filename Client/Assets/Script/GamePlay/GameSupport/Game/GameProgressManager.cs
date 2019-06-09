@@ -87,6 +87,11 @@ namespace GamePlay
 
         }
 
+        public CalculateSpeedProgress GetSpeedProgress()
+        {
+            return start_progress;
+        }
+
 
         public void ResetGameProgress()
         {
