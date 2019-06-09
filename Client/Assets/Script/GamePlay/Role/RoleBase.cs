@@ -30,10 +30,10 @@ namespace GamePlay
     public class SwordSink
     {
         public int   cardID { get; private set; }
-        public int   targetID { get; private set; }
+        public uint  targetID { get; private set; }
         public float actProgress { get; private set; }
 
-        public SwordSink(int card_id, int target_id, float act_progress)
+        public SwordSink(int card_id, uint target_id, float act_progress)
         {
             cardID      = card_id;
             targetID    = target_id;
@@ -309,14 +309,14 @@ namespace GamePlay
 
         }
 
-        // ---------------------------------------------------------//SZY Error 重复命名 改名SetSwordSink
-        public void SetSwordSink(int card_id, int target_uid, float act_progress)
+        // ---------------------------------------------------------
+        public void SetSwordSink(int card_id, uint target_uid, float act_progress)
         {
             SwordSink = new SwordSink(card_id, target_uid, act_progress);
             OnSwordSink(card_id, target_uid, act_progress);
         }
 
-        protected virtual void OnSwordSink(int card_id, int target_uid, float act_progress)
+        protected virtual void OnSwordSink(int card_id, uint target_uid, float act_progress)
         {
 
         }

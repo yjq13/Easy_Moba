@@ -9,11 +9,11 @@ namespace GamePlay
 {
     class ClearBuffLeftTimesEffect : EffectBase
     {
-        private int BuffID      = 0;
+        private BUFF_TYPE   BuffID  = BUFF_TYPE.NONE;
 
         protected override void OnInitEffect(params object[] objs)
         {
-            BuffID  = StringConverter.ToInt(objs[0].ToString(), 0);
+            BuffID  = (BUFF_TYPE)Enum.Parse(typeof(BUFF_TYPE), objs[0].ToString());
         }
 
         protected override void OnTakeEffect(GamePlayer source_player,GamePlayer player)

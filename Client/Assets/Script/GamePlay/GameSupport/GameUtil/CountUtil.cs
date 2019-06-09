@@ -14,25 +14,22 @@ namespace GamePlay
             string firstParam = count_params[0].ToString();
             if (IsNum(firstParam))
             {
-                StringConverter.ToInt(firstParam, 0);
+                return StringConverter.ToInt(firstParam, 0);
             }
             else
             {
                 // !!! 暂未实现
                 switch (firstParam)
                 {
-                    case "NONE":
-                        return StringConverter.ToInt(count_params[1].ToString());
                     case "sp_card_cost_magic_point_cnt":
                         return 0;
                     case "magic_point_cnt":
                         return 0;
                     default:
                         Debug.LogError("calc count error with first param: " + firstParam);
-                        break;
+                        return 0;
                 }
             }
-            return -1;
         }
 
         public static bool IsNum(string str)

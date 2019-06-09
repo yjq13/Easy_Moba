@@ -9,6 +9,8 @@ namespace GamePlay
 {
     class MultiAssetGainEffect : EffectBase
     {
+        // !!! 6.9 跟嘉奇商量了一下 没确定好怎么搞 待定吧
+        // 暂未实现
         private int damageCnt;
 
         protected override void OnInitEffect(params object[] objs)

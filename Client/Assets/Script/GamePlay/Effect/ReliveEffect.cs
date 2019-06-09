@@ -19,7 +19,7 @@ namespace GamePlay
         protected override void OnTakeEffect(GamePlayer source_player, GamePlayer player)
         {
             //player.SendGameBuffTriggerEvent( Buff_NOTIFY_TYPE.GET_DAMAGE, this);
-            player.Role.ChangeHP(HP);
+            player.Role.CurrentHP = HP;
         }
     }
 }

@@ -40,20 +40,20 @@ namespace GamePlay
         }
 
         // ---------------------------------------------------------
-        public void GainBuff(int buff_id, int buff_times)
+        public void GainBuff(BUFF_TYPE buff_id, int buff_times)
         {
             // !!! 暂未实现
             OnGainBuff(buff_id, buff_times);
         }
 
-        protected virtual void OnGainBuff(int buff_id, int buff_times)
+        protected virtual void OnGainBuff(BUFF_TYPE buff_id, int buff_times)
         {
 
         }
 
         // ---------------------------------------------------------
         // buff剩余次数
-        public int GetBuffTimes(int buff_id)
+        public int GetBuffTimes(BUFF_TYPE buff_id)
         {
             // !!! 暂未实现
             return 0;

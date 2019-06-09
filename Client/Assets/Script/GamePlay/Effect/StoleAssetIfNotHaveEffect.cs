@@ -15,7 +15,7 @@ namespace GamePlay
         protected override void OnInitEffect(params object[] objs)
         {
             assetSubType    = (ASSET_SUB_TYPE)Enum.Parse(typeof(ASSET_SUB_TYPE), objs[0].ToString());
-            assetCnt        = (int)objs[1];
+            assetCnt        = Convert.ToInt32(objs[1]);
         }
 
         protected override void OnTakeEffect(GamePlayer source_player, GamePlayer target_player)

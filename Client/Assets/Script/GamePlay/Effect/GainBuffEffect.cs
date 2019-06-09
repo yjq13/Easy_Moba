@@ -9,13 +9,15 @@ namespace GamePlay
 {
     class GainBuffEffect : EffectBase
     {
-        private int BuffID      = 0;
-        private uint BuffTimes   = 0;
+        private BUFF_TYPE   BuffID      = BUFF_TYPE.NONE;
+        private int         BuffTimes   = 0;
 
         protected override void OnInitEffect(params object[] objs)
         {
-            BuffID = (int)objs[0];
-            BuffTimes = (uint)objs[1];
+            BuffID      = (BUFF_TYPE)Enum.Parse(typeof(BUFF_TYPE), objs[0].ToString());
+            // !!!
+            // 求问：为什么下面不能写作 =int(objs[1])
+            BuffTimes   = Convert.ToInt32(objs[1]);
         }
 
         protected override void OnTakeEffect(GamePlayer source_player,GamePlayer player)
@@ -23,7 +25,7 @@ namespace GamePlay
             if (BuffTimes > 0)
             {
                 // player.SendGameBuffTriggerEvent( Buff_NOTIFY_TYPE.GET_DAMAGE, this);
-                player.GainBuff(BuffID, (int)BuffTimes);
+                player.GainBuff(BuffID, BuffTimes);
             }
         }
     }

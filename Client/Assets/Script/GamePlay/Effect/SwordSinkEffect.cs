@@ -11,23 +11,21 @@ namespace GamePlay
     {
         private bool    isSwordSink = false;
         private int     cardID      = 0;
-        private int     targetUID   = 0;
         private float   actProgress = 0;
 
         protected override void OnInitEffect(params object[] objs)
         {
             isSwordSink = true;
-            targetUID = 0;
         }
 
         protected override void OnTakeEffect(GamePlayer source_player,GamePlayer player)
         {
-            if (isSwordSink && cardID > 0)
+            if (isSwordSink)
             {
                 cardID      = player.Role.GetLastCardID();
                 actProgress = player.Role.GetActProgress();
                 // player.SendGameBuffTriggerEvent( Buff_NOTIFY_TYPE.GET_DAMAGE, this);
-                source_player.Role.SetSwordSink(cardID, targetUID, actProgress);
+                source_player.Role.SetSwordSink(cardID, player.PlayerID, actProgress);
             }
         }
     }

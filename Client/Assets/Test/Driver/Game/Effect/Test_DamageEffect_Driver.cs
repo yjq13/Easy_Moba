@@ -11,7 +11,7 @@ namespace Test
     {
         public override void OnEffectTest()
         {
-            EffectInfoData effect_info = new EffectInfoData(GameTargetType.OPPO_ONE, EFFECT_TYPE.DamageEffect, "NONE", "5");
+            EffectInfoData effect_info = new EffectInfoData(GameTargetType.OPPO_ONE, EFFECT_TYPE.DamageEffect, "5", "");
             EffectBase effect = EffectFactory.CreateEffect(effect_info);
             List<GamePlayer> targets = null;
             targets = test_players;

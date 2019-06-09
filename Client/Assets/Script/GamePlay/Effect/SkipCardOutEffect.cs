@@ -13,7 +13,7 @@ namespace GamePlay
 
         protected override void OnInitEffect(params object[] objs)
         {
-            SkipTimes += 1;
+            SkipTimes += Convert.ToInt32(objs[0]);
         }
 
         protected override void OnTakeEffect(GamePlayer source_player,GamePlayer player)

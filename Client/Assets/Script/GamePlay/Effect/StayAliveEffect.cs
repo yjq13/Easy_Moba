@@ -21,7 +21,7 @@ namespace GamePlay
             if (player.Role.CurrentHP <= 0 && stayHp > 0)
             {
                 // player.SendGameBuffTriggerEvent( Buff_NOTIFY_TYPE.GET_DAMAGE, this);
-                player.Role.ChangeHP(stayHp);
+                player.Role.CurrentHP = stayHp;
             }
         }
     }

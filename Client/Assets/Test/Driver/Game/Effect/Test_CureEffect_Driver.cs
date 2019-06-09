@@ -13,7 +13,7 @@ namespace Test
 
         public override void OnEffectTest()
         {
-            EffectInfoData effect_info = new EffectInfoData(GameTargetType.OPPO_ONE, EFFECT_TYPE.CureEffect, "NONE", "2");
+            EffectInfoData effect_info = new EffectInfoData(GameTargetType.OPPO_ONE, EFFECT_TYPE.CureEffect, "2", "");
             EffectBase effect = EffectFactory.CreateEffect(effect_info);
             List<GamePlayer> targets = null;
             targets = test_players;
