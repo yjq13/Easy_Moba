@@ -110,5 +110,15 @@ namespace GamePlay
         {
             return ProgressType.CalculateSpeed;
         }
+
+        public float GetProgressPercentByPlayer(PlayerID pID)
+        {
+            return m_players_race_flag[pID]/RACE_LOAD_LENGTH;
+        }
+
+        public void SetProgressPercentByPlayer(PlayerID pID,float progress_percent)
+        {
+            m_players_race_flag[pID] = progress_percent * 100;
+        }
     }
 }

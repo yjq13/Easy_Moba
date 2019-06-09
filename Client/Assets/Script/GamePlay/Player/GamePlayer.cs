@@ -28,6 +28,7 @@ namespace GamePlay
         {
             PlayerID = id;
             Role = role;
+            Role.PlayerID = PlayerID;
             RoleType = Role.GetRoleType();
             m_buffManager = new GameBuffManager();
             m_buffManager.Init();

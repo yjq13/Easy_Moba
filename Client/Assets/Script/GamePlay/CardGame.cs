@@ -38,6 +38,11 @@ namespace GamePlay
             return m_prgressManager.GetCurrenProgress();
         }
 
+        public CalculateSpeedProgress GetSpeedProgress()
+        {
+            return m_prgressManager.GetSpeedProgress();
+        }
+
         public override void OnAwake()
         {
             base.OnAwake();

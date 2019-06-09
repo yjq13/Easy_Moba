@@ -14,7 +14,7 @@ namespace GamePlay
         MEGE = 2,
     }
 
-    public class Asset
+    public struct Asset
     {
         public ASSET_MAJOR_TYPE    majorType { get; private set; }
         public ASSET_SUB_TYPE      subType { get; private set; }
@@ -27,7 +27,7 @@ namespace GamePlay
             cnt         = count;
         }
     }
-    public class SwordSink
+    public struct SwordSink
     {
         public int   cardID { get; private set; }
         public uint  targetID { get; private set; }
@@ -49,7 +49,7 @@ namespace GamePlay
         public List<CardBase> CurrentCanUseCardList;
         public List<CardBase> CurrentUsingCardList;
 
-        public ulong PlayerID { get; set; }
+        public PlayerID PlayerID { get; set; }
         public RoleType Role_Type;
         public int CurrentHP { get; set; }
         public int CurrentActionPoint  { get; set;  }
@@ -95,7 +95,21 @@ namespace GamePlay
             return Role_Type;
         }
 
-        // !!! 弃牌暂未实现
+        //？？？ 弃牌实现
+        public void DiscardCard(CardBase card)
+        {
+            OnDiscardCard(card);
+            if (card != null)
+            {
+                CurrentCanUseCardList.Remove(card);
+            }
+        }
+
+        protected void OnDiscardCard(CardBase card)
+        {
+
+        }
+
         public void GetCard(int cardCount)
         {
             OnGetCard(cardCount);
@@ -139,7 +153,6 @@ namespace GamePlay
             if(card != null)
             {
                 CurrentCanUseCardList.Remove(card);
-                Debug.LogError("UseCard:"+card.CardID);
                 if (card.CardType == CARD_TYPE.WEAPON)
                 {
                     CurrentUsingCardList.Add(card);
@@ -242,7 +255,7 @@ namespace GamePlay
         // 资源数量
         public uint GetAssetCnt(ASSET_MAJOR_TYPE mj_type, ASSET_SUB_TYPE sub_type)
         {
-            // !!! 暂未实现
+
             return 0;
         }
 
@@ -332,8 +345,28 @@ namespace GamePlay
         // 进度条百分比
         public float GetActProgress()
         {
-            // !!! 暂未实现
+            if (GameFacade.GetCurrentCardGame() != null)
+            {
+                return GameFacade.GetCurrentCardGame().GetSpeedProgress().GetProgressPercentByPlayer(PlayerID);
+            }
+            else
+            {
+                Debug.LogError("Cant find the CurrentGame");
+            }
             return 0;
+        }
+
+        // 更改这个角色的当前进度
+        public void ChangeActProgress(float percent)
+        {
+            if (GameFacade.GetCurrentCardGame() != null)
+            {
+                GameFacade.GetCurrentCardGame().GetSpeedProgress().SetProgressPercentByPlayer(PlayerID,percent);
+            }
+            else
+            {
+                Debug.LogError("Cant find the CurrentGame");
+            }
         }
     }
 }
