@@ -11,13 +11,13 @@ namespace GamePlay
         public string EffectParam1;
         public string EffectParam2;
 
-        public EffectInfoData(GameTargetType targetType, EFFECT_TYPE effectID,string param1,string param2)
+        public EffectInfoData(GameTargetType targetType, EFFECT_TYPE effectID,string param1,string param2,ELEMENT_PROPERTY element = ELEMENT_PROPERTY.NONE)
         {
             TargetType = targetType;
             EffectID = effectID;
             EffectParam1 = param1;
             EffectParam2 = param2;
-            elementPtoprtty = ELEMENT_PROPERTY.NONE;
+            elementPtoprtty = element;
         }
         public static List<EffectInfoData> ParseData(string[] list_array)
         {
