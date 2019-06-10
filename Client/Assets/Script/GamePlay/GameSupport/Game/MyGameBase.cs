@@ -40,7 +40,7 @@ namespace GamePlay
         public void SetUIScene()
         {
             CurrentUIScene = (UISceneBase)Activator.CreateInstance(GetUISceneType());
-            if(UISceneBase.UIRoot != null)
+            if (UISceneBase.UIRoot == null)
             {
                 GameObject root = GameObject.Find("UIRoot");
                 if (root != null)

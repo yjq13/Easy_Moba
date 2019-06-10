@@ -6,12 +6,12 @@ using UnityEngine;
 
 namespace Common
 {
-    [UIResource("")]
     public class UIBaseView : MonoBehaviour
     {
         public void Init(Transform root)
         {
-
+            transform.parent = root;
+            transform.localScale = Vector3.one;
         }
 
         protected virtual void OnUIinit()

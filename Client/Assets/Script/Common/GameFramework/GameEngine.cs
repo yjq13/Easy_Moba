@@ -25,6 +25,7 @@ namespace Common
         {
              m_CurrentGame = (MyGameBase)Activator.CreateInstance(typeof(T));
             m_CurrentGame.OnAwake();
+            m_CurrentGame.Init();
             m_CurrentGame.SetUIScene(); 
         }
 
