@@ -41,7 +41,7 @@ websocket_handle({binary, UpData}, State) ->
   _        = do_log_msg(up, UpMsg, State),
   {DownMsg, NewState} = websocket_handle__(UpMsg, Mod, Cmd, State),
   _        = do_log_msg(down, DownMsg, NewState),
-  DownData = encode_data(UpMsg, DownMsg, NewState, tools:is_err_code(DownMsg)),
+  DownData = encode_data(UpMsg#up_msg.seq, DownMsg, NewState, tools:is_err_code(DownMsg)),
   {reply, DownData, NewState};
 websocket_handle(Data, State) ->
   %% !!! tmp
@@ -49,10 +49,10 @@ websocket_handle(Data, State) ->
   %%
   {ok, State}.
 
-encode_data(_UpMsg, Err, #state{verified = false}, true) ->
-  {close, atom_to_list(Err)};
-encode_data(UpMsg, Msg, _, _) ->
-  DownMsg  = pack_down_msg(UpMsg#up_msg.seq, Msg),
+% encode_data(_Seq, Err, #state{verified = false}, true) ->
+%   {close, atom_to_list(Err)};
+encode_data(Seq, Msg, _, _) ->
+  DownMsg  = pack_down_msg(Seq, Msg),
   DownData = down_pb:encode_msg(DownMsg),
   {binary, DownData}.
 
